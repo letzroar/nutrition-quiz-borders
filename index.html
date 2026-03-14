@@ -22,10 +22,7 @@
       --shadow:0 4px 24px rgba(0,0,0,.07);
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text);background:var(--bg);min-height:100vh;line-height:1.5;
-    }
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:var(--bg);min-height:100vh;line-height:1.5}
     .wrap{max-width:720px;margin:0 auto;padding:24px 16px 140px}
     .hero{text-align:center;padding:40px 0 10px}
     .hero h1{font-size:28px;font-weight:900;color:var(--primary-dark);margin-bottom:8px;line-height:1.25}
@@ -37,9 +34,9 @@
     .progressBar{height:100%;border-radius:999px;background:var(--primary);transition:width .5s ease;width:0%}
     .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
     .cardBody{padding:20px}
-    .q-section{display:none;opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .4s ease;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border)}
-    .q-section.visible{display:block}
-    .q-section.animate-in{opacity:1;transform:translateY(0)}
+   .q-section{display:none;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.q-section.visible{display:block;opacity:1;transform:none}
+.q-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
     .q-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
     h2{font-size:15px;font-weight:800;color:var(--primary-dark);margin:0 0 12px;text-transform:uppercase;letter-spacing:.5px}
     .row{display:flex;gap:12px;flex-wrap:wrap}
@@ -128,6 +125,51 @@
     .unanswered{border-color:var(--primary)!important;box-shadow:0 0 0 3px rgba(15,118,110,.12)!important;animation:pulseField 2s ease-in-out infinite}
     @keyframes pulseField{0%,100%{box-shadow:0 0 0 3px rgba(15,118,110,.08)}50%{box-shadow:0 0 0 5px rgba(15,118,110,.18)}}
     .unanswered-label{color:var(--primary-dark)!important;font-weight:700!important}
+
+    /* TESTIMONIAL FLOAT */
+    .testi-float{
+      position:fixed;bottom:16px;left:16px;z-index:9998;
+      display:flex;align-items:center;gap:10px;
+      max-width:260px;padding:10px 14px;
+      border-radius:14px;border:1px solid var(--primary-border);
+      background:var(--card);
+      box-shadow:0 8px 32px rgba(0,0,0,.12);
+      cursor:pointer;
+      transition:transform .12s,box-shadow .12s,opacity .3s ease;
+      animation:testiPulse 4s ease-in-out infinite;
+    }
+    .testi-float:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(15,118,110,.18);animation:none}
+    @keyframes testiPulse{0%,100%{box-shadow:0 8px 32px rgba(0,0,0,.12)}50%{box-shadow:0 8px 32px rgba(15,118,110,.25)}}
+    .testi-float-avatar{flex-shrink:0;width:44px;height:44px;border-radius:50%;overflow:hidden;border:2px solid var(--primary);background:var(--bg)}
+    .testi-float-avatar img{width:100%;height:100%;object-fit:cover}
+    .testi-float-body{min-width:0}
+    .testi-float-name{font-size:13px;font-weight:800;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .testi-float-snippet{font-size:11px;color:var(--muted);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .testi-float-badge{position:absolute;top:-6px;right:-6px;background:var(--primary);color:#fff;font-size:10px;font-weight:900;padding:3px 7px;border-radius:999px;box-shadow:0 2px 8px rgba(15,118,110,.3);white-space:nowrap}
+    .testi-float-stars{color:#F59E0B;font-size:12px;letter-spacing:1px;margin-bottom:1px}
+    /* TESTIMONIAL MODAL */
+    .testi-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .25s ease}
+    .testi-overlay.open{opacity:1;pointer-events:auto}
+    .testi-modal{background:var(--card);border-radius:18px;max-width:440px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.2);transform:translateY(20px) scale(.97);transition:transform .3s ease;position:relative}
+    .testi-overlay.open .testi-modal{transform:translateY(0) scale(1)}
+    .testi-modal-close{position:sticky;top:0;right:0;z-index:2;display:flex;justify-content:flex-end;padding:12px 14px 0}
+    .testi-modal-close button{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--card);font-size:18px;cursor:pointer;color:var(--muted);display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    .testi-modal-close button:hover{background:var(--bg);color:var(--text)}
+    .testi-modal-screenshot{padding:0 12px}
+    .testi-modal-screenshot img{width:100%;border-radius:12px;border:1px solid var(--border);display:block}
+    .testi-modal-verified{display:flex;align-items:center;gap:8px;padding:12px 20px;font-size:12px;color:var(--muted);line-height:1.4}
+    .testi-verified-badge{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#16A34A;color:#fff;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center}
+    .testi-modal-cta{margin:0 20px 20px;padding:14px;border-radius:12px;border:1px solid var(--primary-border);background:var(--primary-light);text-align:center}
+    .testi-modal-cta a{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:10px;background:var(--primary);color:#fff;font-weight:800;font-size:14px;text-decoration:none;box-shadow:0 4px 16px rgba(15,118,110,.2);transition:filter .12s,transform .08s}
+    .testi-modal-cta a:hover{filter:brightness(1.08);transform:translateY(-1px)}
+    .testi-modal-cta a:active{transform:translateY(1px)}
+    @media(max-width:480px){
+      .testi-float{bottom:10px;left:10px;max-width:220px;padding:8px 10px}
+      .testi-float-avatar{width:38px;height:38px}
+      .testi-float-name{font-size:12px}
+      .testi-float-snippet{font-size:10px}
+      .testi-modal{max-height:90vh;border-radius:14px}
+    }
   </style>
 </head>
 <body>
@@ -135,13 +177,13 @@
   <div class="lang-row">
     <select id="langSelect">
       <option value="en">English</option>
-      <option value="fr">Français</option>
+      <option value="fr">Fran&#231;ais</option>
       <option value="de">Deutsch</option>
     </select>
   </div>
   <div class="hero">
-    <h1 data-i18n="hero.title">Free 60‑Second Nutrition Quiz</h1>
-    <p data-i18n="hero.sub">Answer a few questions, get Calories, Macros & a 2‑week plan.</p>
+    <h1 data-i18n="hero.title">Free 60&#8209;Second Nutrition Quiz</h1>
+    <p data-i18n="hero.sub">Answer a few questions, get Calories, Macros &amp; a 2&#8209;week plan.</p>
   </div>
   <div class="progressWrap"><div class="progressBar" id="progressBar"></div></div>
   <div class="card">
@@ -149,7 +191,7 @@
       <div class="errBanner" id="errBanner"></div>
       <form id="quizForm" novalidate>
 
-        <div class="q-section visible" data-section="age" id="sec-age">
+<div class="q-section visible animate-in" data-section="age" id="sec-age">
           <div class="field">
             <label for="age" data-i18n="s1.age">Age (years)</label>
             <input id="age" type="number" min="13" max="90" name="age" required />
@@ -173,7 +215,7 @@
             <select id="goal" name="goal" required>
               <option value="" data-i18n="common.select">Select</option>
               <option value="lose" data-i18n="s1.goal.lose">Lose fat</option>
-              <option value="maintain" data-i18n="s1.goal.maintain">Recomposition (Lose fat / build muscle)</option>
+              <option value="maintain" data-i18n="s1.goal.maintain">Recomposition</option>
               <option value="gain" data-i18n="s1.goal.gain">Build lean muscle mass</option>
             </select>
           </div>
@@ -182,48 +224,38 @@
         <div class="q-section" data-section="details" id="sec-details">
           <div class="section-group-title" data-i18n="s1.title">Personal Data</div>
           <div class="row">
-            <div class="field">
-              <label for="heightCm" data-i18n="s1.height">Height (cm)</label>
-              <input id="heightCm" type="number" min="120" max="230" name="heightCm" required />
-            </div>
-            <div class="field">
-              <label for="weightKg" data-i18n="s1.weight">Weight (kg)</label>
-              <input id="weightKg" type="number" min="35" max="250" step="0.1" name="weightKg" required />
-            </div>
+            <div class="field"><label for="heightCm" data-i18n="s1.height">Height (cm)</label><input id="heightCm" type="number" min="120" max="230" name="heightCm" required /></div>
+            <div class="field"><label for="weightKg" data-i18n="s1.weight">Weight (kg)</label><input id="weightKg" type="number" min="35" max="250" step="0.1" name="weightKg" required /></div>
           </div>
+          <div class="row"><div class="field">
+            <label for="activity" data-i18n="s1.activity">Activity level</label>
+            <select id="activity" name="activity" required>
+              <option value="" data-i18n="s1.activity.select">Select</option>
+              <option value="sedentary" data-i18n="s1.activity.sedentary">Sedentary</option>
+              <option value="light" data-i18n="s1.activity.light">Lightly active</option>
+              <option value="moderate" data-i18n="s1.activity.moderate">Moderately active</option>
+              <option value="very" data-i18n="s1.activity.very">Very active</option>
+            </select>
+            <div class="help" data-i18n="s1.activity.help"><b>Examples:</b><br/><b>Sedentary:</b> desk job.<br/><b>Light:</b> desk + walks 1-3x/week.<br/><b>Moderate:</b> active + 3-5x/week.<br/><b>Very active:</b> physical job + frequent training.</div>
+          </div></div>
           <div class="row">
-            <div class="field">
-              <label for="activity" data-i18n="s1.activity">Activity level</label>
-              <select id="activity" name="activity" required>
-                <option value="" data-i18n="s1.activity.select">Select</option>
-                <option value="sedentary" data-i18n="s1.activity.sedentary">Sedentary</option>
-                <option value="light" data-i18n="s1.activity.light">Lightly active</option>
-                <option value="moderate" data-i18n="s1.activity.moderate">Moderately active</option>
-                <option value="very" data-i18n="s1.activity.very">Very active</option>
-              </select>
-              <div class="help" data-i18n="s1.activity.help"><b>Examples:</b><br/><b>Sedentary:</b> desk job, little walking.<br/><b>Light:</b> desk job + walks, 1–3×/week.<br/><b>Moderate:</b> active + 3–5×/week.<br/><b>Very active:</b> physical job + frequent training.</div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="field">
-              <label for="steps" data-i18n="s1.steps">Average daily steps</label>
+            <div class="field"><label for="steps" data-i18n="s1.steps">Average daily steps</label>
               <select id="steps" name="steps" required>
                 <option value="" data-i18n="common.select">Select</option>
-                <option value="none" data-i18n="s1.steps.none">I don't track / very low</option>
+                <option value="none" data-i18n="s1.steps.none">Very low</option>
                 <option value="2k" data-i18n="s1.steps.2k">~2,000/day</option>
                 <option value="lt4k" data-i18n="s1.steps.lt4k">&lt; 4,000/day</option>
-                <option value="4to8k" data-i18n="s1.steps.4to8k">4,000–8,000/day</option>
-                <option value="8to12k" data-i18n="s1.steps.8to12k">8,000–12,000/day</option>
+                <option value="4to8k" data-i18n="s1.steps.4to8k">4,000-8,000/day</option>
+                <option value="8to12k" data-i18n="s1.steps.8to12k">8,000-12,000/day</option>
                 <option value="gt12k" data-i18n="s1.steps.gt12k">&gt; 12,000/day</option>
               </select>
             </div>
-            <div class="field">
-              <label for="sleep" data-i18n="s1.sleep">Sleep per night</label>
+            <div class="field"><label for="sleep" data-i18n="s1.sleep">Sleep per night</label>
               <select id="sleep" name="sleep" required>
                 <option value="" data-i18n="common.select">Select</option>
                 <option value="lt4" data-i18n="s1.sleep.lt4">&lt; 4h</option>
-                <option value="4to6" data-i18n="s1.sleep.4to6">4–6h</option>
-                <option value="6to8" data-i18n="s1.sleep.6to8">6–8h</option>
+                <option value="4to6" data-i18n="s1.sleep.4to6">4-6h</option>
+                <option value="6to8" data-i18n="s1.sleep.6to8">6-8h</option>
                 <option value="8plus" data-i18n="s1.sleep.8plus">8h+</option>
               </select>
             </div>
@@ -235,120 +267,62 @@
             <input type="hidden" id="bfRangeLabel" name="bfRangeLabel" required />
             <div class="bfPrompt" id="bfPrompt" data-i18n="s1.bfVisual.selectGender">Please select your gender first.</div>
             <div class="bfGrid" id="bfGrid" role="radiogroup" style="display:none">
-              <button type="button" class="bfCard" data-gender="male" data-min="1" data-max="7" data-label="1–7%"><div class="bfImgWrap"><img src="img/bf/male_1_7.png" alt="Male 1–7%"/></div><div class="bfTop"><div class="bfTitle">1–7%</div><div class="bfTag" data-i18n="s1.gender.male">Male</div></div><div class="bfDesc" data-i18n="s1.bf.male.1_7.desc">Competition level.</div></button>
-              <button type="button" class="bfCard" data-gender="male" data-min="8" data-max="10" data-label="8–10%"><div class="bfImgWrap"><img src="img/bf/male_8_10.png" alt="Male 8–10%"/></div><div class="bfTop"><div class="bfTitle">8–10%</div><div class="bfTag" data-i18n="s1.gender.male">Male</div></div><div class="bfDesc" data-i18n="s1.bf.male.8_10.desc">Very lean.</div></button>
-              <button type="button" class="bfCard" data-gender="male" data-min="11" data-max="12" data-label="11–12%"><div class="bfImgWrap"><img src="img/bf/male_11_12.png" alt="Male 11–12%"/></div><div class="bfTop"><div class="bfTitle">11–12%</div><div class="bfTag" data-i18n="s1.gender.male">Male</div></div><div class="bfDesc" data-i18n="s1.bf.male.11_12.desc">Lean.</div></button>
-              <button type="button" class="bfCard" data-gender="male" data-min="13" data-max="15" data-label="13–15%"><div class="bfImgWrap"><img src="img/bf/male_13_15.png" alt="Male 13–15%"/></div><div class="bfTop"><div class="bfTitle">13–15%</div><div class="bfTag" data-i18n="s1.gender.male">Male</div></div><div class="bfDesc" data-i18n="s1.bf.male.13_15.desc">Athletic.</div></button>
-              <button type="button" class="bfCard" data-gender="male" data-min="16" data-max="19" data-label="16–19%"><div class="bfImgWrap"><img src="img/bf/male_16_19.png" alt="Male 16–19%"/></div><div class="bfTop"><div class="bfTitle">16–19%</div><div class="bfTag" data-i18n="s1.gender.male">Male</div></div><div class="bfDesc" data-i18n="s1.bf.male.16_19.desc">Fit.</div></button>
-              <button type="button" class="bfCard" data-gender="male" data-min="20" data-max="24" data-label="20–24%"><div class="bfImgWrap"><img src="img/bf/male_20_24.png" alt="Male 20–24%"/></div><div class="bfTop"><div class="bfTitle">20–24%</div><div class="bfTag" data-i18n="s1.gender.male">Male</div></div><div class="bfDesc" data-i18n="s1.bf.male.20_24.desc">Average.</div></button>
-              <button type="button" class="bfCard" data-gender="male" data-min="25" data-max="30" data-label="25–30%"><div class="bfImgWrap"><img src="img/bf/male_25_30.png" alt="Male 25–30%"/></div><div class="bfTop"><div class="bfTitle">25–30%</div><div class="bfTag" data-i18n="s1.gender.male">Male</div></div><div class="bfDesc" data-i18n="s1.bf.male.25_30.desc">Soft midsection.</div></button>
-              <button type="button" class="bfCard" data-gender="male" data-min="35" data-max="40" data-label="35–40%+"><div class="bfImgWrap"><img src="img/bf/male_35_40.png" alt="Male 35–40%+"/></div><div class="bfTop"><div class="bfTitle">35–40%+</div><div class="bfTag" data-i18n="s1.gender.male">Male</div></div><div class="bfDesc" data-i18n="s1.bf.male.35_40.desc">Clear fat accumulation.</div></button>
-              <button type="button" class="bfCard" data-gender="female" data-min="10" data-max="12" data-label="10–12%"><div class="bfImgWrap"><img src="img/bf/female_10_12.png" alt="Female 10–12%"/></div><div class="bfTop"><div class="bfTitle">10–12%</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.10_12.desc">Competition level.</div></button>
-              <button type="button" class="bfCard" data-gender="female" data-min="15" data-max="17" data-label="15–17%"><div class="bfImgWrap"><img src="img/bf/female_15_17.png" alt="Female 15–17%"/></div><div class="bfTop"><div class="bfTitle">15–17%</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.15_17.desc">Very lean.</div></button>
-              <button type="button" class="bfCard" data-gender="female" data-min="18" data-max="20" data-label="18–20%"><div class="bfImgWrap"><img src="img/bf/female_18_20.png" alt="Female 18–20%"/></div><div class="bfTop"><div class="bfTitle">18–20%</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.18_20.desc">Athletic/fit.</div></button>
-              <button type="button" class="bfCard" data-gender="female" data-min="21" data-max="23" data-label="21–23%"><div class="bfImgWrap"><img src="img/bf/female_21_23.png" alt="Female 21–23%"/></div><div class="bfTop"><div class="bfTitle">21–23%</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.21_23.desc">Fit.</div></button>
-              <button type="button" class="bfCard" data-gender="female" data-min="24" data-max="26" data-label="24–26%"><div class="bfImgWrap"><img src="img/bf/female_24_26.png" alt="Female 24–26%"/></div><div class="bfTop"><div class="bfTitle">24–26%</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.24_26.desc">Average/healthy.</div></button>
-              <button type="button" class="bfCard" data-gender="female" data-min="27" data-max="29" data-label="27–29%"><div class="bfImgWrap"><img src="img/bf/female_27_29.png" alt="Female 27–29%"/></div><div class="bfTop"><div class="bfTitle">27–29%</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.27_29.desc">Softer shape.</div></button>
-              <button type="button" class="bfCard" data-gender="female" data-min="30" data-max="35" data-label="30–35%"><div class="bfImgWrap"><img src="img/bf/female_30_35.png" alt="Female 30–35%"/></div><div class="bfTop"><div class="bfTitle">30–35%</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.30_35.desc">Clear fat accumulation.</div></button>
-              <button type="button" class="bfCard" data-gender="female" data-min="36" data-max="40" data-label="36–40%"><div class="bfImgWrap"><img src="img/bf/female_36_40.png" alt="Female 36–40%"/></div><div class="bfTop"><div class="bfTitle">36–40%</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.36_40.desc">Significant fat.</div></button>
+              <button type="button" class="bfCard" data-gender="male" data-min="1" data-max="7" data-label="1-7%"><div class="bfImgWrap"><img src="img/bf/male_1_7.png" alt="Male 1-7%"/></div><div class="bfTop"><div class="bfTitle">1-7%</div><div class="bfTag" data-i18n="s1.gender.male">Male</div></div><div class="bfDesc" data-i18n="s1.bf.male.1_7.desc">Competition level.</div></button>
+              <button type="button" class="bfCard" data-gender="male" data-min="8" data-max="10" data-label="8-10%"><div class="bfImgWrap"><img src="img/bf/male_8_10.png" alt="Male 8-10%"/></div><div class="bfTop"><div class="bfTitle">8-10%</div><div class="bfTag" data-i18n="s1.gender.male">Male</div></div><div class="bfDesc" data-i18n="s1.bf.male.8_10.desc">Very lean.</div></button>
+              <button type="button" class="bfCard" data-gender="male" data-min="11" data-max="12" data-label="11-12%"><div class="bfImgWrap"><img src="img/bf/male_11_12.png" alt="Male 11-12%"/></div><div class="bfTop"><div class="bfTitle">11-12%</div><div class="bfTag" data-i18n="s1.gender.male">Male</div></div><div class="bfDesc" data-i18n="s1.bf.male.11_12.desc">Lean.</div></button>
+              <button type="button" class="bfCard" data-gender="male" data-min="13" data-max="15" data-label="13-15%"><div class="bfImgWrap"><img src="img/bf/male_13_15.png" alt="Male 13-15%"/></div><div class="bfTop"><div class="bfTitle">13-15%</div><div class="bfTag" data-i18n="s1.gender.male">Male</div></div><div class="bfDesc" data-i18n="s1.bf.male.13_15.desc">Athletic.</div></button>
+              <button type="button" class="bfCard" data-gender="male" data-min="16" data-max="19" data-label="16-19%"><div class="bfImgWrap"><img src="img/bf/male_16_19.png" alt="Male 16-19%"/></div><div class="bfTop"><div class="bfTitle">16-19%</div><div class="bfTag" data-i18n="s1.gender.male">Male</div></div><div class="bfDesc" data-i18n="s1.bf.male.16_19.desc">Fit.</div></button>
+              <button type="button" class="bfCard" data-gender="male" data-min="20" data-max="24" data-label="20-24%"><div class="bfImgWrap"><img src="img/bf/male_20_24.png" alt="Male 20-24%"/></div><div class="bfTop"><div class="bfTitle">20-24%</div><div class="bfTag" data-i18n="s1.gender.male">Male</div></div><div class="bfDesc" data-i18n="s1.bf.male.20_24.desc">Average.</div></button>
+              <button type="button" class="bfCard" data-gender="male" data-min="25" data-max="30" data-label="25-30%"><div class="bfImgWrap"><img src="img/bf/male_25_30.png" alt="Male 25-30%"/></div><div class="bfTop"><div class="bfTitle">25-30%</div><div class="bfTag" data-i18n="s1.gender.male">Male</div></div><div class="bfDesc" data-i18n="s1.bf.male.25_30.desc">Soft midsection.</div></button>
+              <button type="button" class="bfCard" data-gender="male" data-min="35" data-max="40" data-label="35-40%+"><div class="bfImgWrap"><img src="img/bf/male_35_40.png" alt="Male 35-40%+"/></div><div class="bfTop"><div class="bfTitle">35-40%+</div><div class="bfTag" data-i18n="s1.gender.male">Male</div></div><div class="bfDesc" data-i18n="s1.bf.male.35_40.desc">Clear fat accumulation.</div></button>
+              <button type="button" class="bfCard" data-gender="female" data-min="10" data-max="12" data-label="10-12%"><div class="bfImgWrap"><img src="img/bf/female_10_12.png" alt="Female 10-12%"/></div><div class="bfTop"><div class="bfTitle">10-12%</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.10_12.desc">Competition level.</div></button>
+              <button type="button" class="bfCard" data-gender="female" data-min="15" data-max="17" data-label="15-17%"><div class="bfImgWrap"><img src="img/bf/female_15_17.png" alt="Female 15-17%"/></div><div class="bfTop"><div class="bfTitle">15-17%</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.15_17.desc">Very lean.</div></button>
+              <button type="button" class="bfCard" data-gender="female" data-min="18" data-max="20" data-label="18-20%"><div class="bfImgWrap"><img src="img/bf/female_18_20.png" alt="Female 18-20%"/></div><div class="bfTop"><div class="bfTitle">18-20%</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.18_20.desc">Athletic/fit.</div></button>
+              <button type="button" class="bfCard" data-gender="female" data-min="21" data-max="23" data-label="21-23%"><div class="bfImgWrap"><img src="img/bf/female_21_23.png" alt="Female 21-23%"/></div><div class="bfTop"><div class="bfTitle">21-23%</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.21_23.desc">Fit.</div></button>
+              <button type="button" class="bfCard" data-gender="female" data-min="24" data-max="26" data-label="24-26%"><div class="bfImgWrap"><img src="img/bf/female_24_26.png" alt="Female 24-26%"/></div><div class="bfTop"><div class="bfTitle">24-26%</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.24_26.desc">Average/healthy.</div></button>
+              <button type="button" class="bfCard" data-gender="female" data-min="27" data-max="29" data-label="27-29%"><div class="bfImgWrap"><img src="img/bf/female_27_29.png" alt="Female 27-29%"/></div><div class="bfTop"><div class="bfTitle">27-29%</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.27_29.desc">Softer shape.</div></button>
+              <button type="button" class="bfCard" data-gender="female" data-min="30" data-max="35" data-label="30-35%"><div class="bfImgWrap"><img src="img/bf/female_30_35.png" alt="Female 30-35%"/></div><div class="bfTop"><div class="bfTitle">30-35%</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.30_35.desc">Clear fat accumulation.</div></button>
+              <button type="button" class="bfCard" data-gender="female" data-min="36" data-max="40" data-label="36-40%"><div class="bfImgWrap"><img src="img/bf/female_36_40.png" alt="Female 36-40%"/></div><div class="bfTop"><div class="bfTitle">36-40%</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.36_40.desc">Significant fat.</div></button>
               <button type="button" class="bfCard" data-gender="female" data-min="50" data-max="55" data-label="50%+"><div class="bfImgWrap"><img src="img/bf/female_50_plus.png" alt="Female 50%+"/></div><div class="bfTop"><div class="bfTitle">50%+</div><div class="bfTag" data-i18n="s1.gender.female">Female</div></div><div class="bfDesc" data-i18n="s1.bf.female.50_plus.desc">High body fat.</div></button>
             </div>
-            <div class="help" data-i18n="s1.bfVisual.help">Choose the closest match. If between two, pick the higher range.</div>
+            <div class="help" data-i18n="s1.bfVisual.help">Choose the closest match.</div>
           </div>
           <div class="row">
-            <div class="field">
-              <label for="experience" data-i18n="s1.experience">Training experience</label>
-              <select id="experience" name="experience" required>
-                <option value="" data-i18n="s1.experience.select">Select</option>
-                <option value="none" data-i18n="s1.experience.none">None</option>
-                <option value="beginner" data-i18n="s1.experience.beginner">Beginner (0–2 yrs)</option>
-                <option value="intermediate" data-i18n="s1.experience.intermediate">Intermediate (2–5 yrs)</option>
-                <option value="advanced" data-i18n="s1.experience.advanced">Advanced (5+ yrs)</option>
-              </select>
+            <div class="field"><label for="experience" data-i18n="s1.experience">Training experience</label>
+              <select id="experience" name="experience" required><option value="" data-i18n="s1.experience.select">Select</option><option value="none" data-i18n="s1.experience.none">None</option><option value="beginner" data-i18n="s1.experience.beginner">Beginner (0-2 yrs)</option><option value="intermediate" data-i18n="s1.experience.intermediate">Intermediate (2-5 yrs)</option><option value="advanced" data-i18n="s1.experience.advanced">Advanced (5+ yrs)</option></select>
             </div>
-            <div class="field">
-              <label for="trainingNow" data-i18n="s1.trainingNow">Currently training?</label>
-              <select id="trainingNow" name="trainingNow" required>
-                <option value="" data-i18n="s1.trainingNow.select">Select</option>
-                <option value="no" data-i18n="s1.no">No</option>
-                <option value="yes" data-i18n="s1.yes">Yes</option>
-              </select>
+            <div class="field"><label for="trainingNow" data-i18n="s1.trainingNow">Currently training?</label>
+              <select id="trainingNow" name="trainingNow" required><option value="" data-i18n="s1.trainingNow.select">Select</option><option value="no" data-i18n="s1.no">No</option><option value="yes" data-i18n="s1.yes">Yes</option></select>
             </div>
           </div>
-          <div class="field" id="trainedBeforeWrap" style="display:none">
-            <label for="trainedBefore" data-i18n="s1.trainedBefore">Have you trained before?</label>
-            <select id="trainedBefore" name="trainedBefore">
-              <option value="" data-i18n="common.select">Select</option>
-              <option value="no" data-i18n="common.no">No</option>
-              <option value="yes" data-i18n="common.yes">Yes</option>
-            </select>
-          </div>
-          <div class="field" id="trainingTypeWrap" style="display:none">
-            <label for="trainingType" data-i18n="s1.trainingType">Training type</label>
-            <select id="trainingType" name="trainingType">
-              <option value="" data-i18n="common.select">Select</option>
-              <option value="strength" data-i18n="s1.trainingType.strength">Strength / weights</option>
-              <option value="cardio" data-i18n="s1.trainingType.cardio">Cardio / endurance</option>
-              <option value="mixed" data-i18n="s1.trainingType.mixed">Mixed</option>
-              <option value="sport" data-i18n="s1.trainingType.sport">Sport-specific</option>
-            </select>
-          </div>
-          <div class="field" id="trainingDetailsWrap" style="display:none">
-            <label for="trainingDetails" data-i18n="s1.trainingDetails">What exactly do you do?</label>
-            <input id="trainingDetails" name="trainingDetails" type="text" data-i18n-placeholder="s1.trainingDetails.ph" placeholder="e.g., football + gym, CrossFit, boxing..." />
-          </div>
-          <div class="field" id="sessionsWrap">
-            <label for="sessionsPerWeek" data-i18n="s1.sessions">Sessions per week</label>
-            <select id="sessionsPerWeek" name="sessionsPerWeek">
-              <option value="" data-i18n="common.select">Select</option>
-              <option value="0">0</option><option value="1-2">1–2</option><option value="3">3</option><option value="4">4</option><option value="5-6">5–6</option><option value="7">7+</option>
-            </select>
-          </div>
-          <div class="nudgeBar" data-nudge-for="details"></div>
+          <div class="field" id="trainedBeforeWrap" style="display:none"><label for="trainedBefore" data-i18n="s1.trainedBefore">Have you trained before?</label><select id="trainedBefore" name="trainedBefore"><option value="" data-i18n="common.select">Select</option><option value="no" data-i18n="common.no">No</option><option value="yes" data-i18n="common.yes">Yes</option></select></div>
+          <div class="field" id="trainingTypeWrap" style="display:none"><label for="trainingType" data-i18n="s1.trainingType">Training type</label><select id="trainingType" name="trainingType"><option value="" data-i18n="common.select">Select</option><option value="strength" data-i18n="s1.trainingType.strength">Strength</option><option value="cardio" data-i18n="s1.trainingType.cardio">Cardio</option><option value="mixed" data-i18n="s1.trainingType.mixed">Mixed</option><option value="sport" data-i18n="s1.trainingType.sport">Sport-specific</option></select></div>
+          <div class="field" id="trainingDetailsWrap" style="display:none"><label for="trainingDetails" data-i18n="s1.trainingDetails">What exactly do you do?</label><input id="trainingDetails" name="trainingDetails" type="text" data-i18n-placeholder="s1.trainingDetails.ph" placeholder="e.g., football + gym, CrossFit..." /></div>
+          <div class="field" id="sessionsWrap"><label for="sessionsPerWeek" data-i18n="s1.sessions">Sessions per week</label><select id="sessionsPerWeek" name="sessionsPerWeek"><option value="" data-i18n="common.select">Select</option><option value="0">0</option><option value="1-2">1-2</option><option value="3">3</option><option value="4">4</option><option value="5-6">5-6</option><option value="7">7+</option></select></div>
+               <div class="nudgeBar" data-nudge-for="details"></div>
         </div>
 
         <div class="q-section" data-section="nutrition" id="sec-nutrition">
-          <div class="section-group-title" data-i18n="s2.title">Nutrition & Eating Habits</div>
+          <div class="section-group-title" data-i18n="s2.title">Nutrition &amp; Eating Habits</div>
           <p class="note" style="margin-bottom:8px" data-i18n="s2.note">Choose what best matches your average week.</p>
           <div class="row">
-            <div class="field">
-              <label for="snacks" data-i18n="s2.snacks">Sugary snacks</label>
-              <select id="snacks" name="snacks" required><option value="" data-i18n="common.select">Select</option><option value="none" data-i18n="common.none">None</option><option value="1" data-i18n="freq.1w">1×/week</option><option value="2" data-i18n="freq.2w">2×/week</option><option value="3-5" data-i18n="freq.3_5w">3–5×/week</option><option value="daily" data-i18n="freq.daily">Daily</option></select>
-            </div>
-            <div class="field">
-              <label for="sodas" data-i18n="s2.sodas">Sodas / sweetened drinks</label>
-              <select id="sodas" name="sodas" required><option value="" data-i18n="common.select">Select</option><option value="none" data-i18n="common.none">None</option><option value="1" data-i18n="freq.1w">1×/week</option><option value="2" data-i18n="freq.2w">2×/week</option><option value="3-5" data-i18n="freq.3_5w">3–5×/week</option><option value="daily" data-i18n="freq.daily">Daily</option></select>
-            </div>
+            <div class="field"><label for="snacks" data-i18n="s2.snacks">Sugary snacks</label><select id="snacks" name="snacks" required><option value="" data-i18n="common.select">Select</option><option value="none" data-i18n="common.none">None</option><option value="1" data-i18n="freq.1w">1x/week</option><option value="2" data-i18n="freq.2w">2x/week</option><option value="3-5" data-i18n="freq.3_5w">3-5x/week</option><option value="daily" data-i18n="freq.daily">Daily</option></select></div>
+            <div class="field"><label for="sodas" data-i18n="s2.sodas">Sodas / sweetened drinks</label><select id="sodas" name="sodas" required><option value="" data-i18n="common.select">Select</option><option value="none" data-i18n="common.none">None</option><option value="1" data-i18n="freq.1w">1x/week</option><option value="2" data-i18n="freq.2w">2x/week</option><option value="3-5" data-i18n="freq.3_5w">3-5x/week</option><option value="daily" data-i18n="freq.daily">Daily</option></select></div>
           </div>
           <div class="row">
-            <div class="field">
-              <label for="fastfood" data-i18n="s2.fastfood">Fast food / burgers</label>
-              <select id="fastfood" name="fastfood" required><option value="" data-i18n="common.select">Select</option><option value="none" data-i18n="common.none">None</option><option value="1" data-i18n="freq.1w">1×/week</option><option value="2" data-i18n="freq.2w">2×/week</option><option value="3-5" data-i18n="freq.3_5w">3–5×/week</option><option value="daily" data-i18n="freq.daily">Daily</option></select>
-            </div>
-            <div class="field">
-              <label for="alcohol" data-i18n="s2.alcohol">Alcohol (frequency)</label>
-              <select id="alcohol" name="alcohol" required><option value="" data-i18n="common.select">Select</option><option value="none" data-i18n="common.none">None</option><option value="1" data-i18n="freq.1w">1×/week</option><option value="2" data-i18n="freq.2w">2×/week</option><option value="3-4" data-i18n="freq.3_4w">3–4×/week</option><option value="5+" data-i18n="freq.5w">5+×/week</option><option value="daily" data-i18n="freq.daily">Daily</option></select>
-            </div>
+            <div class="field"><label for="fastfood" data-i18n="s2.fastfood">Fast food / burgers</label><select id="fastfood" name="fastfood" required><option value="" data-i18n="common.select">Select</option><option value="none" data-i18n="common.none">None</option><option value="1" data-i18n="freq.1w">1x/week</option><option value="2" data-i18n="freq.2w">2x/week</option><option value="3-5" data-i18n="freq.3_5w">3-5x/week</option><option value="daily" data-i18n="freq.daily">Daily</option></select></div>
+            <div class="field"><label for="alcohol" data-i18n="s2.alcohol">Alcohol (frequency)</label><select id="alcohol" name="alcohol" required><option value="" data-i18n="common.select">Select</option><option value="none" data-i18n="common.none">None</option><option value="1" data-i18n="freq.1w">1x/week</option><option value="2" data-i18n="freq.2w">2x/week</option><option value="3-4" data-i18n="freq.3_4w">3-4x/week</option><option value="5+" data-i18n="freq.5w">5+x/week</option><option value="daily" data-i18n="freq.daily">Daily</option></select></div>
           </div>
           <div class="row">
-            <div class="field">
-              <label for="tracks" data-i18n="s2.tracks">Do you track calories?</label>
-              <select id="tracks" name="tracks" required><option value="" data-i18n="common.select">Select</option><option value="no" data-i18n="common.no">No</option><option value="sometimes" data-i18n="common.sometimes">Sometimes</option><option value="yes" data-i18n="common.yes">Yes</option></select>
-            </div>
-            <div class="field">
-              <label for="currentCals" data-i18n="s2.currentCals">Current daily calories (optional)</label>
-              <input id="currentCals" type="number" min="800" max="6000" name="currentCals" data-i18n-placeholder="s2.currentCals.ph" placeholder="e.g., 2200" />
-            </div>
+            <div class="field"><label for="tracks" data-i18n="s2.tracks">Do you track calories?</label><select id="tracks" name="tracks" required><option value="" data-i18n="common.select">Select</option><option value="no" data-i18n="common.no">No</option><option value="sometimes" data-i18n="common.sometimes">Sometimes</option><option value="yes" data-i18n="common.yes">Yes</option></select></div>
+            <div class="field"><label for="currentCals" data-i18n="s2.currentCals">Current daily calories (optional)</label><input id="currentCals" type="number" min="800" max="6000" name="currentCals" data-i18n-placeholder="s2.currentCals.ph" placeholder="e.g., 2200" /></div>
           </div>
           <div class="nudgeBar" data-nudge-for="nutrition"></div>
         </div>
 
         <div class="q-section" data-section="diet" id="sec-diet">
-          <div class="section-group-title" data-i18n="s3.title">Dietary Preferences & Constraints</div>
-          <div class="field">
-            <label for="diet" data-i18n="s3.diet">Diet type</label>
-            <select id="diet" name="diet" required><option value="" data-i18n="common.select">Select</option><option value="omnivore" data-i18n="s3.diet.omnivore">Omnivore</option><option value="vegetarian" data-i18n="s3.diet.vegetarian">Vegetarian</option><option value="vegan" data-i18n="s3.diet.vegan">Vegan</option></select>
-          </div>
+          <div class="section-group-title" data-i18n="s3.title">Dietary Preferences &amp; Constraints</div>
+          <div class="field"><label for="diet" data-i18n="s3.diet">Diet type</label><select id="diet" name="diet" required><option value="" data-i18n="common.select">Select</option><option value="omnivore" data-i18n="s3.diet.omnivore">Omnivore</option><option value="vegetarian" data-i18n="s3.diet.vegetarian">Vegetarian</option><option value="vegan" data-i18n="s3.diet.vegan">Vegan</option></select></div>
           <div class="field">
             <label data-i18n="s3.allergies">Allergies / restrictions</label>
             <div class="checks">
@@ -371,24 +345,13 @@
               <label class="check"><input type="checkbox" name="allergies" value="vegetables"><span data-i18n="s3.allergy.vegetables">Vegetables</span></label>
             </div>
           </div>
-          <div class="field" id="produceAllergyWrap" style="display:none">
-            <label for="produceAllergyDetails" data-i18n="s3.produce.details">Allergic to which fruits/vegetables?</label>
-            <input id="produceAllergyDetails" name="produceAllergyDetails" type="text" data-i18n-placeholder="s3.produce.details.ph" placeholder="e.g., strawberries, tomatoes..." />
-          </div>
+          <div class="field" id="produceAllergyWrap" style="display:none"><label for="produceAllergyDetails" data-i18n="s3.produce.details">Allergic to which fruits/vegetables?</label><input id="produceAllergyDetails" name="produceAllergyDetails" type="text" data-i18n-placeholder="s3.produce.details.ph" placeholder="e.g., strawberries, tomatoes..." /></div>
           <div class="row">
-            <div class="field">
-              <label for="likes" data-i18n="s3.likes">Favourite foods</label>
-              <textarea id="likes" name="likes" data-i18n-placeholder="s3.likes.ph" placeholder="e.g., pasta, curry, wraps, oats"></textarea>
-            </div>
-            <div class="field">
-              <label for="dislikes" data-i18n="s3.dislikes">Foods you dislike / avoid</label>
-              <textarea id="dislikes" name="dislikes" data-i18n-placeholder="s3.dislikes.ph" placeholder="e.g., mushrooms, tuna, eggs"></textarea>
-            </div>
+            <div class="field"><label for="likes" data-i18n="s3.likes">Favourite foods</label><textarea id="likes" name="likes" data-i18n-placeholder="s3.likes.ph" placeholder="e.g., pasta, curry, wraps, oats"></textarea></div>
+            <div class="field"><label for="dislikes" data-i18n="s3.dislikes">Foods you dislike / avoid</label><textarea id="dislikes" name="dislikes" data-i18n-placeholder="s3.dislikes.ph" placeholder="e.g., mushrooms, tuna, eggs"></textarea></div>
           </div>
           <div class="nudgeBar" data-nudge-for="diet"></div>
         </div>
-
-        <!-- "ready" section removed — results show directly after diet -->
 
         <div class="q-section" data-section="results" id="sec-results">
           <div id="results"></div>
@@ -399,50 +362,85 @@
   </div>
 </div>
 
-<!-- Sticky float removed -->
+<!-- TESTIMONIAL FLOATING BADGE -->
+<div class="testi-float" id="testiFloat" role="button" tabindex="0" aria-label="Read testimonial">
+  <span class="testi-float-badge">-11 kg &#128293;</span>
+  <div class="testi-float-avatar">
+    <img src="img/testimonials/annie.png" alt="Annie L." />
+  </div>
+  <div class="testi-float-body">
+    <div class="testi-float-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    <div class="testi-float-name">Annie L.</div>
+    <div class="testi-float-snippet" data-i18n="testi.snippet">Lost 11 kg in 4 months with L&#235;t'z Roar</div>
+  </div>
+</div>
 
+<!-- TESTIMONIAL MODAL -->
+<div class="testi-overlay" id="testiOverlay">
+  <div class="testi-modal" id="testiModal">
+    <div class="testi-modal-close">
+      <button id="testiClose" aria-label="Close">&#10005;</button>
+    </div>
+    <div class="testi-modal-screenshot">
+      <img src="img/testimonials/annie_review.png" alt="Annie Loschetter - Real Facebook review" />
+    </div>
+    <div class="testi-modal-verified">
+      <span class="testi-verified-badge">&#10003;</span>
+      <span data-i18n="testi.verified">Real review posted on Facebook - March 6, 2026</span>
+    </div>
+    <div class="testi-modal-cta">
+      <a href="https://www.shop.letzroar.com/28-days-letz-roar-kickstart/" target="_blank" class="cta-kickstart-testi" data-i18n="testi.cta">
+        Start your transformation &#8594;
+      </a>
+    </div>
+  </div>
+</div>
 <script>
 /* =========================
    GOOGLE SHEETS TRACKING
    ========================= */
-const GOOGLE_SCRIPT_URL='https://script.google.com/macros/s/AKfycbwai0sBu1k667wOjjUMQre6CY5wQdAWXwkSQuncb5daRrto-HXiXRGaydUIaeyPTbxh/exec';
+var GOOGLE_SCRIPT_URL='https://script.google.com/macros/s/AKfycbwai0sBu1k667wOjjUMQre6CY5wQdAWXwkSQuncb5daRrto-HXiXRGaydUIaeyPTbxh/exec';
 function generateSessionId(){return'sess_'+Date.now()+'_'+Math.random().toString(36).substr(2,9)}
-let sessionId=sessionStorage.getItem('quiz_session_id');
+var sessionId=sessionStorage.getItem('quiz_session_id');
 if(!sessionId){sessionId=generateSessionId();sessionStorage.setItem('quiz_session_id',sessionId)}
-let userContactInfo={name:'',email:'',phone:''};
-let ctaClicks={sendEmail:false,sendWhatsApp:false,sendResultsChecked:false};
+var userContactInfo={name:'',email:'',phone:''};
+var ctaClicks={sendEmail:false,sendWhatsApp:false,sendResultsChecked:false};
 
-function trackToGoogleSheets(status,stepReached,additionalData={}){
-  const formData=getFormDataForTracking();
-  const d={sessionId,status,stepReached,language:getLang(),userAgent:navigator.userAgent,contactName:userContactInfo.name,contactEmail:userContactInfo.email,contactPhone:userContactInfo.phone,clickedSendEmail:ctaClicks.sendEmail,clickedSendWhatsApp:ctaClicks.sendWhatsApp,wantsResults:ctaClicks.sendResultsChecked,...formData,...additionalData};
-  fetch(GOOGLE_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).catch(()=>{});
+function trackToGoogleSheets(status,stepReached,additionalData){
+  if(!additionalData)additionalData={};
+  var formData=getFormDataForTracking();
+  var d={sessionId:sessionId,status:status,stepReached:stepReached,language:getLang(),userAgent:navigator.userAgent,contactName:userContactInfo.name,contactEmail:userContactInfo.email,contactPhone:userContactInfo.phone,clickedSendEmail:ctaClicks.sendEmail,clickedSendWhatsApp:ctaClicks.sendWhatsApp,wantsResults:ctaClicks.sendResultsChecked};
+  for(var k in formData)d[k]=formData[k];
+  for(var k2 in additionalData)d[k2]=additionalData[k2];
+  fetch(GOOGLE_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).catch(function(){});
 }
 function trackCtaClick(ctaType){ctaClicks[ctaType]=true;trackToGoogleSheets('cta_click',currentRevealedIndex,{ctaClicked:ctaType,ctaClickTime:new Date().toISOString()})}
 function trackContactInfo(type,value){if(type==='name')userContactInfo.name=value;else if(type==='email')userContactInfo.email=value;else if(type==='phone')userContactInfo.phone=value;trackToGoogleSheets('contact_info_entered',currentRevealedIndex,{contactType:type,contactValue:value})}
 
 function getFormDataForTracking(){
-  const form=document.getElementById('quizForm');const fd=new FormData(form);const allergies=fd.getAll('allergies');const data=Object.fromEntries(fd.entries());data.allergies=allergies;
+  var form=document.getElementById('quizForm');var fd=new FormData(form);var allergies=fd.getAll('allergies');var data={};fd.forEach(function(v,k){data[k]=v});data.allergies=allergies;
   return{age:data.age||'',gender:data.gender||'',heightCm:data.heightCm||'',weightKg:data.weightKg||'',bfRangeLabel:data.bfRangeLabel||'',activity:data.activity||'',experience:data.experience||'',trainingNow:data.trainingNow||'',trainedBefore:data.trainedBefore||'',trainingType:data.trainingType||'',trainingDetails:data.trainingDetails||'',sessionsPerWeek:data.sessionsPerWeek||'',steps:data.steps||'',sleep:data.sleep||'',goal:data.goal||'',snacks:data.snacks||'',sodas:data.sodas||'',fastfood:data.fastfood||'',alcohol:data.alcohol||'',tracks:data.tracks||'',currentCals:data.currentCals||'',diet:data.diet||'',allergies:allergies,likes:data.likes||'',dislikes:data.dislikes||''};
 }
 
-window.addEventListener('load',()=>{setTimeout(()=>{trackToGoogleSheets('started',0)},1000)});
-window.addEventListener('beforeunload',()=>{
-  const d={sessionId,status:currentRevealedIndex>=sectionOrder.length-1?'completed':'abandoned',stepReached:currentRevealedIndex,language:getLang(),userAgent:navigator.userAgent,contactName:userContactInfo.name,contactEmail:userContactInfo.email,contactPhone:userContactInfo.phone,clickedSendEmail:ctaClicks.sendEmail,clickedSendWhatsApp:ctaClicks.sendWhatsApp,wantsResults:ctaClicks.sendResultsChecked,...getFormDataForTracking()};
+window.addEventListener('load',function(){setTimeout(function(){trackToGoogleSheets('started',0)},1000)});
+window.addEventListener('beforeunload',function(){
+  var d={sessionId:sessionId,status:currentRevealedIndex>=sectionOrder.length-1?'completed':'abandoned',stepReached:currentRevealedIndex,language:getLang(),userAgent:navigator.userAgent,contactName:userContactInfo.name,contactEmail:userContactInfo.email,contactPhone:userContactInfo.phone,clickedSendEmail:ctaClicks.sendEmail,clickedSendWhatsApp:ctaClicks.sendWhatsApp,wantsResults:ctaClicks.sendResultsChecked};
+  var fd=getFormDataForTracking();for(var k in fd)d[k]=fd[k];
   if(navigator.sendBeacon)navigator.sendBeacon(GOOGLE_SCRIPT_URL,JSON.stringify(d));
 });
 
-function debounce(func,wait){let timeout;return function(...args){clearTimeout(timeout);timeout=setTimeout(()=>func(...args),wait)}}
-const trackFieldChange=debounce(()=>{trackToGoogleSheets('in_progress',currentRevealedIndex)},2000);
-document.querySelectorAll('#quizForm input,#quizForm select,#quizForm textarea').forEach(f=>{f.addEventListener('change',trackFieldChange);f.addEventListener('input',trackFieldChange)});
+function debounce(func,wait){var timeout;return function(){var args=arguments;var ctx=this;clearTimeout(timeout);timeout=setTimeout(function(){func.apply(ctx,args)},wait)}}
+var trackFieldChange=debounce(function(){trackToGoogleSheets('in_progress',currentRevealedIndex)},2000);
+document.querySelectorAll('#quizForm input,#quizForm select,#quizForm textarea').forEach(function(f){f.addEventListener('change',trackFieldChange);f.addEventListener('input',trackFieldChange)});
 
 /* =========================
    I18N
    ========================= */
-const I18N={
+var I18N={
 en:{
 "lang.label":"Language",
-"hero.title":"Free 60‑Second Nutrition Quiz",
-"hero.sub":"Answer a few questions, get Calories, Macros & a 2‑week plan.",
+"hero.title":"Free 60-Second Nutrition Quiz",
+"hero.sub":"Answer a few questions, get Calories, Macros & a 2-week plan.",
 "s1.title":"Personal Data",
 "s1.age":"Age (years)","s1.gender":"Gender","s1.gender.select":"Select","s1.gender.male":"Male","s1.gender.female":"Female",
 "s1.height":"Height (cm)","s1.weight":"Weight (kg)",
@@ -450,14 +448,14 @@ en:{
 "s1.bf.male.1_7.desc":"Competition level.","s1.bf.male.8_10.desc":"Very lean.","s1.bf.male.11_12.desc":"Lean.","s1.bf.male.13_15.desc":"Athletic.","s1.bf.male.16_19.desc":"Fit.","s1.bf.male.20_24.desc":"Average.","s1.bf.male.25_30.desc":"Soft midsection.","s1.bf.male.35_40.desc":"Clear fat accumulation.",
 "s1.bf.female.10_12.desc":"Competition level.","s1.bf.female.15_17.desc":"Very lean.","s1.bf.female.18_20.desc":"Athletic/fit.","s1.bf.female.21_23.desc":"Fit.","s1.bf.female.24_26.desc":"Average/healthy.","s1.bf.female.27_29.desc":"Softer shape.","s1.bf.female.30_35.desc":"Clear fat accumulation.","s1.bf.female.36_40.desc":"Significant fat.","s1.bf.female.50_plus.desc":"High body fat.",
 "s1.activity":"Activity level","s1.activity.select":"Select","s1.activity.sedentary":"Sedentary","s1.activity.light":"Lightly active","s1.activity.moderate":"Moderately active","s1.activity.very":"Very active",
-"s1.activity.help":"<b>Examples:</b><br/><b>Sedentary:</b> desk job, little walking.<br/><b>Light:</b> desk job + walks, 1–3×/week.<br/><b>Moderate:</b> active + 3–5×/week.<br/><b>Very active:</b> physical job + frequent training.",
-"s1.experience":"Training experience","s1.experience.select":"Select","s1.experience.none":"None","s1.experience.beginner":"Beginner (0–2 yrs)","s1.experience.intermediate":"Intermediate (2–5 yrs)","s1.experience.advanced":"Advanced (5+ yrs)",
+"s1.activity.help":"<b>Examples:</b><br/><b>Sedentary:</b> desk job, little walking.<br/><b>Light:</b> desk job + walks, 1-3x/week.<br/><b>Moderate:</b> active + 3-5x/week.<br/><b>Very active:</b> physical job + frequent training.",
+"s1.experience":"Training experience","s1.experience.select":"Select","s1.experience.none":"None","s1.experience.beginner":"Beginner (0-2 yrs)","s1.experience.intermediate":"Intermediate (2-5 yrs)","s1.experience.advanced":"Advanced (5+ yrs)",
 "s1.trainingNow":"Currently training?","s1.trainingNow.select":"Select","s1.yes":"Yes","s1.no":"No",
 "s1.trainedBefore":"Have you trained before?","s1.trainingType":"Training type","s1.trainingType.strength":"Strength / weights","s1.trainingType.cardio":"Cardio / endurance","s1.trainingType.mixed":"Mixed","s1.trainingType.sport":"Sport-specific",
 "s1.trainingDetails":"What exactly do you do?","s1.trainingDetails.ph":"e.g., football + gym, CrossFit...",
 "s1.sessions":"Sessions per week",
-"s1.steps":"Average daily steps","s1.steps.none":"I don't track / very low","s1.steps.2k":"~2,000/day","s1.steps.lt4k":"< 4,000/day","s1.steps.4to8k":"4,000–8,000/day","s1.steps.8to12k":"8,000–12,000/day","s1.steps.gt12k":"> 12,000/day",
-"s1.sleep":"Sleep per night","s1.sleep.lt4":"< 4h","s1.sleep.4to6":"4–6h","s1.sleep.6to8":"6–8h","s1.sleep.8plus":"8h+",
+"s1.steps":"Average daily steps","s1.steps.none":"I don't track / very low","s1.steps.2k":"~2,000/day","s1.steps.lt4k":"< 4,000/day","s1.steps.4to8k":"4,000-8,000/day","s1.steps.8to12k":"8,000-12,000/day","s1.steps.gt12k":"> 12,000/day",
+"s1.sleep":"Sleep per night","s1.sleep.lt4":"< 4h","s1.sleep.4to6":"4-6h","s1.sleep.6to8":"6-8h","s1.sleep.8plus":"8h+",
 "s1.goal":"Goal","s1.goal.lose":"Lose fat","s1.goal.maintain":"Recomposition (Lose fat / build muscle)","s1.goal.gain":"Build lean muscle mass",
 "s2.title":"Nutrition & Eating Habits","s2.note":"Choose what best matches your average week.",
 "s2.snacks":"Sugary snacks","s2.sodas":"Sodas / sweetened drinks","s2.fastfood":"Fast food / burgers","s2.alcohol":"Alcohol (frequency)",
@@ -468,301 +466,295 @@ en:{
 "s3.produce.details":"Allergic to which fruits/vegetables?","s3.produce.details.ph":"e.g., strawberries, tomatoes...",
 "s3.likes":"Favourite foods","s3.likes.ph":"e.g., pasta, curry, wraps","s3.dislikes":"Foods you dislike / avoid","s3.dislikes.ph":"e.g., mushrooms, tuna, eggs",
 "common.select":"Select","common.none":"None","common.no":"No","common.yes":"Yes","common.sometimes":"Sometimes",
-"freq.1w":"1×/week","freq.2w":"2×/week","freq.3_5w":"3–5×/week","freq.3_4w":"3–4×/week","freq.5w":"5+×/week","freq.daily":"Daily",
+"freq.1w":"1x/week","freq.2w":"2x/week","freq.3_5w":"3-5x/week","freq.3_4w":"3-4x/week","freq.5w":"5+x/week","freq.daily":"Daily",
 "results.title":"Your Results",
 "results.notice.title":"Approximation notice:","results.notice.text":"This is an estimate, not an exact target. If your current intake is significantly lower, increase calories gradually.",
-"results.adjust.note":"Adjust calories over time based on 2–4 week trends in weekly average body weight, supported by waist measurements, progress photos, and gym performance. Make small adjustments of ~100–150 calories only if progress stalls.",
+"results.adjust.note":"Adjust calories over time based on 2-4 week trends. Make small adjustments of ~100-150 calories only if progress stalls.",
 "results.calories":"Calories","results.bmr":"BMR","results.maintenance":"Estimated maintenance",
 "results.target.lose":"Target calories to lose fat:","results.target.gain":"Target calories to build muscle:","results.target.maintain":"Target calories for recomposition:",
 "results.more":"More (why these numbers?)",
 "results.macros":"Macro targets",
 "results.macro.chart.grams":"Macro chart (grams)","results.macro.chart.calories":"Macro chart (calories)",
-"results.macros.note":"Protein: {pf} g/kg BW • Fat: {fat}% of calories • Carbs: remainder",
-"results.protein":"Protein","results.carbs":"Carbs","results.fats":"Fats","results.gramsDay":"grams/day","results.pctCalories":"% of calories","results.donutNote":"Donut colors match calorie split.",
+"results.macros.note":"Protein: {pf} g/kg BW - Fat: {fat}% of calories - Carbs: remainder",
+"results.protein":"Protein","results.carbs":"Carbs","results.fats":"Fats","results.gramsDay":"grams/day","results.pctCalories":"% of calories",
 "results.meals":"Simple meal ideas","results.mealIdeas.tag":"MEAL IDEAS",
 "results.breakfast":"Breakfast","results.lunch":"Lunch","results.dinner":"Dinner","results.snack":"Snack (optional)","results.noOptions":"No options available","results.noMealsMatch":"No meal ideas match your allergies/dislikes.",
-"results.action.title":"2‑week action plan","results.action.cut":"1) Cut down (easy)","results.action.swaps":"2) Swaps (only what you need)","results.action.training":"3) Resistance training (2 weeks)","results.action.steps":"4) Daily steps",
+"results.action.title":"2-week action plan","results.action.cut":"1) Cut down (easy)","results.action.swaps":"2) Swaps (only what you need)","results.action.training":"3) Resistance training (2 weeks)","results.action.steps":"4) Daily steps",
 "results.action.steps.aim":"aim for about","results.action.steps.perday":"steps/day","results.action.steps.after":"After that","results.action.steps.add1k":"add +1,000 per week until 10,000/day",
 "results.sleep":"Sleep",
 "results.send":"Want to receive these results?","results.send.yes":"Yes, send me my results",
 "results.summary":"Your answers (summary)","results.bodyComp":"Body composition (estimate)","results.bfRange":"Selected range","results.bfMidpoint":"BF% used (midpoint)",
 "contact.name":"First name","contact.name.ph":"e.g., Sarah","contact.email":"Email","contact.phone":"Phone (WhatsApp)","contact.note":"Opens your email/WhatsApp with the message pre-filled.","contact.sendEmail":"Send by Email","contact.sendWhatsApp":"Send by WhatsApp",
 "cut.sugary":"Sugary snacks","cut.drinks":"Sweetened drinks","cut.fastfood":"Fast food / burgers","cut.alcohol":"Alcohol",
-"week.1":"Week 1","week.2":"Week 2","timesPerWeek":"time(s) per week",
-"cut.none.sugary":"Since you're not eating any sugary snacks, keep it up! ✅",
-"cut.none.drinks":"Since you're not drinking any sweetened drinks, keep it up! ✅",
-"cut.none.fastfood":"Since you're not eating any fast food, keep it up! ✅",
-"cut.none.alcohol":"Since you're not drinking any alcohol, keep it up! ✅",
+"week.1":"Week 1","week.2":"Week 2",
+"cut.none.sugary":"Since you're not eating any sugary snacks, keep it up!","cut.none.drinks":"Since you're not drinking any sweetened drinks, keep it up!","cut.none.fastfood":"Since you're not eating any fast food, keep it up!","cut.none.alcohol":"Since you're not drinking any alcohol, keep it up!",
 "cut.1x.w1":"cut the portion in half","cut.1x.w2":"eliminate it completely",
-"cut.2x.w1":"reduce to 1× per week","cut.2x.w2":"eliminate it completely",
-"cut.3x.w1":"reduce to 2× per week","cut.3x.w2":"reduce to 1× per week",
-"cut.4x.w1":"reduce to 3× per week","cut.4x.w2":"reduce to 2× per week",
-"cut.daily.w1":"reduce to ~5× per week","cut.daily.w2":"reduce to ~3× per week",
-"training.keep":"Since you're doing {n} session(s)/week, keep it up and focus on progression! ✅",
+"cut.2x.w1":"reduce to 1x per week","cut.2x.w2":"eliminate it completely",
+"cut.3x.w1":"reduce to 2x per week","cut.3x.w2":"reduce to 1x per week",
+"cut.4x.w1":"reduce to 3x per week","cut.4x.w2":"reduce to 2x per week",
+"cut.daily.w1":"reduce to ~5x per week","cut.daily.w2":"reduce to ~3x per week",
+"training.keep":"Since you're doing {n} session(s)/week, keep it up and focus on progression!",
 "training.aim":"Since you're doing {n} session(s)/week, aim for {target}+ sessions/week for the next 2 weeks.",
 "training.start":"Since you're not training yet, aim for 3 sessions/week for the next 2 weeks.",
-"swap.sweet":"Sweet craving → Greek yogurt + banana + cinnamon","swap.chocolate":"Chocolate → 2 squares dark chocolate + fruit","swap.cookies":"Cookies → protein shake + banana","swap.dessert":"Dessert → 1 planned portion after dinner",
-"swap.soda":"Soda → sparkling water + lemon","swap.sweetDrink":"Sweet drink → zero-sugar drink","swap.energy":"Energy drink → black coffee or zero-sugar",
-"swap.fastfood":"Fast food → home bowl: protein + carbs + veggies","swap.burger":"Burger → homemade wrap: protein + salad","swap.notime":"No time → rotisserie chicken + bag salad + potatoes",
+"swap.sweet":"Sweet craving: Greek yogurt + banana + cinnamon","swap.chocolate":"Chocolate: 2 squares dark chocolate + fruit","swap.cookies":"Cookies: protein shake + banana","swap.dessert":"Dessert: 1 planned portion after dinner",
+"swap.soda":"Soda: sparkling water + lemon","swap.sweetDrink":"Sweet drink: zero-sugar drink","swap.energy":"Energy drink: black coffee or zero-sugar",
+"swap.fastfood":"Fast food: home bowl with protein + carbs + veggies","swap.burger":"Burger: homemade wrap with protein + salad","swap.notime":"No time: rotisserie chicken + bag salad + potatoes",
 "swap.alc.limit":"Limit alcohol to a set number","swap.alc.water":"Alternate alcohol with sparkling water","swap.alc.meal":"Eat protein-rich meal before drinking",
-"swap.keep.sugary":"Sugary snacks: keep doing what you're doing ✅","swap.keep.drinks":"Sweetened drinks: keep doing what you're doing ✅","swap.keep.fastfood":"Fast food: keep doing what you're doing ✅","swap.keep.alcohol":"Alcohol: keep doing what you're doing ✅",
-"training.workouts":"workout(s)",
-"steps.note.to10k":"Aim to hit 10,000 steps every day.","steps.note.keep":"You already do 10,000+. Keep it up ✅","steps.note.progress":"Week 2: add +1,000/day. Then +1,000/week until 10,000/day.",
-"sleep.note.keep":"Sleep: keep it up. Aim for 7–9 hours.","sleep.note.add30":"Sleep: aim 7–9h. Add +30 min/week for 2 weeks.","sleep.note.add45_60":"Sleep: aim 7–9h. Add +45–60 min/week for 2 weeks.","sleep.note.aim":"Sleep: aim 7–9h when possible.",
+"steps.note.to10k":"Aim to hit 10,000 steps every day.","steps.note.keep":"You already do 10,000+. Keep it up!","steps.note.progress":"Week 2: add +1,000/day. Then +1,000/week until 10,000/day.",
+"sleep.note.keep":"Sleep: keep it up. Aim for 7-9 hours.","sleep.note.add30":"Sleep: aim 7-9h. Add +30 min/week for 2 weeks.","sleep.note.add45_60":"Sleep: aim 7-9h. Add +45-60 min/week for 2 weeks.","sleep.note.aim":"Sleep: aim 7-9h when possible.",
 "recap.title":"Nutrition Assessment Results","recap.age":"Age","recap.gender":"Gender","recap.height":"Height","recap.weight":"Weight","recap.bodyFat":"Body fat","recap.goal":"Goal","recap.activity":"Activity","recap.trainingNow":"Currently training","recap.trainedBefore":"Trained before","recap.trainingType":"Training type","recap.trainingDetails":"Training details","recap.stepsSleep":"Steps | Sleep","recap.calories":"Calories","recap.bmr":"BMR","recap.maintenance":"Maintenance","recap.target":"Target","recap.macros":"Macros",
 "goal.lose":"Lose fat","goal.maintain":"Recomposition","goal.gain":"Build muscle",
 "activity.sedentary":"Sedentary","activity.light":"Lightly active","activity.moderate":"Moderately active","activity.very":"Very active",
-"steps.none":"Very low","steps.2k":"~2,000/day","steps.lt4k":"< 4,000/day","steps.4to8k":"4,000–8,000/day","steps.8to12k":"8,000–12,000/day","steps.gt12k":"> 12,000/day",
-"sleep.lt4":"< 4h","sleep.4to6":"4–6h","sleep.6to8":"6–8h","sleep.8plus":"8h+",
+"steps.none":"Very low","steps.2k":"~2,000/day","steps.lt4k":"< 4,000/day","steps.4to8k":"4,000-8,000/day","steps.8to12k":"8,000-12,000/day","steps.gt12k":"> 12,000/day",
+"sleep.lt4":"< 4h","sleep.4to6":"4-6h","sleep.6to8":"6-8h","sleep.8plus":"8h+",
 "trainingType.strength":"Strength","trainingType.cardio":"Cardio","trainingType.mixed":"Mixed","trainingType.sport":"Sport-specific",
-"why.title":"Why these targets?","why.calories.title":"Calories","why.calories.bmr":"BMR = baseline energy","why.calories.maintenance":"Maintenance = BMR × activity","why.calories.goal":"Goal shifts the target",
+"why.title":"Why these targets?","why.calories.title":"Calories","why.calories.bmr":"BMR = baseline energy","why.calories.maintenance":"Maintenance = BMR x activity","why.calories.goal":"Goal shifts the target",
 "why.calories.lose":"Below maintenance so your body uses stored fat.","why.calories.gain":"Above maintenance to support training.","why.calories.maintain":"Near maintenance to improve composition.",
 "why.protein.title":"Protein","why.protein.text":"Based on body weight, adjusted for body fat.","why.fat.title":"Fat","why.fat.text":"Set based on body fat level.","why.carbs.title":"Carbs","why.carbs.text":"Remaining calories for training + adherence.","why.reminder":"Reminder: it's an estimate. Increase slowly if eating far below.",
 "err.fill":"Please fill these fields:","err.selectBf":"Body fat estimate",
 "nudge.left":"question(s) left to continue",
-"swaps.allGood":"All your habits are already clean — no swaps needed! Keep it up ✅"
+"swaps.allGood":"All your habits are already clean - no swaps needed! Keep it up!",
+"testi.snippet":"Lost 11 kg in 4 months with Let'z Roar",
+"testi.verified":"Real review posted on Facebook - March 6, 2026",
+"testi.cta":"Start your transformation"
 },
 fr:{
 "lang.label":"Langue",
-"hero.title":"Quiz Nutrition Gratuit — 60 Secondes",
-"hero.sub":"Répondez à quelques questions, obtenez vos Calories, Macros & un plan sur 2 semaines.",
-"s1.title":"Données personnelles",
-"s1.age":"Âge (années)","s1.gender":"Sexe","s1.gender.select":"Sélectionner","s1.gender.male":"Homme","s1.gender.female":"Femme",
+"hero.title":"Quiz Nutrition Gratuit - 60 Secondes",
+"hero.sub":"R\u00e9pondez \u00e0 quelques questions, obtenez vos Calories, Macros & un plan sur 2 semaines.",
+"s1.title":"Donn\u00e9es personnelles",
+"s1.age":"\u00c2ge (ann\u00e9es)","s1.gender":"Sexe","s1.gender.select":"S\u00e9lectionner","s1.gender.male":"Homme","s1.gender.female":"Femme",
 "s1.height":"Taille (cm)","s1.weight":"Poids (kg)",
-"s1.bfVisual.label":"Estimation graisse corporelle (visuel)","s1.bfVisual.selectGender":"Sélectionnez d'abord votre sexe.","s1.bfVisual.help":"Choisissez la correspondance la plus proche.",
-"s1.bf.male.1_7.desc":"Niveau compétition.","s1.bf.male.8_10.desc":"Très sec.","s1.bf.male.11_12.desc":"Sec.","s1.bf.male.13_15.desc":"Athlétique.","s1.bf.male.16_19.desc":"Fit.","s1.bf.male.20_24.desc":"Moyen.","s1.bf.male.25_30.desc":"Ventre mou.","s1.bf.male.35_40.desc":"Accumulation de graisse.",
-"s1.bf.female.10_12.desc":"Niveau compétition.","s1.bf.female.15_17.desc":"Très sèche.","s1.bf.female.18_20.desc":"Athlétique/fit.","s1.bf.female.21_23.desc":"Fit.","s1.bf.female.24_26.desc":"Moyenne/saine.","s1.bf.female.27_29.desc":"Formes plus douces.","s1.bf.female.30_35.desc":"Accumulation de graisse.","s1.bf.female.36_40.desc":"Graisse importante.","s1.bf.female.50_plus.desc":"Graisse corporelle élevée.",
-"s1.activity":"Niveau d'activité","s1.activity.select":"Sélectionner","s1.activity.sedentary":"Sédentaire","s1.activity.light":"Légèrement actif","s1.activity.moderate":"Modérément actif","s1.activity.very":"Très actif",
-"s1.activity.help":"<b>Exemples :</b><br/><b>Sédentaire :</b> bureau, peu de marche.<br/><b>Léger :</b> bureau + marches, 1–3×/sem.<br/><b>Modéré :</b> actif + 3–5×/sem.<br/><b>Très actif :</b> travail physique + entraînement fréquent.",
-"s1.experience":"Expérience d'entraînement","s1.experience.select":"Sélectionner","s1.experience.none":"Aucune","s1.experience.beginner":"Débutant (0–2 ans)","s1.experience.intermediate":"Intermédiaire (2–5 ans)","s1.experience.advanced":"Avancé (5+ ans)",
-"s1.trainingNow":"Vous vous entraînez ?","s1.trainingNow.select":"Sélectionner","s1.yes":"Oui","s1.no":"Non",
-"s1.trainedBefore":"Avez-vous déjà fait du sport ?","s1.trainingType":"Type d'entraînement","s1.trainingType.strength":"Musculation","s1.trainingType.cardio":"Cardio","s1.trainingType.mixed":"Mixte","s1.trainingType.sport":"Sport spécifique",
+"s1.bfVisual.label":"Estimation graisse corporelle (visuel)","s1.bfVisual.selectGender":"S\u00e9lectionnez d'abord votre sexe.","s1.bfVisual.help":"Choisissez la correspondance la plus proche.",
+"s1.bf.male.1_7.desc":"Niveau comp\u00e9tition.","s1.bf.male.8_10.desc":"Tr\u00e8s sec.","s1.bf.male.11_12.desc":"Sec.","s1.bf.male.13_15.desc":"Athl\u00e9tique.","s1.bf.male.16_19.desc":"Fit.","s1.bf.male.20_24.desc":"Moyen.","s1.bf.male.25_30.desc":"Ventre mou.","s1.bf.male.35_40.desc":"Accumulation de graisse.",
+"s1.bf.female.10_12.desc":"Niveau comp\u00e9tition.","s1.bf.female.15_17.desc":"Tr\u00e8s s\u00e8che.","s1.bf.female.18_20.desc":"Athl\u00e9tique/fit.","s1.bf.female.21_23.desc":"Fit.","s1.bf.female.24_26.desc":"Moyenne/saine.","s1.bf.female.27_29.desc":"Formes plus douces.","s1.bf.female.30_35.desc":"Accumulation de graisse.","s1.bf.female.36_40.desc":"Graisse importante.","s1.bf.female.50_plus.desc":"Graisse corporelle \u00e9lev\u00e9e.",
+"s1.activity":"Niveau d'activit\u00e9","s1.activity.select":"S\u00e9lectionner","s1.activity.sedentary":"S\u00e9dentaire","s1.activity.light":"L\u00e9g\u00e8rement actif","s1.activity.moderate":"Mod\u00e9r\u00e9ment actif","s1.activity.very":"Tr\u00e8s actif",
+"s1.activity.help":"<b>Exemples :</b><br/><b>S\u00e9dentaire :</b> bureau, peu de marche.<br/><b>L\u00e9ger :</b> bureau + marches, 1-3x/sem.<br/><b>Mod\u00e9r\u00e9 :</b> actif + 3-5x/sem.<br/><b>Tr\u00e8s actif :</b> travail physique + entra\u00eenement fr\u00e9quent.",
+"s1.experience":"Exp\u00e9rience d'entra\u00eenement","s1.experience.select":"S\u00e9lectionner","s1.experience.none":"Aucune","s1.experience.beginner":"D\u00e9butant (0-2 ans)","s1.experience.intermediate":"Interm\u00e9diaire (2-5 ans)","s1.experience.advanced":"Avanc\u00e9 (5+ ans)",
+"s1.trainingNow":"Vous vous entra\u00eenez ?","s1.trainingNow.select":"S\u00e9lectionner","s1.yes":"Oui","s1.no":"Non",
+"s1.trainedBefore":"Avez-vous d\u00e9j\u00e0 fait du sport ?","s1.trainingType":"Type d'entra\u00eenement","s1.trainingType.strength":"Musculation","s1.trainingType.cardio":"Cardio","s1.trainingType.mixed":"Mixte","s1.trainingType.sport":"Sport sp\u00e9cifique",
 "s1.trainingDetails":"Que faites-vous exactement ?","s1.trainingDetails.ph":"ex. football + salle, CrossFit...",
-"s1.sessions":"Séances par semaine",
-"s1.steps":"Pas quotidiens","s1.steps.none":"Très faible / non suivi","s1.steps.2k":"~2 000/jour","s1.steps.lt4k":"< 4 000/jour","s1.steps.4to8k":"4 000–8 000/jour","s1.steps.8to12k":"8 000–12 000/jour","s1.steps.gt12k":"> 12 000/jour",
-"s1.sleep":"Sommeil par nuit","s1.sleep.lt4":"< 4h","s1.sleep.4to6":"4–6h","s1.sleep.6to8":"6–8h","s1.sleep.8plus":"8h+",
+"s1.sessions":"S\u00e9ances par semaine",
+"s1.steps":"Pas quotidiens","s1.steps.none":"Tr\u00e8s faible / non suivi","s1.steps.2k":"~2 000/jour","s1.steps.lt4k":"< 4 000/jour","s1.steps.4to8k":"4 000-8 000/jour","s1.steps.8to12k":"8 000-12 000/jour","s1.steps.gt12k":"> 12 000/jour",
+"s1.sleep":"Sommeil par nuit","s1.sleep.lt4":"< 4h","s1.sleep.4to6":"4-6h","s1.sleep.6to8":"6-8h","s1.sleep.8plus":"8h+",
 "s1.goal":"Objectif","s1.goal.lose":"Perdre de la graisse","s1.goal.maintain":"Recomposition (construire du muscle/perdre de la graisse)","s1.goal.gain":"Construire du muscle",
-"s2.title":"Nutrition & Habitudes","s2.note":"Choisissez ce qui correspond à votre semaine moyenne.",
-"s2.snacks":"Snacks sucrés","s2.sodas":"Sodas / boissons sucrées","s2.fastfood":"Fast-food / burgers","s2.alcohol":"Alcool",
+"s2.title":"Nutrition & Habitudes","s2.note":"Choisissez ce qui correspond \u00e0 votre semaine moyenne.",
+"s2.snacks":"Snacks sucr\u00e9s","s2.sodas":"Sodas / boissons sucr\u00e9es","s2.fastfood":"Fast-food / burgers","s2.alcohol":"Alcool",
 "s2.tracks":"Suivez-vous vos calories ?","s2.currentCals":"Calories quotidiennes (optionnel)","s2.currentCals.required":"Calories quotidiennes (obligatoire)","s2.currentCals.ph":"ex. 2200",
-"s3.title":"Préférences & Restrictions","s3.diet":"Type d'alimentation","s3.diet.omnivore":"Omnivore","s3.diet.vegetarian":"Végétarien","s3.diet.vegan":"Végane",
+"s3.title":"Pr\u00e9f\u00e9rences & Restrictions","s3.diet":"Type d'alimentation","s3.diet.omnivore":"Omnivore","s3.diet.vegetarian":"V\u00e9g\u00e9tarien","s3.diet.vegan":"V\u00e9gane",
 "s3.allergies":"Allergies / restrictions",
-"s3.allergy.milk":"Lait","s3.allergy.egg":"Œuf","s3.allergy.peanut":"Arachide","s3.allergy.treenuts":"Fruits à coque","s3.allergy.soy":"Soja","s3.allergy.wheat":"Blé","s3.allergy.gluten":"Gluten","s3.allergy.fish":"Poisson","s3.allergy.shellfish":"Fruits de mer","s3.allergy.sesame":"Sésame","s3.allergy.corn":"Maïs","s3.allergy.mustard":"Moutarde","s3.allergy.celery":"Céleri","s3.allergy.lupin":"Lupin","s3.allergy.sulfites":"Sulfites","s3.allergy.fruits":"Fruits","s3.allergy.vegetables":"Légumes",
-"s3.produce.details":"Allergique à quels fruits/légumes ?","s3.produce.details.ph":"ex. fraises, tomates...",
-"s3.likes":"Aliments préférés","s3.likes.ph":"ex. pâtes, curry, wraps","s3.dislikes":"Aliments que vous évitez","s3.dislikes.ph":"ex. champignons, thon, œufs",
-"common.select":"Sélectionner","common.none":"Aucun","common.no":"Non","common.yes":"Oui","common.sometimes":"Parfois",
-"freq.1w":"1×/sem","freq.2w":"2×/sem","freq.3_5w":"3–5×/sem","freq.3_4w":"3–4×/sem","freq.5w":"5+×/sem","freq.daily":"Tous les jours",
-"results.title":"Vos résultats",
-"results.notice.title":"Avertissement :","results.notice.text":"Estimation, pas un objectif exact. Augmentez progressivement si votre apport est bien inférieur.",
-"results.adjust.note":"Ajustez les calories sur 2–4 semaines selon la moyenne hebdomadaire du poids.",
-"results.calories":"Calories","results.bmr":"MBR","results.maintenance":"Maintenance estimée",
-"results.target.lose":"Cible pour perdre de la graisse :","results.target.gain":"Cible pour développer du muscle :","results.target.maintain":"Cible pour recomposition :",
-"results.more":"Plus de détails","results.macros":"Objectifs macros",
+"s3.allergy.milk":"Lait","s3.allergy.egg":"Oeuf","s3.allergy.peanut":"Arachide","s3.allergy.treenuts":"Fruits \u00e0 coque","s3.allergy.soy":"Soja","s3.allergy.wheat":"Bl\u00e9","s3.allergy.gluten":"Gluten","s3.allergy.fish":"Poisson","s3.allergy.shellfish":"Fruits de mer","s3.allergy.sesame":"S\u00e9same","s3.allergy.corn":"Ma\u00efs","s3.allergy.mustard":"Moutarde","s3.allergy.celery":"C\u00e9leri","s3.allergy.lupin":"Lupin","s3.allergy.sulfites":"Sulfites","s3.allergy.fruits":"Fruits","s3.allergy.vegetables":"L\u00e9gumes",
+"s3.produce.details":"Allergique \u00e0 quels fruits/l\u00e9gumes ?","s3.produce.details.ph":"ex. fraises, tomates...",
+"s3.likes":"Aliments pr\u00e9f\u00e9r\u00e9s","s3.likes.ph":"ex. p\u00e2tes, curry, wraps","s3.dislikes":"Aliments que vous \u00e9vitez","s3.dislikes.ph":"ex. champignons, thon, oeufs",
+"common.select":"S\u00e9lectionner","common.none":"Aucun","common.no":"Non","common.yes":"Oui","common.sometimes":"Parfois",
+"freq.1w":"1x/sem","freq.2w":"2x/sem","freq.3_5w":"3-5x/sem","freq.3_4w":"3-4x/sem","freq.5w":"5+x/sem","freq.daily":"Tous les jours",
+"results.title":"Vos r\u00e9sultats",
+"results.notice.title":"Avertissement :","results.notice.text":"Estimation, pas un objectif exact. Augmentez progressivement.",
+"results.adjust.note":"Ajustez les calories sur 2-4 semaines selon la moyenne hebdomadaire du poids.",
+"results.calories":"Calories","results.bmr":"MBR","results.maintenance":"Maintenance estim\u00e9e",
+"results.target.lose":"Cible pour perdre de la graisse :","results.target.gain":"Cible pour d\u00e9velopper du muscle :","results.target.maintain":"Cible pour recomposition :",
+"results.more":"Plus de d\u00e9tails","results.macros":"Objectifs macros",
 "results.macro.chart.grams":"Macros (grammes)","results.macro.chart.calories":"Macros (calories)",
-"results.macros.note":"Protéines : {pf} g/kg PC • Lipides : {fat}% • Glucides : reste",
-"results.protein":"Protéines","results.carbs":"Glucides","results.fats":"Lipides","results.gramsDay":"g/jour","results.pctCalories":"% des calories","results.donutNote":"Les couleurs correspondent à la répartition.",
-"results.meals":"Idées de repas","results.mealIdeas.tag":"IDÉES REPAS",
-"results.breakfast":"Petit-déjeuner","results.lunch":"Déjeuner","results.dinner":"Dîner","results.snack":"Collation (optionnelle)","results.noOptions":"Aucune option","results.noMealsMatch":"Aucune idée de repas ne correspond.",
-"results.action.title":"Plan d'action sur 2 semaines","results.action.cut":"1) Réduire","results.action.swaps":"2) Substitutions","results.action.training":"3) Entraînement (2 semaines)","results.action.steps":"4) Pas quotidiens",
-"results.action.steps.aim":"viser environ","results.action.steps.perday":"pas/jour","results.action.steps.after":"Ensuite","results.action.steps.add1k":"+1 000/semaine jusqu'à 10 000/jour",
+"results.macros.note":"Prot\u00e9ines : {pf} g/kg PC - Lipides : {fat}% - Glucides : reste",
+"results.protein":"Prot\u00e9ines","results.carbs":"Glucides","results.fats":"Lipides","results.gramsDay":"g/jour","results.pctCalories":"% des calories",
+"results.meals":"Id\u00e9es de repas","results.mealIdeas.tag":"ID\u00c9ES REPAS",
+"results.breakfast":"Petit-d\u00e9jeuner","results.lunch":"D\u00e9jeuner","results.dinner":"D\u00eener","results.snack":"Collation (optionnelle)","results.noOptions":"Aucune option","results.noMealsMatch":"Aucune id\u00e9e de repas ne correspond.",
+"results.action.title":"Plan d'action sur 2 semaines","results.action.cut":"1) R\u00e9duire","results.action.swaps":"2) Substitutions","results.action.training":"3) Entra\u00eenement (2 semaines)","results.action.steps":"4) Pas quotidiens",
+"results.action.steps.aim":"viser environ","results.action.steps.perday":"pas/jour","results.action.steps.after":"Ensuite","results.action.steps.add1k":"+1 000/semaine jusqu'\u00e0 10 000/jour",
 "results.sleep":"Sommeil",
-"results.send":"Recevoir ces résultats ?","results.send.yes":"Oui, envoyez-moi mes résultats",
-"results.summary":"Récapitulatif","results.bodyComp":"Composition corporelle","results.bfRange":"Fourchette","results.bfMidpoint":"% graisse utilisé",
-"contact.name":"Prénom","contact.name.ph":"ex. Sarah","contact.email":"Email","contact.phone":"Téléphone (WhatsApp)","contact.note":"Ouvre votre email/WhatsApp pré-rempli.","contact.sendEmail":"Envoyer par email","contact.sendWhatsApp":"Envoyer par WhatsApp",
-"cut.sugary":"Snacks sucrés","cut.drinks":"Boissons sucrées","cut.fastfood":"Fast-food","cut.alcohol":"Alcool",
-"week.1":"Semaine 1","week.2":"Semaine 2","timesPerWeek":"fois/sem",
-"cut.none.sugary":"Puisque tu ne manges pas de snacks sucrés, continue comme ça ! ✅",
-"cut.none.drinks":"Puisque tu ne bois pas de boissons sucrées, continue comme ça ! ✅",
-"cut.none.fastfood":"Puisque tu ne manges pas de fast-food, continue comme ça ! ✅",
-"cut.none.alcohol":"Puisque tu ne bois pas d'alcool, continue comme ça ! ✅",
-"cut.1x.w1":"réduis la portion de moitié","cut.1x.w2":"élimine-le complètement",
-"cut.2x.w1":"réduis à 1× par semaine","cut.2x.w2":"élimine-le complètement",
-"cut.3x.w1":"réduis à 2× par semaine","cut.3x.w2":"réduis à 1× par semaine",
-"cut.4x.w1":"réduis à 3× par semaine","cut.4x.w2":"réduis à 2× par semaine",
-"cut.daily.w1":"réduis à ~5× par semaine","cut.daily.w2":"réduis à ~3× par semaine",
-"training.keep":"Puisque tu fais {n} séance(s)/sem, continue et concentre-toi sur la progression ! ✅",
-"training.aim":"Puisque tu fais {n} séance(s)/sem, vise {target}+ séances/sem pour les 2 prochaines semaines.",
-"training.start":"Puisque tu ne t'entraînes pas encore, vise 3 séances/sem pour les 2 prochaines semaines.",
-"swap.sweet":"Envie sucrée → yaourt grec + banane + cannelle","swap.chocolate":"Chocolat → 2 carrés noir + fruit","swap.cookies":"Biscuits → shake protéiné + banane","swap.dessert":"Dessert → 1 portion planifiée",
-"swap.soda":"Soda → eau pétillante + citron","swap.sweetDrink":"Boisson sucrée → sans sucre","swap.energy":"Energy drink → café noir",
-"swap.fastfood":"Fast-food → bol maison","swap.burger":"Burger → wrap maison","swap.notime":"Pas le temps → poulet rôti + salade",
-"swap.alc.limit":"Limiter l'alcool","swap.alc.water":"Alterner l'alcool avec de l'eau","swap.alc.meal":"Manger des plats riche en protéine pour éviter le grignotage",
-"swap.keep.sugary":"Snacks sucrés : continue ✅","swap.keep.drinks":"Boissons sucrées : continue ✅","swap.keep.fastfood":"Fast-food : continue ✅","swap.keep.alcohol":"Alcool : continue ✅",
-"training.workouts":"séance(s)",
-"steps.note.to10k":"Vise 10 000 pas/jour.","steps.note.keep":"Déjà 10 000+. Continue ✅","steps.note.progress":"Sem 2 : +1 000/jour. Puis +1 000/sem jusqu'à 10 000.",
-"sleep.note.keep":"Sommeil : continue. Vise 7–9h.","sleep.note.add30":"Sommeil : vise 7–9h. +30 min/sem.","sleep.note.add45_60":"Sommeil : vise 7–9h. +45–60 min/sem.","sleep.note.aim":"Sommeil : vise 7–9h.",
-"recap.title":"Résultats nutritionnels","recap.age":"Âge","recap.gender":"Sexe","recap.height":"Taille","recap.weight":"Poids","recap.bodyFat":"Graisse","recap.goal":"Objectif","recap.activity":"Activité","recap.trainingNow":"Entraînement actuel","recap.trainedBefore":"Déjà entraîné","recap.trainingType":"Type","recap.trainingDetails":"Détails","recap.stepsSleep":"Pas | Sommeil","recap.calories":"Calories","recap.bmr":"MBR","recap.maintenance":"Maintenance","recap.target":"Cible","recap.macros":"Macros",
+"results.send":"Recevoir ces r\u00e9sultats ?","results.send.yes":"Oui, envoyez-moi mes r\u00e9sultats",
+"results.summary":"R\u00e9capitulatif","results.bodyComp":"Composition corporelle","results.bfRange":"Fourchette","results.bfMidpoint":"% graisse utilis\u00e9",
+"contact.name":"Pr\u00e9nom","contact.name.ph":"ex. Sarah","contact.email":"Email","contact.phone":"T\u00e9l\u00e9phone (WhatsApp)","contact.note":"Ouvre votre email/WhatsApp pr\u00e9-rempli.","contact.sendEmail":"Envoyer par email","contact.sendWhatsApp":"Envoyer par WhatsApp",
+"cut.sugary":"Snacks sucr\u00e9s","cut.drinks":"Boissons sucr\u00e9es","cut.fastfood":"Fast-food","cut.alcohol":"Alcool",
+"week.1":"Semaine 1","week.2":"Semaine 2",
+"cut.none.sugary":"Puisque tu ne manges pas de snacks sucr\u00e9s, continue comme \u00e7a !","cut.none.drinks":"Puisque tu ne bois pas de boissons sucr\u00e9es, continue !","cut.none.fastfood":"Puisque tu ne manges pas de fast-food, continue !","cut.none.alcohol":"Puisque tu ne bois pas d'alcool, continue !",
+"cut.1x.w1":"r\u00e9duis la portion de moiti\u00e9","cut.1x.w2":"\u00e9limine-le compl\u00e8tement",
+"cut.2x.w1":"r\u00e9duis \u00e0 1x par semaine","cut.2x.w2":"\u00e9limine-le compl\u00e8tement",
+"cut.3x.w1":"r\u00e9duis \u00e0 2x par semaine","cut.3x.w2":"r\u00e9duis \u00e0 1x par semaine",
+"cut.4x.w1":"r\u00e9duis \u00e0 3x par semaine","cut.4x.w2":"r\u00e9duis \u00e0 2x par semaine",
+"cut.daily.w1":"r\u00e9duis \u00e0 ~5x par semaine","cut.daily.w2":"r\u00e9duis \u00e0 ~3x par semaine",
+"training.keep":"Puisque tu fais {n} s\u00e9ance(s)/sem, continue et concentre-toi sur la progression !",
+"training.aim":"Puisque tu fais {n} s\u00e9ance(s)/sem, vise {target}+ s\u00e9ances/sem pour les 2 prochaines semaines.",
+"training.start":"Puisque tu ne t'entra\u00eenes pas encore, vise 3 s\u00e9ances/sem pour les 2 prochaines semaines.",
+"swap.sweet":"Envie sucr\u00e9e: yaourt grec + banane + cannelle","swap.chocolate":"Chocolat: 2 carr\u00e9s noir + fruit","swap.cookies":"Biscuits: shake prot\u00e9in\u00e9 + banane","swap.dessert":"Dessert: 1 portion planifi\u00e9e",
+"swap.soda":"Soda: eau p\u00e9tillante + citron","swap.sweetDrink":"Boisson sucr\u00e9e: sans sucre","swap.energy":"Energy drink: caf\u00e9 noir",
+"swap.fastfood":"Fast-food: bol maison","swap.burger":"Burger: wrap maison","swap.notime":"Pas le temps: poulet r\u00f4ti + salade",
+"swap.alc.limit":"Limiter l'alcool","swap.alc.water":"Alterner l'alcool avec de l'eau","swap.alc.meal":"Manger des plats riche en prot\u00e9ine",
+"steps.note.to10k":"Vise 10 000 pas/jour.","steps.note.keep":"D\u00e9j\u00e0 10 000+. Continue !","steps.note.progress":"Sem 2 : +1 000/jour. Puis +1 000/sem jusqu'\u00e0 10 000.",
+"sleep.note.keep":"Sommeil : continue. Vise 7-9h.","sleep.note.add30":"Sommeil : vise 7-9h. +30 min/sem.","sleep.note.add45_60":"Sommeil : vise 7-9h. +45-60 min/sem.","sleep.note.aim":"Sommeil : vise 7-9h.",
+"recap.title":"R\u00e9sultats nutritionnels","recap.age":"\u00c2ge","recap.gender":"Sexe","recap.height":"Taille","recap.weight":"Poids","recap.bodyFat":"Graisse","recap.goal":"Objectif","recap.activity":"Activit\u00e9","recap.trainingNow":"Entra\u00eenement actuel","recap.trainedBefore":"D\u00e9j\u00e0 entra\u00een\u00e9","recap.trainingType":"Type","recap.trainingDetails":"D\u00e9tails","recap.stepsSleep":"Pas | Sommeil","recap.calories":"Calories","recap.bmr":"MBR","recap.maintenance":"Maintenance","recap.target":"Cible","recap.macros":"Macros",
 "goal.lose":"Perdre de la graisse","goal.maintain":"Recomposition","goal.gain":"Construire du muscle",
-"activity.sedentary":"Sédentaire","activity.light":"Légèrement actif","activity.moderate":"Modérément actif","activity.very":"Très actif",
-"steps.none":"Très faible","steps.2k":"~2 000/jour","steps.lt4k":"< 4 000/jour","steps.4to8k":"4 000–8 000/jour","steps.8to12k":"8 000–12 000/jour","steps.gt12k":"> 12 000/jour",
-"sleep.lt4":"< 4h","sleep.4to6":"4–6h","sleep.6to8":"6–8h","sleep.8plus":"8h+",
-"trainingType.strength":"Musculation","trainingType.cardio":"Cardio","trainingType.mixed":"Mixte","trainingType.sport":"Sport spécifique",
-"why.title":"Pourquoi ces valeurs ?","why.calories.title":"Calories","why.calories.bmr":"MBR = énergie de base","why.calories.maintenance":"Maintenance = MBR × activité","why.calories.goal":"L'objectif ajuste la cible",
-"why.calories.lose":"Sous la maintenance pour utiliser les réserves.","why.calories.gain":"Au-dessus pour soutenir l'entraînement.","why.calories.maintain":"Proche de la maintenance pour améliorer la composition.",
-"why.protein.title":"Protéines","why.protein.text":"Basées sur le poids et le taux de graisse.","why.fat.title":"Lipides","why.fat.text":"Basés sur le taux de graisse.","why.carbs.title":"Glucides","why.carbs.text":"Le reste pour l'entraînement et l'adhérence.","why.reminder":"Rappel : estimation. Augmente progressivement.",
+"activity.sedentary":"S\u00e9dentaire","activity.light":"L\u00e9g\u00e8rement actif","activity.moderate":"Mod\u00e9r\u00e9ment actif","activity.very":"Tr\u00e8s actif",
+"steps.none":"Tr\u00e8s faible","steps.2k":"~2 000/jour","steps.lt4k":"< 4 000/jour","steps.4to8k":"4 000-8 000/jour","steps.8to12k":"8 000-12 000/jour","steps.gt12k":"> 12 000/jour",
+"sleep.lt4":"< 4h","sleep.4to6":"4-6h","sleep.6to8":"6-8h","sleep.8plus":"8h+",
+"trainingType.strength":"Musculation","trainingType.cardio":"Cardio","trainingType.mixed":"Mixte","trainingType.sport":"Sport sp\u00e9cifique",
+"why.title":"Pourquoi ces valeurs ?","why.calories.title":"Calories","why.calories.bmr":"MBR = \u00e9nergie de base","why.calories.maintenance":"Maintenance = MBR x activit\u00e9","why.calories.goal":"L'objectif ajuste la cible",
+"why.calories.lose":"Sous la maintenance pour utiliser les r\u00e9serves.","why.calories.gain":"Au-dessus pour soutenir l'entra\u00eenement.","why.calories.maintain":"Proche de la maintenance pour am\u00e9liorer la composition.",
+"why.protein.title":"Prot\u00e9ines","why.protein.text":"Bas\u00e9es sur le poids et le taux de graisse.","why.fat.title":"Lipides","why.fat.text":"Bas\u00e9s sur le taux de graisse.","why.carbs.title":"Glucides","why.carbs.text":"Le reste pour l'entra\u00eenement et l'adh\u00e9rence.","why.reminder":"Rappel : estimation. Augmente progressivement.",
 "err.fill":"Veuillez remplir :","err.selectBf":"Estimation graisse corporelle",
 "nudge.left":"question(s) restante(s) pour continuer",
-"swaps.allGood":"Toutes tes habitudes sont déjà bonnes — pas de substitutions nécessaires ! Continue comme ça ✅"
+"swaps.allGood":"Toutes tes habitudes sont d\u00e9j\u00e0 bonnes - pas de substitutions n\u00e9cessaires !",
+"testi.snippet":"11 kg perdus en 4 mois avec Let'z Roar",
+"testi.verified":"Avis r\u00e9el publi\u00e9 sur Facebook - 6 mars 2026",
+"testi.cta":"Commence ta transformation"
 },
 de:{
 "lang.label":"Sprache",
-"hero.title":"Kostenloses 60‑Sekunden Ernährungs‑Quiz",
-"hero.sub":"Beantworte ein paar Fragen, erhalte Kalorien, Makros & einen 2‑Wochen‑Plan.",
-"s1.title":"Persönliche Daten",
-"s1.age":"Alter (Jahre)","s1.gender":"Geschlecht","s1.gender.select":"Auswählen","s1.gender.male":"Männlich","s1.gender.female":"Weiblich",
-"s1.height":"Größe (cm)","s1.weight":"Gewicht (kg)",
-"s1.bfVisual.label":"Körperfett-Schätzung (visuell)","s1.bfVisual.selectGender":"Bitte wähle zuerst dein Geschlecht.","s1.bfVisual.help":"Wähle die nächste Übereinstimmung.",
+"hero.title":"Kostenloses 60-Sekunden Ern\u00e4hrungs-Quiz",
+"hero.sub":"Beantworte ein paar Fragen, erhalte Kalorien, Makros & einen 2-Wochen-Plan.",
+"s1.title":"Pers\u00f6nliche Daten",
+"s1.age":"Alter (Jahre)","s1.gender":"Geschlecht","s1.gender.select":"Ausw\u00e4hlen","s1.gender.male":"M\u00e4nnlich","s1.gender.female":"Weiblich",
+"s1.height":"Gr\u00f6\u00dfe (cm)","s1.weight":"Gewicht (kg)",
+"s1.bfVisual.label":"K\u00f6rperfett-Sch\u00e4tzung (visuell)","s1.bfVisual.selectGender":"Bitte w\u00e4hle zuerst dein Geschlecht.","s1.bfVisual.help":"W\u00e4hle die n\u00e4chste \u00dcbereinstimmung.",
 "s1.bf.male.1_7.desc":"Wettkampfniveau.","s1.bf.male.8_10.desc":"Sehr schlank.","s1.bf.male.11_12.desc":"Schlank.","s1.bf.male.13_15.desc":"Athletisch.","s1.bf.male.16_19.desc":"Fit.","s1.bf.male.20_24.desc":"Durchschnitt.","s1.bf.male.25_30.desc":"Weiche Mitte.","s1.bf.male.35_40.desc":"Deutliche Fettansammlung.",
-"s1.bf.female.10_12.desc":"Wettkampfniveau.","s1.bf.female.15_17.desc":"Sehr schlank.","s1.bf.female.18_20.desc":"Athletisch/fit.","s1.bf.female.21_23.desc":"Fit.","s1.bf.female.24_26.desc":"Durchschnitt/gesund.","s1.bf.female.27_29.desc":"Weichere Form.","s1.bf.female.30_35.desc":"Deutliche Fettansammlung.","s1.bf.female.36_40.desc":"Erhebliches Fett.","s1.bf.female.50_plus.desc":"Hoher Körperfettanteil.",
-"s1.activity":"Aktivitätslevel","s1.activity.select":"Auswählen","s1.activity.sedentary":"Sitzend","s1.activity.light":"Leicht aktiv","s1.activity.moderate":"Mäßig aktiv","s1.activity.very":"Sehr aktiv",
-"s1.activity.help":"<b>Beispiele:</b><br/><b>Sitzend:</b> Büro, wenig Gehen.<br/><b>Leicht:</b> Büro + Spaziergänge, 1–3×/Wo.<br/><b>Mäßig:</b> aktiv + 3–5×/Wo.<br/><b>Sehr aktiv:</b> körperlicher Job + häufiges Training.",
-"s1.experience":"Trainingserfahrung","s1.experience.select":"Auswählen","s1.experience.none":"Keine","s1.experience.beginner":"Anfänger (0–2 J.)","s1.experience.intermediate":"Fortgeschritten (2–5 J.)","s1.experience.advanced":"Sehr erfahren (5+ J.)",
-"s1.trainingNow":"Trainierst du aktuell?","s1.trainingNow.select":"Auswählen","s1.yes":"Ja","s1.no":"Nein",
-"s1.trainedBefore":"Schon früher trainiert?","s1.trainingType":"Trainingsart","s1.trainingType.strength":"Krafttraining","s1.trainingType.cardio":"Cardio","s1.trainingType.mixed":"Gemischt","s1.trainingType.sport":"Sportspezifisch",
-"s1.trainingDetails":"Was genau machst du?","s1.trainingDetails.ph":"z.B. Fußball + Gym, CrossFit...",
+"s1.bf.female.10_12.desc":"Wettkampfniveau.","s1.bf.female.15_17.desc":"Sehr schlank.","s1.bf.female.18_20.desc":"Athletisch/fit.","s1.bf.female.21_23.desc":"Fit.","s1.bf.female.24_26.desc":"Durchschnitt/gesund.","s1.bf.female.27_29.desc":"Weichere Form.","s1.bf.female.30_35.desc":"Deutliche Fettansammlung.","s1.bf.female.36_40.desc":"Erhebliches Fett.","s1.bf.female.50_plus.desc":"Hoher K\u00f6rperfettanteil.",
+"s1.activity":"Aktivit\u00e4tslevel","s1.activity.select":"Ausw\u00e4hlen","s1.activity.sedentary":"Sitzend","s1.activity.light":"Leicht aktiv","s1.activity.moderate":"M\u00e4\u00dfig aktiv","s1.activity.very":"Sehr aktiv",
+"s1.activity.help":"<b>Beispiele:</b><br/><b>Sitzend:</b> B\u00fcro, wenig Gehen.<br/><b>Leicht:</b> B\u00fcro + Spazierg\u00e4nge, 1-3x/Wo.<br/><b>M\u00e4\u00dfig:</b> aktiv + 3-5x/Wo.<br/><b>Sehr aktiv:</b> k\u00f6rperlicher Job + h\u00e4ufiges Training.",
+"s1.experience":"Trainingserfahrung","s1.experience.select":"Ausw\u00e4hlen","s1.experience.none":"Keine","s1.experience.beginner":"Anf\u00e4nger (0-2 J.)","s1.experience.intermediate":"Fortgeschritten (2-5 J.)","s1.experience.advanced":"Sehr erfahren (5+ J.)",
+"s1.trainingNow":"Trainierst du aktuell?","s1.trainingNow.select":"Ausw\u00e4hlen","s1.yes":"Ja","s1.no":"Nein",
+"s1.trainedBefore":"Schon fr\u00fcher trainiert?","s1.trainingType":"Trainingsart","s1.trainingType.strength":"Krafttraining","s1.trainingType.cardio":"Cardio","s1.trainingType.mixed":"Gemischt","s1.trainingType.sport":"Sportspezifisch",
+"s1.trainingDetails":"Was genau machst du?","s1.trainingDetails.ph":"z.B. Fu\u00dfball + Gym, CrossFit...",
 "s1.sessions":"Einheiten pro Woche",
-"s1.steps":"Tägliche Schritte","s1.steps.none":"Sehr niedrig","s1.steps.2k":"~2.000/Tag","s1.steps.lt4k":"< 4.000/Tag","s1.steps.4to8k":"4.000–8.000/Tag","s1.steps.8to12k":"8.000–12.000/Tag","s1.steps.gt12k":"> 12.000/Tag",
-"s1.sleep":"Schlaf pro Nacht","s1.sleep.lt4":"< 4 Std.","s1.sleep.4to6":"4–6 Std.","s1.sleep.6to8":"6–8 Std.","s1.sleep.8plus":"8 Std.+",
+"s1.steps":"T\u00e4gliche Schritte","s1.steps.none":"Sehr niedrig","s1.steps.2k":"~2.000/Tag","s1.steps.lt4k":"< 4.000/Tag","s1.steps.4to8k":"4.000-8.000/Tag","s1.steps.8to12k":"8.000-12.000/Tag","s1.steps.gt12k":"> 12.000/Tag",
+"s1.sleep":"Schlaf pro Nacht","s1.sleep.lt4":"< 4 Std.","s1.sleep.4to6":"4-6 Std.","s1.sleep.6to8":"6-8 Std.","s1.sleep.8plus":"8 Std.+",
 "s1.goal":"Ziel","s1.goal.lose":"Fett verlieren","s1.goal.maintain":"Rekomposition (Muskeln aufbauen/Fett verlieren)","s1.goal.gain":"Muskeln aufbauen",
-"s2.title":"Ernährung & Gewohnheiten","s2.note":"Was passt am besten zu deiner durchschnittlichen Woche?",
-"s2.snacks":"Zuckerhaltige Snacks","s2.sodas":"Limonaden / gesüßte Getränke","s2.fastfood":"Fast Food / Burger","s2.alcohol":"Alkohol",
-"s2.tracks":"Trackst du Kalorien?","s2.currentCals":"Aktuelle tägliche Kalorien (optional)","s2.currentCals.required":"Aktuelle tägliche Kalorien (erforderlich)","s2.currentCals.ph":"z.B. 2200",
-"s3.title":"Ernährungspräferenzen & Einschränkungen","s3.diet":"Ernährungsform","s3.diet.omnivore":"Allesesser","s3.diet.vegetarian":"Vegetarisch","s3.diet.vegan":"Vegan",
-"s3.allergies":"Allergien / Einschränkungen",
-"s3.allergy.milk":"Milch","s3.allergy.egg":"Ei","s3.allergy.peanut":"Erdnuss","s3.allergy.treenuts":"Schalenfrüchte","s3.allergy.soy":"Soja","s3.allergy.wheat":"Weizen","s3.allergy.gluten":"Gluten","s3.allergy.fish":"Fisch","s3.allergy.shellfish":"Schalentiere","s3.allergy.sesame":"Sesam","s3.allergy.corn":"Mais","s3.allergy.mustard":"Senf","s3.allergy.celery":"Sellerie","s3.allergy.lupin":"Lupine","s3.allergy.sulfites":"Sulfite","s3.allergy.fruits":"Obst","s3.allergy.vegetables":"Gemüse",
-"s3.produce.details":"Allergisch gegen welches Obst/Gemüse?","s3.produce.details.ph":"z.B. Erdbeeren, Tomaten...",
+"s2.title":"Ern\u00e4hrung & Gewohnheiten","s2.note":"Was passt am besten zu deiner durchschnittlichen Woche?",
+"s2.snacks":"Zuckerhaltige Snacks","s2.sodas":"Limonaden / ges\u00fc\u00dfte Getr\u00e4nke","s2.fastfood":"Fast Food / Burger","s2.alcohol":"Alkohol",
+"s2.tracks":"Trackst du Kalorien?","s2.currentCals":"Aktuelle t\u00e4gliche Kalorien (optional)","s2.currentCals.required":"Aktuelle t\u00e4gliche Kalorien (erforderlich)","s2.currentCals.ph":"z.B. 2200",
+"s3.title":"Ern\u00e4hrungspr\u00e4ferenzen & Einschr\u00e4nkungen","s3.diet":"Ern\u00e4hrungsform","s3.diet.omnivore":"Allesesser","s3.diet.vegetarian":"Vegetarisch","s3.diet.vegan":"Vegan",
+"s3.allergies":"Allergien / Einschr\u00e4nkungen",
+"s3.allergy.milk":"Milch","s3.allergy.egg":"Ei","s3.allergy.peanut":"Erdnuss","s3.allergy.treenuts":"Schalenfr\u00fcchte","s3.allergy.soy":"Soja","s3.allergy.wheat":"Weizen","s3.allergy.gluten":"Gluten","s3.allergy.fish":"Fisch","s3.allergy.shellfish":"Schalentiere","s3.allergy.sesame":"Sesam","s3.allergy.corn":"Mais","s3.allergy.mustard":"Senf","s3.allergy.celery":"Sellerie","s3.allergy.lupin":"Lupine","s3.allergy.sulfites":"Sulfite","s3.allergy.fruits":"Obst","s3.allergy.vegetables":"Gem\u00fcse",
+"s3.produce.details":"Allergisch gegen welches Obst/Gem\u00fcse?","s3.produce.details.ph":"z.B. Erdbeeren, Tomaten...",
 "s3.likes":"Lieblingslebensmittel","s3.likes.ph":"z.B. Pasta, Curry, Wraps","s3.dislikes":"Lebensmittel die du vermeidest","s3.dislikes.ph":"z.B. Pilze, Thunfisch, Eier",
-"common.select":"Auswählen","common.none":"Keine","common.no":"Nein","common.yes":"Ja","common.sometimes":"Manchmal",
-"freq.1w":"1×/Wo","freq.2w":"2×/Wo","freq.3_5w":"3–5×/Wo","freq.3_4w":"3–4×/Wo","freq.5w":"5+×/Wo","freq.daily":"Täglich",
+"common.select":"Ausw\u00e4hlen","common.none":"Keine","common.no":"Nein","common.yes":"Ja","common.sometimes":"Manchmal",
+"freq.1w":"1x/Wo","freq.2w":"2x/Wo","freq.3_5w":"3-5x/Wo","freq.3_4w":"3-4x/Wo","freq.5w":"5+x/Wo","freq.daily":"T\u00e4glich",
 "results.title":"Deine Ergebnisse",
-"results.notice.title":"Hinweis:","results.notice.text":"Schätzung, kein exakter Zielwert. Erhöhe schrittweise.",
-"results.adjust.note":"Passe Kalorien basierend auf 2–4 Wochen Trends des wöchentlichen Durchschnittsgewichts an.",
-"results.calories":"Kalorien","results.bmr":"Grundumsatz","results.maintenance":"Geschätzter Erhalt",
-"results.target.lose":"Ziel für Fettverlust:","results.target.gain":"Ziel für Muskelaufbau:","results.target.maintain":"Ziel für Rekomposition:",
+"results.notice.title":"Hinweis:","results.notice.text":"Sch\u00e4tzung, kein exakter Zielwert. Erh\u00f6he schrittweise.",
+"results.adjust.note":"Passe Kalorien basierend auf 2-4 Wochen Trends an.",
+"results.calories":"Kalorien","results.bmr":"Grundumsatz","results.maintenance":"Gesch\u00e4tzter Erhalt",
+"results.target.lose":"Ziel f\u00fcr Fettverlust:","results.target.gain":"Ziel f\u00fcr Muskelaufbau:","results.target.maintain":"Ziel f\u00fcr Rekomposition:",
 "results.more":"Mehr Infos","results.macros":"Makroziele",
 "results.macro.chart.grams":"Makros (Gramm)","results.macro.chart.calories":"Makros (Kalorien)",
-"results.macros.note":"Protein: {pf} g/kg KG • Fett: {fat}% • Kohlenhydrate: Rest",
-"results.protein":"Protein","results.carbs":"Kohlenhydrate","results.fats":"Fette","results.gramsDay":"g/Tag","results.pctCalories":"% der Kalorien","results.donutNote":"Farben = Kalorienverteilung.",
+"results.macros.note":"Protein: {pf} g/kg KG - Fett: {fat}% - Kohlenhydrate: Rest",
+"results.protein":"Protein","results.carbs":"Kohlenhydrate","results.fats":"Fette","results.gramsDay":"g/Tag","results.pctCalories":"% der Kalorien",
 "results.meals":"Mahlzeitenideen","results.mealIdeas.tag":"MAHLZEITIDEEN",
-"results.breakfast":"Frühstück","results.lunch":"Mittagessen","results.dinner":"Abendessen","results.snack":"Snack (optional)","results.noOptions":"Keine Optionen","results.noMealsMatch":"Keine passenden Mahlzeitenideen.",
-"results.action.title":"2‑Wochen‑Aktionsplan","results.action.cut":"1) Reduzieren","results.action.swaps":"2) Alternativen","results.action.training":"3) Krafttraining (2 Wochen)","results.action.steps":"4) Tägliche Schritte",
+"results.breakfast":"Fr\u00fchst\u00fcck","results.lunch":"Mittagessen","results.dinner":"Abendessen","results.snack":"Snack (optional)","results.noOptions":"Keine Optionen","results.noMealsMatch":"Keine passenden Mahlzeitenideen.",
+"results.action.title":"2-Wochen-Aktionsplan","results.action.cut":"1) Reduzieren","results.action.swaps":"2) Alternativen","results.action.training":"3) Krafttraining (2 Wochen)","results.action.steps":"4) T\u00e4gliche Schritte",
 "results.action.steps.aim":"anstreben etwa","results.action.steps.perday":"Schritte/Tag","results.action.steps.after":"Danach","results.action.steps.add1k":"+1.000/Woche bis 10.000/Tag",
 "results.sleep":"Schlaf",
 "results.send":"Ergebnisse erhalten?","results.send.yes":"Ja, sende mir meine Ergebnisse",
-"results.summary":"Zusammenfassung","results.bodyComp":"Körperzusammensetzung","results.bfRange":"Bereich","results.bfMidpoint":"KF% verwendet",
-"contact.name":"Vorname","contact.name.ph":"z.B. Sarah","contact.email":"E-Mail","contact.phone":"Telefon (WhatsApp)","contact.note":"Öffnet E-Mail/WhatsApp vorausgefüllt.","contact.sendEmail":"Per E-Mail senden","contact.sendWhatsApp":"Per WhatsApp senden",
-"cut.sugary":"Zuckerhaltige Snacks","cut.drinks":"Gesüßte Getränke","cut.fastfood":"Fast Food","cut.alcohol":"Alkohol",
-"week.1":"Woche 1","week.2":"Woche 2","timesPerWeek":"Mal/Woche",
-"cut.none.sugary":"Da du keine zuckerhaltigen Snacks isst, mach weiter so! ✅",
-"cut.none.drinks":"Da du keine gesüßten Getränke trinkst, mach weiter so! ✅",
-"cut.none.fastfood":"Da du kein Fast Food isst, mach weiter so! ✅",
-"cut.none.alcohol":"Da du keinen Alkohol trinkst, mach weiter so! ✅",
+"results.summary":"Zusammenfassung","results.bodyComp":"K\u00f6rperzusammensetzung","results.bfRange":"Bereich","results.bfMidpoint":"KF% verwendet",
+"contact.name":"Vorname","contact.name.ph":"z.B. Sarah","contact.email":"E-Mail","contact.phone":"Telefon (WhatsApp)","contact.note":"\u00d6ffnet E-Mail/WhatsApp vorausgef\u00fcllt.","contact.sendEmail":"Per E-Mail senden","contact.sendWhatsApp":"Per WhatsApp senden",
+"cut.sugary":"Zuckerhaltige Snacks","cut.drinks":"Ges\u00fc\u00dfte Getr\u00e4nke","cut.fastfood":"Fast Food","cut.alcohol":"Alkohol",
+"week.1":"Woche 1","week.2":"Woche 2",
+"cut.none.sugary":"Da du keine zuckerhaltigen Snacks isst, mach weiter so!","cut.none.drinks":"Da du keine ges\u00fc\u00dften Getr\u00e4nke trinkst, mach weiter so!","cut.none.fastfood":"Da du kein Fast Food isst, mach weiter so!","cut.none.alcohol":"Da du keinen Alkohol trinkst, mach weiter so!",
 "cut.1x.w1":"halbiere die Portion","cut.1x.w2":"streiche es komplett",
-"cut.2x.w1":"reduziere auf 1× pro Woche","cut.2x.w2":"streiche es komplett",
-"cut.3x.w1":"reduziere auf 2× pro Woche","cut.3x.w2":"reduziere auf 1× pro Woche",
-"cut.4x.w1":"reduziere auf 3× pro Woche","cut.4x.w2":"reduziere auf 2× pro Woche",
-"cut.daily.w1":"reduziere auf ~5× pro Woche","cut.daily.w2":"reduziere auf ~3× pro Woche",
-"training.keep":"Da du {n} Einheit(en)/Wo machst, bleib dran und fokussiere dich auf Progression! ✅",
-"training.aim":"Da du {n} Einheit(en)/Wo machst, strebe {target}+ Einheiten/Wo für die nächsten 2 Wochen an.",
-"training.start":"Da du noch nicht trainierst, strebe 3 Einheiten/Wo für die nächsten 2 Wochen an.",
-"swap.sweet":"Süßhunger → Joghurt + Banane + Zimt","swap.chocolate":"Schokolade → 2 Stück dunkel + Obst","swap.cookies":"Kekse → Proteinshake + Banane","swap.dessert":"Dessert → 1 geplante Portion",
-"swap.soda":"Limonade → Sprudel + Zitrone","swap.sweetDrink":"Süßes Getränk → zuckerfrei","swap.energy":"Energy-Drink → schwarzer Kaffee",
-"swap.fastfood":"Fast Food → Bowl: Protein + Gemüse","swap.burger":"Burger → Wrap: Protein + Salat","swap.notime":"Keine Zeit → Grillhähnchen + Salat",
-"swap.alc.limit":"Alkohol begrenzen","swap.alc.water":"Alkohol mit Wasser Abwechseln","swap.alc.meal":"Proteinreiche Mahlzeiten essen, um Naschen zu vermeiden",
-"swap.keep.sugary":"Zuckersnacks: weiter so ✅","swap.keep.drinks":"Getränke: weiter so ✅","swap.keep.fastfood":"Fast Food: weiter so ✅","swap.keep.alcohol":"Alkohol: weiter so ✅",
-"training.workouts":"Einheit(en)",
-"steps.note.to10k":"Ziel: 10.000 Schritte/Tag.","steps.note.keep":"Bereits 10.000+. Weiter so ✅","steps.note.progress":"Woche 2: +1.000/Tag. Dann +1.000/Woche bis 10.000.",
-"sleep.note.keep":"Schlaf: weiter so. Ziel 7–9h.","sleep.note.add30":"Schlaf: Ziel 7–9h. +30 Min/Woche.","sleep.note.add45_60":"Schlaf: Ziel 7–9h. +45–60 Min/Woche.","sleep.note.aim":"Schlaf: wenn möglich 7–9h.",
-"recap.title":"Ernährungsanalyse","recap.age":"Alter","recap.gender":"Geschlecht","recap.height":"Größe","recap.weight":"Gewicht","recap.bodyFat":"Körperfett","recap.goal":"Ziel","recap.activity":"Aktivität","recap.trainingNow":"Aktuelles Training","recap.trainedBefore":"Früher trainiert","recap.trainingType":"Trainingsart","recap.trainingDetails":"Details","recap.stepsSleep":"Schritte | Schlaf","recap.calories":"Kalorien","recap.bmr":"Grundumsatz","recap.maintenance":"Erhalt","recap.target":"Ziel","recap.macros":"Makros",
+"cut.2x.w1":"reduziere auf 1x pro Woche","cut.2x.w2":"streiche es komplett",
+"cut.3x.w1":"reduziere auf 2x pro Woche","cut.3x.w2":"reduziere auf 1x pro Woche",
+"cut.4x.w1":"reduziere auf 3x pro Woche","cut.4x.w2":"reduziere auf 2x pro Woche",
+"cut.daily.w1":"reduziere auf ~5x pro Woche","cut.daily.w2":"reduziere auf ~3x pro Woche",
+"training.keep":"Da du {n} Einheit(en)/Wo machst, bleib dran und fokussiere dich auf Progression!",
+"training.aim":"Da du {n} Einheit(en)/Wo machst, strebe {target}+ Einheiten/Wo f\u00fcr die n\u00e4chsten 2 Wochen an.",
+"training.start":"Da du noch nicht trainierst, strebe 3 Einheiten/Wo f\u00fcr die n\u00e4chsten 2 Wochen an.",
+"swap.sweet":"S\u00fc\u00dfhunger: Joghurt + Banane + Zimt","swap.chocolate":"Schokolade: 2 St\u00fcck dunkel + Obst","swap.cookies":"Kekse: Proteinshake + Banane","swap.dessert":"Dessert: 1 geplante Portion",
+"swap.soda":"Limonade: Sprudel + Zitrone","swap.sweetDrink":"S\u00fc\u00dfes Getr\u00e4nk: zuckerfrei","swap.energy":"Energy-Drink: schwarzer Kaffee",
+"swap.fastfood":"Fast Food: Bowl mit Protein + Gem\u00fcse","swap.burger":"Burger: Wrap mit Protein + Salat","swap.notime":"Keine Zeit: Grillh\u00e4hnchen + Salat",
+"swap.alc.limit":"Alkohol begrenzen","swap.alc.water":"Alkohol mit Wasser abwechseln","swap.alc.meal":"Proteinreiche Mahlzeiten essen",
+"steps.note.to10k":"Ziel: 10.000 Schritte/Tag.","steps.note.keep":"Bereits 10.000+. Weiter so!","steps.note.progress":"Woche 2: +1.000/Tag. Dann +1.000/Woche bis 10.000.",
+"sleep.note.keep":"Schlaf: weiter so. Ziel 7-9h.","sleep.note.add30":"Schlaf: Ziel 7-9h. +30 Min/Woche.","sleep.note.add45_60":"Schlaf: Ziel 7-9h. +45-60 Min/Woche.","sleep.note.aim":"Schlaf: wenn m\u00f6glich 7-9h.",
+"recap.title":"Ern\u00e4hrungsanalyse","recap.age":"Alter","recap.gender":"Geschlecht","recap.height":"Gr\u00f6\u00dfe","recap.weight":"Gewicht","recap.bodyFat":"K\u00f6rperfett","recap.goal":"Ziel","recap.activity":"Aktivit\u00e4t","recap.trainingNow":"Aktuelles Training","recap.trainedBefore":"Fr\u00fcher trainiert","recap.trainingType":"Trainingsart","recap.trainingDetails":"Details","recap.stepsSleep":"Schritte | Schlaf","recap.calories":"Kalorien","recap.bmr":"Grundumsatz","recap.maintenance":"Erhalt","recap.target":"Ziel","recap.macros":"Makros",
 "goal.lose":"Fett verlieren","goal.maintain":"Rekomposition","goal.gain":"Muskeln aufbauen",
-"activity.sedentary":"Sitzend","activity.light":"Leicht aktiv","activity.moderate":"Mäßig aktiv","activity.very":"Sehr aktiv",
-"steps.none":"Sehr niedrig","steps.2k":"~2.000/Tag","steps.lt4k":"< 4.000/Tag","steps.4to8k":"4.000–8.000/Tag","steps.8to12k":"8.000–12.000/Tag","steps.gt12k":"> 12.000/Tag",
-"sleep.lt4":"< 4 Std.","sleep.4to6":"4–6 Std.","sleep.6to8":"6–8 Std.","sleep.8plus":"8 Std.+",
+"activity.sedentary":"Sitzend","activity.light":"Leicht aktiv","activity.moderate":"M\u00e4\u00dfig aktiv","activity.very":"Sehr aktiv",
+"steps.none":"Sehr niedrig","steps.2k":"~2.000/Tag","steps.lt4k":"< 4.000/Tag","steps.4to8k":"4.000-8.000/Tag","steps.8to12k":"8.000-12.000/Tag","steps.gt12k":"> 12.000/Tag",
+"sleep.lt4":"< 4 Std.","sleep.4to6":"4-6 Std.","sleep.6to8":"6-8 Std.","sleep.8plus":"8 Std.+",
 "trainingType.strength":"Krafttraining","trainingType.cardio":"Cardio","trainingType.mixed":"Gemischt","trainingType.sport":"Sportspezifisch",
-"why.title":"Warum diese Werte?","why.calories.title":"Kalorien","why.calories.bmr":"BMR = Grundenergie","why.calories.maintenance":"Erhalt = BMR × Aktivität","why.calories.goal":"Das Ziel verschiebt den Bedarf",
-"why.calories.lose":"Unter dem Erhalt für Fettnutzung.","why.calories.gain":"Über dem Erhalt für Training.","why.calories.maintain":"Nahe am Erhalt für bessere Komposition.",
-"why.protein.title":"Protein","why.protein.text":"Basierend auf Gewicht und Körperfett.","why.fat.title":"Fett","why.fat.text":"Basierend auf Körperfettanteil.","why.carbs.title":"Kohlenhydrate","why.carbs.text":"Rest für Training und Umsetzbarkeit.","why.reminder":"Hinweis: Schätzung. Langsam steigern.",
-"err.fill":"Bitte ausfüllen:","err.selectBf":"Körperfett-Schätzung",
-"nudge.left":"Frage(n) übrig um fortzufahren",
-"swaps.allGood":"Alle deine Gewohnheiten sind bereits sauber — keine Alternativen nötig! Weiter so ✅"
+"why.title":"Warum diese Werte?","why.calories.title":"Kalorien","why.calories.bmr":"BMR = Grundenergie","why.calories.maintenance":"Erhalt = BMR x Aktivit\u00e4t","why.calories.goal":"Das Ziel verschiebt den Bedarf",
+"why.calories.lose":"Unter dem Erhalt f\u00fcr Fettnutzung.","why.calories.gain":"\u00dcber dem Erhalt f\u00fcr Training.","why.calories.maintain":"Nahe am Erhalt f\u00fcr bessere Komposition.",
+"why.protein.title":"Protein","why.protein.text":"Basierend auf Gewicht und K\u00f6rperfett.","why.fat.title":"Fett","why.fat.text":"Basierend auf K\u00f6rperfettanteil.","why.carbs.title":"Kohlenhydrate","why.carbs.text":"Rest f\u00fcr Training und Umsetzbarkeit.","why.reminder":"Hinweis: Sch\u00e4tzung. Langsam steigern.",
+"err.fill":"Bitte ausf\u00fcllen:","err.selectBf":"K\u00f6rperfett-Sch\u00e4tzung",
+"nudge.left":"Frage(n) \u00fcbrig um fortzufahren",
+"swaps.allGood":"Alle deine Gewohnheiten sind bereits sauber - keine Alternativen n\u00f6tig!",
+"testi.snippet":"11 kg in 4 Monaten mit Let'z Roar verloren",
+"testi.verified":"Echte Bewertung auf Facebook ver\u00f6ffentlicht - 6. M\u00e4rz 2026",
+"testi.cta":"Starte deine Transformation"
 }
 };
 
-const LANG_KEY="nr_lang";
-function t(key){const lang=getLang();return(I18N[lang]&&I18N[lang][key])||(I18N.en[key])||key}
+var LANG_KEY="nr_lang";
+function t(key){var lang=getLang();return(I18N[lang]&&I18N[lang][key])||(I18N.en[key])||key}
 function getLang(){return localStorage.getItem(LANG_KEY)||"en"}
 function setLang(lang){localStorage.setItem(LANG_KEY,lang);applyI18n();if(resultsShown&&lastResultsData)renderResults(lastResultsData)}
 function applyI18n(){
   document.documentElement.lang=getLang();
-  document.querySelectorAll("[data-i18n]").forEach(el=>{el.innerHTML=t(el.getAttribute("data-i18n"))});
-  document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{el.setAttribute("placeholder",t(el.getAttribute("data-i18n-placeholder")))});
+  document.querySelectorAll("[data-i18n]").forEach(function(el){el.innerHTML=t(el.getAttribute("data-i18n"))});
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(function(el){el.setAttribute("placeholder",t(el.getAttribute("data-i18n-placeholder")))});
 }
 
 /* =========================
    CALCULATION ENGINE
    ========================= */
-const ACTIVITY_FACTOR={sedentary:1.2,light:1.35,moderate:1.55,very:1.825};
-const GOAL_MULT={lose:0.80,maintain:1.00,gain:1.15};
+var ACTIVITY_FACTOR={sedentary:1.2,light:1.35,moderate:1.55,very:1.825};
+var GOAL_MULT={lose:0.80,maintain:1.00,gain:1.15};
 function round(n){return Math.round(n)}
-function mifflinBMR({gender,weightKg,heightCm,age}){const base=10*weightKg+6.25*heightCm-5*age;return gender==="male"?base+5:base-161}
-function bfMidpointPct(data){const min=Number(data.bfMin),max=Number(data.bfMax);if(!isFinite(min)||!isFinite(max)||min<=0||max<=0)return null;return(min+max)/2}
-function proteinFactorGPerKgBW(bfPct,gender){if(gender==="male"){if(bfPct<=12)return 2.4;if(bfPct<=15)return 2.2;if(bfPct<=19)return 2.2;if(bfPct<=24)return 2.0;if(bfPct<=30)return 2.0;return 1.6}else{if(bfPct<=20)return 2.4;if(bfPct<=23)return 2.2;if(bfPct<=26)return 2.2;if(bfPct<=29)return 2.0;if(bfPct<=35)return 1.6;return 1.6}}
-function fatPctFromBF(bfPct,gender){if(gender==="male"){if(bfPct<=12)return 0.225;if(bfPct<=19)return 0.25;if(bfPct<=24)return 0.25;return 0.30}else{if(bfPct<=17)return 0.225;if(bfPct<=26)return 0.25;if(bfPct<=29)return 0.275;if(bfPct<=35)return 0.275;return 0.30}}
+function mifflinBMR(d){var base=10*d.weightKg+6.25*d.heightCm-5*d.age;return d.gender==="male"?base+5:base-161}
+function bfMidpointPct(d){var mn=Number(d.bfMin),mx=Number(d.bfMax);if(!isFinite(mn)||!isFinite(mx)||mn<=0||mx<=0)return null;return(mn+mx)/2}
+function proteinFactorGPerKgBW(bf,g){if(g==="male"){if(bf<=12)return 2.4;if(bf<=15)return 2.2;if(bf<=19)return 2.2;if(bf<=24)return 2.0;if(bf<=30)return 2.0;return 1.6}else{if(bf<=20)return 2.4;if(bf<=23)return 2.2;if(bf<=26)return 2.2;if(bf<=29)return 2.0;if(bf<=35)return 1.6;return 1.6}}
+function fatPctFromBF(bf,g){if(g==="male"){if(bf<=12)return 0.225;if(bf<=19)return 0.25;if(bf<=24)return 0.25;return 0.30}else{if(bf<=17)return 0.225;if(bf<=26)return 0.25;if(bf<=29)return 0.275;if(bf<=35)return 0.275;return 0.30}}
 function computeTargets(data){
-  const bmr=mifflinBMR(data);const maintenance=bmr*(ACTIVITY_FACTOR[data.activity]??1.2);const targetCalories=maintenance*(GOAL_MULT[data.goal]??1.0);
-  const bfPct=bfMidpointPct(data)??(data.gender==="female"?28:20);const pFactor=proteinFactorGPerKgBW(bfPct,data.gender);
-  const proteinG=data.weightKg*pFactor;const fatPct=fatPctFromBF(bfPct,data.gender);const fatKcal=targetCalories*fatPct;const fatG=fatKcal/9;
-  const proteinKcal=proteinG*4;const carbKcal=Math.max(0,targetCalories-proteinKcal-fatKcal);const carbsG=carbKcal/4;
-  return{bmr,maintenance,targetCalories,proteinG,carbsG,fatG,bfPct,fatPct,pFactor};
+  var bmr=mifflinBMR(data);var maintenance=bmr*(ACTIVITY_FACTOR[data.activity]||1.2);var targetCalories=maintenance*(GOAL_MULT[data.goal]||1.0);
+  var bfPct=bfMidpointPct(data)||(data.gender==="female"?28:20);var pFactor=proteinFactorGPerKgBW(bfPct,data.gender);
+  var proteinG=data.weightKg*pFactor;var fatPct=fatPctFromBF(bfPct,data.gender);var fatKcal=targetCalories*fatPct;var fatG=fatKcal/9;
+  var proteinKcal=proteinG*4;var carbKcal=Math.max(0,targetCalories-proteinKcal-fatKcal);var carbsG=carbKcal/4;
+  return{bmr:bmr,maintenance:maintenance,targetCalories:targetCalories,proteinG:proteinG,carbsG:carbsG,fatG:fatG,bfPct:bfPct,fatPct:fatPct,pFactor:pFactor};
 }
 
 /* =========================
    MEAL IDEAS
    ========================= */
 function getMealIdeas(){
-  const lang=getLang();
-  const MI={
+  var lang=getLang();
+  var MI={
     en:{vegetarian:{breakfast:["Greek yogurt, oats, blueberries, chia seeds, peanut butter","Eggs, spinach, mushrooms, whole-grain toast","Cottage cheese, banana, almond butter, cinnamon"],lunch:["Lentils, quinoa, cucumber, cherry tomatoes, feta, olive oil","Halloumi cheese, mixed greens, roasted sweet potato","Chickpeas, tahini, lemon juice, parsley, whole-wheat pita"],dinner:["Paneer cheese, tomato sauce, basmati rice, spices","Eggplant, lentils, garlic, olive oil","Ricotta cheese, zucchini, whole-wheat pasta"],snacks:["Greek yogurt, almonds","Cheese slices, apple","Whey protein, water, cinnamon"]},vegan:{breakfast:["Tofu scramble, turmeric, bell peppers, onions, spinach","Rolled oats, soy milk, flaxseed, strawberries","Chickpea flour, water, cumin, scallions, olive oil"],lunch:["Black beans, brown rice, avocado, cilantro, lime","Tempeh, broccoli, garlic, sesame oil","Hummus, roasted vegetables, whole-grain wrap"],dinner:["Tofu, coconut milk, curry spices, spinach","Lentil pasta, homemade marinara sauce, mushrooms","Seitan, bell peppers, onions, tamari"],snacks:["Roasted edamame","Peanut butter, rice cakes","Protein powder (plant-based), almond milk"]},omnivore:{breakfast:["Eggs, smoked salmon, avocado, rye bread","Skyr yogurt, raspberries, walnuts","Egg whites, turkey bacon, tomatoes, sourdough"],lunch:["Chicken breast, jasmine rice, green beans","Tuna, olive oil, mixed greens, chickpeas","Lean beef, roasted potatoes, carrots"],dinner:["Salmon, lemon, asparagus, olive oil","Chicken breast, quinoa, roasted Brussels sprouts","Shrimp, garlic, olive oil, rice noodles"],snacks:["Beef jerky","Hard-boiled eggs","Whey protein, banana"]}},
-    fr:{vegetarian:{breakfast:["Yaourt grec, flocons d'avoine, myrtilles, graines de chia, beurre de cacahuète","Œufs, épinards, champignons, pain complet","Fromage blanc, banane, purée d'amande, cannelle"],lunch:["Lentilles, quinoa, concombre, tomates cerises, feta, huile d'olive","Halloumi, salade verte, patate douce rôtie","Pois chiches, tahini, citron, persil, pain pita complet"],dinner:["Paneer, sauce tomate, riz basmati, épices","Aubergine, lentilles, ail, huile d'olive","Ricotta, courgette, pâtes complètes"],snacks:["Yaourt grec, amandes","Fromage, pomme","Whey protéine, eau, cannelle"]},vegan:{breakfast:["Tofu brouillé, curcuma, poivrons, oignons, épinards","Flocons d'avoine, lait de soja, graines de lin, fraises","Farine de pois chiches, eau, cumin, oignons verts, huile d'olive"],lunch:["Haricots noirs, riz complet, avocat, coriandre, citron vert","Tempeh, brocoli, ail, huile de sésame","Houmous, légumes rôtis, wrap complet"],dinner:["Tofu, lait de coco, épices curry, épinards","Pâtes aux lentilles, sauce marinara, champignons","Seitan, poivrons, oignons, tamari"],snacks:["Edamame grillés","Beurre de cacahuète, galettes de riz","Protéine végétale, lait d'amande"]},omnivore:{breakfast:["Œufs, saumon fumé, avocat, pain de seigle","Skyr, framboises, noix","Blancs d'œufs, bacon de dinde, tomates, pain au levain"],lunch:["Blanc de poulet, riz jasmin, haricots verts","Thon, huile d'olive, salade verte, pois chiches","Bœuf maigre, pommes de terre, carottes"],dinner:["Saumon, citron, asperges, huile d'olive","Blanc de poulet, quinoa, choux de Bruxelles","Crevettes, ail, huile d'olive, nouilles de riz"],snacks:["Viande séchée","Œufs durs","Whey protéine, banane"]}},
-    de:{vegetarian:{breakfast:["Griechischer Joghurt, Haferflocken, Blaubeeren, Chiasamen, Erdnussbutter","Eier, Spinat, Pilze, Vollkorntoast","Hüttenkäse, Banane, Mandelbutter, Zimt"],lunch:["Linsen, Quinoa, Gurke, Kirschtomaten, Feta, Olivenöl","Halloumi, Salat, geröstete Süßkartoffel","Kichererbsen, Tahini, Zitrone, Petersilie, Vollkorn-Pita"],dinner:["Paneer, Tomatensauce, Basmatireis, Gewürze","Aubergine, Linsen, Knoblauch, Olivenöl","Ricotta, Zucchini, Vollkornnudeln"],snacks:["Griechischer Joghurt, Mandeln","Käse, Apfel","Whey-Protein, Wasser, Zimt"]},vegan:{breakfast:["Tofu-Rührei, Kurkuma, Paprika, Zwiebeln, Spinat","Haferflocken, Sojamilch, Leinsamen, Erdbeeren","Kichererbsenmehl, Wasser, Kreuzkümmel, Frühlingszwiebeln, Olivenöl"],lunch:["Schwarze Bohnen, brauner Reis, Avocado, Koriander, Limette","Tempeh, Brokkoli, Knoblauch, Sesamöl","Hummus, geröstetes Gemüse, Vollkorn-Wrap"],dinner:["Tofu, Kokosmilch, Currygewürze, Spinat","Linsennudeln, Marinara-Sauce, Pilze","Seitan, Paprika, Zwiebeln, Tamari"],snacks:["Geröstete Edamame","Erdnussbutter, Reiswaffeln","Pflanzliches Protein, Mandelmilch"]},omnivore:{breakfast:["Eier, Räucherlachs, Avocado, Roggenbrot","Skyr, Himbeeren, Walnüsse","Eiweiß, Putenbacon, Tomaten, Sauerteigbrot"],lunch:["Hähnchenbrust, Jasminreis, grüne Bohnen","Thunfisch, Olivenöl, Salat, Kichererbsen","Mageres Rindfleisch, Bratkartoffeln, Karotten"],dinner:["Lachs, Zitrone, Spargel, Olivenöl","Hähnchenbrust, Quinoa, Rosenkohl","Garnelen, Knoblauch, Olivenöl, Reisnudeln"],snacks:["Beef Jerky","Hartgekochte Eier","Whey-Protein, Banane"]}}
+    fr:{vegetarian:{breakfast:["Yaourt grec, flocons d'avoine, myrtilles, graines de chia, beurre de cacahu\u00e8te","Oeufs, \u00e9pinards, champignons, pain complet","Fromage blanc, banane, pur\u00e9e d'amande, cannelle"],lunch:["Lentilles, quinoa, concombre, tomates cerises, feta, huile d'olive","Halloumi, salade verte, patate douce r\u00f4tie","Pois chiches, tahini, citron, persil, pain pita complet"],dinner:["Paneer, sauce tomate, riz basmati, \u00e9pices","Aubergine, lentilles, ail, huile d'olive","Ricotta, courgette, p\u00e2tes compl\u00e8tes"],snacks:["Yaourt grec, amandes","Fromage, pomme","Whey prot\u00e9ine, eau, cannelle"]},vegan:{breakfast:["Tofu brouill\u00e9, curcuma, poivrons, oignons, \u00e9pinards","Flocons d'avoine, lait de soja, graines de lin, fraises","Farine de pois chiches, eau, cumin, oignons verts, huile d'olive"],lunch:["Haricots noirs, riz complet, avocat, coriandre, citron vert","Tempeh, brocoli, ail, huile de s\u00e9same","Houmous, l\u00e9gumes r\u00f4tis, wrap complet"],dinner:["Tofu, lait de coco, \u00e9pices curry, \u00e9pinards","P\u00e2tes aux lentilles, sauce marinara, champignons","Seitan, poivrons, oignons, tamari"],snacks:["Edamame grill\u00e9s","Beurre de cacahu\u00e8te, galettes de riz","Prot\u00e9ine v\u00e9g\u00e9tale, lait d'amande"]},omnivore:{breakfast:["Oeufs, saumon fum\u00e9, avocat, pain de seigle","Skyr, framboises, noix","Blancs d'oeufs, bacon de dinde, tomates, pain au levain"],lunch:["Blanc de poulet, riz jasmin, haricots verts","Thon, huile d'olive, salade verte, pois chiches","Boeuf maigre, pommes de terre, carottes"],dinner:["Saumon, citron, asperges, huile d'olive","Blanc de poulet, quinoa, choux de Bruxelles","Crevettes, ail, huile d'olive, nouilles de riz"],snacks:["Viande s\u00e9ch\u00e9e","Oeufs durs","Whey prot\u00e9ine, banane"]}},
+    de:{vegetarian:{breakfast:["Griechischer Joghurt, Haferflocken, Blaubeeren, Chiasamen, Erdnussbutter","Eier, Spinat, Pilze, Vollkorntoast","H\u00fcttk\u00e4se, Banane, Mandelbutter, Zimt"],lunch:["Linsen, Quinoa, Gurke, Kirschtomaten, Feta, Oliven\u00f6l","Halloumi, Salat, ger\u00f6stete S\u00fc\u00dfkartoffel","Kichererbsen, Tahini, Zitrone, Petersilie, Vollkorn-Pita"],dinner:["Paneer, Tomatensauce, Basmatireis, Gew\u00fcrze","Aubergine, Linsen, Knoblauch, Oliven\u00f6l","Ricotta, Zucchini, Vollkornnudeln"],snacks:["Griechischer Joghurt, Mandeln","K\u00e4se, Apfel","Whey-Protein, Wasser, Zimt"]},vegan:{breakfast:["Tofu-R\u00fchrei, Kurkuma, Paprika, Zwiebeln, Spinat","Haferflocken, Sojamilch, Leinsamen, Erdbeeren","Kichererbsenmehl, Wasser, Kreuzk\u00fcmmel, Fr\u00fchlingszwiebeln, Oliven\u00f6l"],lunch:["Schwarze Bohnen, brauner Reis, Avocado, Koriander, Limette","Tempeh, Brokkoli, Knoblauch, Sesam\u00f6l","Hummus, ger\u00f6stetes Gem\u00fcse, Vollkorn-Wrap"],dinner:["Tofu, Kokosmilch, Currygew\u00fcrze, Spinat","Linsennudeln, Marinara-Sauce, Pilze","Seitan, Paprika, Zwiebeln, Tamari"],snacks:["Ger\u00f6stete Edamame","Erdnussbutter, Reiswaffeln","Pflanzliches Protein, Mandelmilch"]},omnivore:{breakfast:["Eier, R\u00e4ucherlachs, Avocado, Roggenbrot","Skyr, Himbeeren, Waln\u00fcsse","Eiwei\u00df, Putenbacon, Tomaten, Sauerteigbrot"],lunch:["H\u00e4hnchenbrust, Jasminreis, gr\u00fcne Bohnen","Thunfisch, Oliven\u00f6l, Salat, Kichererbsen","Mageres Rindfleisch, Bratkartoffeln, Karotten"],dinner:["Lachs, Zitrone, Spargel, Oliven\u00f6l","H\u00e4hnchenbrust, Quinoa, Rosenkohl","Garnelen, Knoblauch, Oliven\u00f6l, Reisnudeln"],snacks:["Beef Jerky","Hartgekochte Eier","Whey-Protein, Banane"]}}
   };
   return MI[lang]||MI.en;
 }
 
 function normalizeWord(w){w=String(w||"").trim().toLowerCase().replace(/[^a-z0-9\s]/g," ").replace(/\s+/g," ").trim();if(w.endsWith("s")&&w.length>3)w=w.slice(0,-1);return w}
 function tokenizeCSV(text){return String(text||"").split(",").map(normalizeWord).filter(Boolean)}
-function splitMealParts(t){return String(t||"").split(",").map(p=>p.trim()).filter(Boolean)}
-const FOOD_FAMILIES={berries:["strawberry","blueberry","raspberry","blackberry","cranberry"],citrus:["orange","lemon","lime","grapefruit"],nuts:["almond","walnut","cashew","hazelnut","pecan","pistachio"]};
-function expandFoodNeedles(tokens){const e=new Set();tokens.forEach(tR=>{const t=normalizeWord(tR);e.add(t);if(FOOD_FAMILIES[t])FOOD_FAMILIES[t].forEach(x=>e.add(normalizeWord(x)))});return Array.from(e)}
-function containsAnyDislike(mealText,dislikes){const expanded=expandFoodNeedles(dislikes);const parts=splitMealParts(mealText).map(normalizeWord);if(expanded.includes("egg")&&parts.some(p=>p.includes("egg")))return true;return parts.some(p=>expanded.some(d=>d&&p.includes(d)))}
-function partHasAnyNeedle(part,needles){const p=normalizeWord(part);return needles.some(n=>n&&p.includes(normalizeWord(n)))}
+function splitMealParts(tx){return String(tx||"").split(",").map(function(p){return p.trim()}).filter(Boolean)}
+var FOOD_FAMILIES={berries:["strawberry","blueberry","raspberry","blackberry","cranberry"],citrus:["orange","lemon","lime","grapefruit"],nuts:["almond","walnut","cashew","hazelnut","pecan","pistachio"]};
+function expandFoodNeedles(tokens){var e=[];tokens.forEach(function(tR){var tk=normalizeWord(tR);if(e.indexOf(tk)<0)e.push(tk);if(FOOD_FAMILIES[tk])FOOD_FAMILIES[tk].forEach(function(x){var nx=normalizeWord(x);if(e.indexOf(nx)<0)e.push(nx)})});return e}
+function containsAnyDislike(mealText,dislikes){var expanded=expandFoodNeedles(dislikes);var parts=splitMealParts(mealText).map(normalizeWord);if(expanded.indexOf("egg")>=0&&parts.some(function(p){return p.indexOf("egg")>=0}))return true;return parts.some(function(p){return expanded.some(function(d){return d&&p.indexOf(d)>=0})})}
+function partHasAnyNeedle(part,needles){var p=normalizeWord(part);return needles.some(function(n){return n&&p.indexOf(normalizeWord(n))>=0})}
 function sanitizeMealForAllergies(mealText,data){
-  const allergies=data.allergies||[];let parts=splitMealParts(mealText);
-  if(allergies.includes("gluten"))parts=parts.map(applyGlutenFreeSwap);
-  if(allergies.includes("wheat"))parts=parts.map(applyWheatFreeSwap);
-  const removeNeedles=[];
-  if(allergies.includes("milk"))removeNeedles.push("yogurt","greek yogurt","skyr","cottage cheese","cheese","feta","ricotta","paneer","halloumi","milk");
-  if(allergies.includes("egg"))removeNeedles.push("egg","eggs","egg whites","hard-boiled eggs");
-  if(allergies.includes("soy"))removeNeedles.push("soy","soy milk","tofu","tempeh","edamame","tamari");
-  if(allergies.includes("peanut"))removeNeedles.push("peanut","peanut butter");
-  if(allergies.includes("treenuts"))removeNeedles.push("almond","almonds","almond butter","walnut","walnuts");
-  if(allergies.includes("sesame"))removeNeedles.push("sesame","tahini");
-  if(allergies.includes("fish"))removeNeedles.push("fish","salmon","smoked salmon","tuna");
-  if(allergies.includes("shellfish"))removeNeedles.push("shrimp","shellfish");
-  if(allergies.includes("gluten"))removeNeedles.push("seitan");
-  const produceNeedles=[];
-  if((allergies.includes("fruits")||allergies.includes("vegetables"))&&data.produceAllergyDetails){produceNeedles.push(...expandFoodNeedles(String(data.produceAllergyDetails).split(/[,/]/g).map(normalizeWord).filter(Boolean)))}
-  removeNeedles.push(...produceNeedles);
-  const kept=parts.filter(part=>!partHasAnyNeedle(part,removeNeedles));
+  var allergies=data.allergies||[];var parts=splitMealParts(mealText);
+  if(allergies.indexOf("gluten")>=0)parts=parts.map(applyGlutenFreeSwap);
+  if(allergies.indexOf("wheat")>=0)parts=parts.map(applyWheatFreeSwap);
+  var removeNeedles=[];
+  if(allergies.indexOf("milk")>=0)removeNeedles.push("yogurt","greek yogurt","skyr","cottage cheese","cheese","feta","ricotta","paneer","halloumi","milk");
+  if(allergies.indexOf("egg")>=0)removeNeedles.push("egg","eggs","egg whites","hard-boiled eggs");
+  if(allergies.indexOf("soy")>=0)removeNeedles.push("soy","soy milk","tofu","tempeh","edamame","tamari");
+  if(allergies.indexOf("peanut")>=0)removeNeedles.push("peanut","peanut butter");
+  if(allergies.indexOf("treenuts")>=0)removeNeedles.push("almond","almonds","almond butter","walnut","walnuts");
+  if(allergies.indexOf("sesame")>=0)removeNeedles.push("sesame","tahini");
+  if(allergies.indexOf("fish")>=0)removeNeedles.push("fish","salmon","smoked salmon","tuna");
+  if(allergies.indexOf("shellfish")>=0)removeNeedles.push("shrimp","shellfish");
+  if(allergies.indexOf("gluten")>=0)removeNeedles.push("seitan");
+  var produceNeedles=[];
+  if((allergies.indexOf("fruits")>=0||allergies.indexOf("vegetables")>=0)&&data.produceAllergyDetails){produceNeedles=expandFoodNeedles(String(data.produceAllergyDetails).split(/[,/]/g).map(normalizeWord).filter(Boolean))}
+  removeNeedles=removeNeedles.concat(produceNeedles);
+  var kept=parts.filter(function(part){return!partHasAnyNeedle(part,removeNeedles)});
   return kept.length?kept.join(", "):null;
 }
-function applyGlutenFreeSwap(part){let p=part;const swaps=[[/\bwhole[-\s]?wheat\s+pasta\b/i,"gluten-free pasta"],[/\bpasta\b/i,"gluten-free pasta"],[/\bwhole[-\s]?wheat\s+wrap\b/i,"gluten-free wrap"],[/\bwrap\b/i,"gluten-free wrap"],[/\bpita\b/i,"gluten-free pita"],[/\bwhole[-\s]?grain\s+toast\b/i,"gluten-free toast"],[/\btoast\b/i,"gluten-free toast"],[/\bsourdough\b/i,"gluten-free bread"],[/\brye\s+bread\b/i,"gluten-free bread"],[/\brye\b/i,"gluten-free bread"],[/\bbread\b/i,"gluten-free bread"],[/\boats\b/i,"gluten-free oats"],[/\btamari\b/i,"gluten-free tamari"]];for(const[re,rep]of swaps){if(re.test(p))p=p.replace(re,rep)}return p}
-function applyWheatFreeSwap(part){let p=part;const swaps=[[/\bwhole[-\s]?wheat\s+pasta\b/i,"rice pasta"],[/\bpasta\b/i,"rice pasta"],[/\bwhole[-\s]?wheat\s+wrap\b/i,"corn tortilla"],[/\bwrap\b/i,"corn tortilla"],[/\bpita\b/i,"corn tortilla"],[/\btoast\b/i,"wheat-free toast"],[/\bsourdough\b/i,"wheat-free bread"],[/\brye\b/i,"wheat-free bread"],[/\bbread\b/i,"wheat-free bread"],[/\boats\b/i,"certified wheat-free oats"]];for(const[re,rep]of swaps){if(re.test(p))p=p.replace(re,rep)}return p}
-function pickN(arr,n){const c=arr.slice();for(let i=c.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[c[i],c[j]]=[c[j],c[i]]}return c.slice(0,Math.min(n,c.length))}
+function applyGlutenFreeSwap(part){var p=part;var swaps=[[/\bwhole[-\s]?wheat\s+pasta\b/i,"gluten-free pasta"],[/\bpasta\b/i,"gluten-free pasta"],[/\bwhole[-\s]?wheat\s+wrap\b/i,"gluten-free wrap"],[/\bwrap\b/i,"gluten-free wrap"],[/\bpita\b/i,"gluten-free pita"],[/\bwhole[-\s]?grain\s+toast\b/i,"gluten-free toast"],[/\btoast\b/i,"gluten-free toast"],[/\bsourdough\b/i,"gluten-free bread"],[/\brye\s+bread\b/i,"gluten-free bread"],[/\brye\b/i,"gluten-free bread"],[/\bbread\b/i,"gluten-free bread"],[/\boats\b/i,"gluten-free oats"],[/\btamari\b/i,"gluten-free tamari"]];for(var i=0;i<swaps.length;i++){if(swaps[i][0].test(p))p=p.replace(swaps[i][0],swaps[i][1])}return p}
+function applyWheatFreeSwap(part){var p=part;var swaps=[[/\bwhole[-\s]?wheat\s+pasta\b/i,"rice pasta"],[/\bpasta\b/i,"rice pasta"],[/\bwhole[-\s]?wheat\s+wrap\b/i,"corn tortilla"],[/\bwrap\b/i,"corn tortilla"],[/\bpita\b/i,"corn tortilla"],[/\btoast\b/i,"wheat-free toast"],[/\bsourdough\b/i,"wheat-free bread"],[/\brye\b/i,"wheat-free bread"],[/\bbread\b/i,"wheat-free bread"],[/\boats\b/i,"certified wheat-free oats"]];for(var i=0;i<swaps.length;i++){if(swaps[i][0].test(p))p=p.replace(swaps[i][0],swaps[i][1])}return p}
+function pickN(arr,n){var c=arr.slice();for(var i=c.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=c[i];c[i]=c[j];c[j]=tmp}return c.slice(0,Math.min(n,c.length))}
 function buildMealIdeas(data){
-  const dislikes=tokenizeCSV(data.dislikes);const MI=getMealIdeas();const ideas=MI[data.diet]||MI.omnivore;
-  const cl=list=>list.filter(x=>!containsAnyDislike(x,dislikes)).map(x=>sanitizeMealForAllergies(x,data)).filter(Boolean);
-  const b=cl(ideas.breakfast),l=cl(ideas.lunch),d=cl(ideas.dinner),s=cl(ideas.snacks);
+  var dislikes=tokenizeCSV(data.dislikes);var MI=getMealIdeas();var ideas=MI[data.diet]||MI.omnivore;
+  var cl=function(list){return list.filter(function(x){return!containsAnyDislike(x,dislikes)}).map(function(x){return sanitizeMealForAllergies(x,data)}).filter(Boolean)};
+  var b=cl(ideas.breakfast),l=cl(ideas.lunch),d=cl(ideas.dinner),s=cl(ideas.snacks);
   return{breakfast:pickN(b,2),lunch:pickN(l,2),dinner:pickN(d,2),snacks:pickN(s,2),empty:(!b.length&&!l.length&&!d.length&&!s.length)};
 }
 
@@ -770,209 +762,100 @@ function buildMealIdeas(data){
    ACTION PLAN HELPERS
    ========================= */
 function habitPerWeek(v){if(v==="none")return 0;if(v==="1")return 1;if(v==="2")return 2;if(v==="3-4")return 3.5;if(v==="3-5")return 4;if(v==="5+")return 5.5;if(v==="daily")return 7;return 0}
-function habitLevel(v){
-  if(v==="none") return 0;
-  if(v==="1") return 1;
-  if(v==="2") return 2;
-  if(v==="3-5"||v==="3-4") return 3;
-  if(v==="5+") return 4;
-  if(v==="daily") return 5;
-  return 0;
-}
-function buildProgressiveCut(nameKey, selectValue){
-  const level = habitLevel(selectValue);
-  const noneKeyMap = {
-    "cut.sugary":"cut.none.sugary",
-    "cut.drinks":"cut.none.drinks",
-    "cut.fastfood":"cut.none.fastfood",
-    "cut.alcohol":"cut.none.alcohol"
-  };
-  if(level === 0){
-    return { type:"none", noneKey: noneKeyMap[nameKey] || "swap.keep.sugary" };
-  }
-  let w1Key, w2Key;
-  if(level === 1){ w1Key="cut.1x.w1"; w2Key="cut.1x.w2"; }
-  else if(level === 2){ w1Key="cut.2x.w1"; w2Key="cut.2x.w2"; }
-  else if(level === 3){ w1Key="cut.3x.w1"; w2Key="cut.3x.w2"; }
-  else if(level === 4){ w1Key="cut.4x.w1"; w2Key="cut.4x.w2"; }
-  else { w1Key="cut.daily.w1"; w2Key="cut.daily.w2"; }
-  return { type:"progressive", nameKey, w1Key, w2Key };
+function habitLevel(v){if(v==="none")return 0;if(v==="1")return 1;if(v==="2")return 2;if(v==="3-5"||v==="3-4")return 3;if(v==="5+")return 4;if(v==="daily")return 5;return 0}
+function buildProgressiveCut(nameKey,selectValue){
+  var level=habitLevel(selectValue);
+  var noneKeyMap={"cut.sugary":"cut.none.sugary","cut.drinks":"cut.none.drinks","cut.fastfood":"cut.none.fastfood","cut.alcohol":"cut.none.alcohol"};
+  if(level===0)return{type:"none",noneKey:noneKeyMap[nameKey]||"cut.none.sugary"};
+  var w1Key,w2Key;
+  if(level===1){w1Key="cut.1x.w1";w2Key="cut.1x.w2"}
+  else if(level===2){w1Key="cut.2x.w1";w2Key="cut.2x.w2"}
+  else if(level===3){w1Key="cut.3x.w1";w2Key="cut.3x.w2"}
+  else if(level===4){w1Key="cut.4x.w1";w2Key="cut.4x.w2"}
+  else{w1Key="cut.daily.w1";w2Key="cut.daily.w2"}
+  return{type:"progressive",nameKey:nameKey,w1Key:w1Key,w2Key:w2Key};
 }
 function buildTrainingAdvice(data){
-  const s = data.sessionsPerWeek || "0";
-  const notTraining = (data.trainingNow === "no") || s === "0" || s === "";
-  if(notTraining) return t("training.start");
-  const displayMap = {"1-2":"1–2","3":"3","4":"4","5-6":"5–6","7":"7+"};
-  const numericMap = {"1-2":1.5,"3":3,"4":4,"5-6":5.5,"7":7};
-  const displayLabel = displayMap[s] || s;
-  const numVal = numericMap[s] || 0;
-  if(numVal >= 5) return t("training.keep").replace("{n}", displayLabel);
-  const targetMap = {"1-2":"3","3":"4","4":"5"};
-  const target = targetMap[s] || "5";
-  return t("training.aim").replace("{n}", displayLabel).replace("{target}", target);
+  var s=data.sessionsPerWeek||"0";
+  var notTraining=(data.trainingNow==="no")||s==="0"||s==="";
+  if(notTraining)return t("training.start");
+  var displayMap={"1-2":"1-2","3":"3","4":"4","5-6":"5-6","7":"7+"};
+  var numericMap={"1-2":1.5,"3":3,"4":4,"5-6":5.5,"7":7};
+  var displayLabel=displayMap[s]||s;
+  var numVal=numericMap[s]||0;
+  if(numVal>=5)return t("training.keep").replace("{n}",displayLabel);
+  var targetMap={"1-2":"3","3":"4","4":"5"};
+  var target=targetMap[s]||"5";
+  return t("training.aim").replace("{n}",displayLabel).replace("{target}",target);
 }
 function baseStepsFromBand(band){if(band==="none")return 2000;if(band==="2k")return 2000;if(band==="lt4k")return 3000;if(band==="4to8k")return 6000;if(band==="8to12k")return 9000;if(band==="gt12k")return 12000;return 6000}
-function stepPlan(stepsBand){if(stepsBand==="8to12k")return{mode:"to10k",noteKey:"steps.note.to10k"};const start=baseStepsFromBand(stepsBand);if(start>=10000)return{mode:"keep",noteKey:"steps.note.keep"};return{mode:"progress",week1:start,week2:Math.min(10000,start+1000),noteKey:"steps.note.progress",showLongTerm:true}}
+function stepPlan(stepsBand){if(stepsBand==="8to12k")return{mode:"to10k",noteKey:"steps.note.to10k"};var start=baseStepsFromBand(stepsBand);if(start>=10000)return{mode:"keep",noteKey:"steps.note.keep"};return{mode:"progress",week1:start,week2:Math.min(10000,start+1000),noteKey:"steps.note.progress",showLongTerm:true}}
 function sleepAdvice(sleepBand){if(sleepBand==="6to8"||sleepBand==="8plus")return{noteKey:"sleep.note.keep"};if(sleepBand==="4to6")return{noteKey:"sleep.note.add30"};if(sleepBand==="lt4")return{noteKey:"sleep.note.add45_60"};return{noteKey:"sleep.note.aim"}}
 function swapsForHabits(data){
-  const swaps=[];
-  if(habitPerWeek(data.snacks)>0) swaps.push("swap.sweet","swap.chocolate","swap.cookies","swap.dessert");
-  if(habitPerWeek(data.sodas)>0) swaps.push("swap.soda","swap.sweetDrink","swap.energy");
-  if(habitPerWeek(data.fastfood)>0) swaps.push("swap.fastfood","swap.burger","swap.notime");
-  if(habitPerWeek(data.alcohol)>0) swaps.push("swap.alc.limit","swap.alc.water","swap.alc.meal");
+  var swaps=[];
+  if(habitPerWeek(data.snacks)>0)swaps.push("swap.sweet","swap.chocolate","swap.cookies","swap.dessert");
+  if(habitPerWeek(data.sodas)>0)swaps.push("swap.soda","swap.sweetDrink","swap.energy");
+  if(habitPerWeek(data.fastfood)>0)swaps.push("swap.fastfood","swap.burger","swap.notime");
+  if(habitPerWeek(data.alcohol)>0)swaps.push("swap.alc.limit","swap.alc.water","swap.alc.meal");
   return swaps;
 }
 function goalLabelI18n(goal){if(goal==="lose")return t("results.target.lose");if(goal==="gain")return t("results.target.gain");return t("results.target.maintain")}
-function buildWhyText(data,targets){const g=t("goal."+(data.goal||"maintain"));const wc=data.goal==="lose"?t("why.calories.lose"):data.goal==="gain"?t("why.calories.gain"):t("why.calories.maintain");return`${t("why.title")}\n\n• ${t("why.calories.title")}:\n  - ${t("why.calories.bmr")}\n  - ${t("why.calories.maintenance")}\n  - ${t("why.calories.goal")} (${g})\n  - ${wc}\n\n• ${t("why.protein.title")}:\n  - ${t("why.protein.text")}\n\n• ${t("why.fat.title")}:\n  - ${t("why.fat.text")}\n\n• ${t("why.carbs.title")}:\n  - ${t("why.carbs.text")}\n\n${t("why.reminder")}`}
-function buildResultsText(data,targets){return`${t("recap.title")}\n\n${t("recap.age")}: ${data.age||"-"} | ${t("recap.gender")}: ${data.gender==="male"?t("s1.gender.male"):t("s1.gender.female")}\n${t("recap.height")}: ${data.heightCm||"-"} cm | ${t("recap.weight")}: ${data.weightKg||"-"} kg\n${t("recap.bodyFat")}: ${data.bfRangeLabel||"-"} (~${Math.round(targets.bfPct)}%)\n${t("recap.goal")}: ${t("goal."+(data.goal||"maintain"))}\n${t("recap.activity")}: ${t("activity."+(data.activity||"moderate"))}\n\n${t("recap.calories")}:\n- ${t("recap.bmr")}: ${Math.round(targets.bmr)} kcal/day\n- ${t("recap.maintenance")}: ${Math.round(targets.maintenance)} kcal/day\n- ${t("recap.target")}: ${Math.round(targets.targetCalories)} kcal/day\n\n${t("recap.macros")}:\n- ${t("results.protein")}: ${Math.round(targets.proteinG)} g/day\n- ${t("results.carbs")}: ${Math.round(targets.carbsG)} g/day\n- ${t("results.fats")}: ${Math.round(targets.fatG)} g/day\n`}
+function buildWhyText(data,targets){var g=t("goal."+(data.goal||"maintain"));var wc=data.goal==="lose"?t("why.calories.lose"):data.goal==="gain"?t("why.calories.gain"):t("why.calories.maintain");return t("why.title")+"\n\n"+t("why.calories.title")+":\n  - "+t("why.calories.bmr")+"\n  - "+t("why.calories.maintenance")+"\n  - "+t("why.calories.goal")+" ("+g+")\n  - "+wc+"\n\n"+t("why.protein.title")+":\n  - "+t("why.protein.text")+"\n\n"+t("why.fat.title")+":\n  - "+t("why.fat.text")+"\n\n"+t("why.carbs.title")+":\n  - "+t("why.carbs.text")+"\n\n"+t("why.reminder")}
+function buildResultsText(data,targets){return t("recap.title")+"\n\n"+t("recap.age")+": "+(data.age||"-")+" | "+t("recap.gender")+": "+(data.gender==="male"?t("s1.gender.male"):t("s1.gender.female"))+"\n"+t("recap.height")+": "+(data.heightCm||"-")+" cm | "+t("recap.weight")+": "+(data.weightKg||"-")+" kg\n"+t("recap.bodyFat")+": "+(data.bfRangeLabel||"-")+" (~"+Math.round(targets.bfPct)+"%)\n"+t("recap.goal")+": "+t("goal."+(data.goal||"maintain"))+"\n"+t("recap.activity")+": "+t("activity."+(data.activity||"moderate"))+"\n\n"+t("recap.calories")+":\n- "+t("recap.bmr")+": "+Math.round(targets.bmr)+" kcal/day\n- "+t("recap.maintenance")+": "+Math.round(targets.maintenance)+" kcal/day\n- "+t("recap.target")+": "+Math.round(targets.targetCalories)+" kcal/day\n\n"+t("recap.macros")+":\n- "+t("results.protein")+": "+Math.round(targets.proteinG)+" g/day\n- "+t("results.carbs")+": "+Math.round(targets.carbsG)+" g/day\n- "+t("results.fats")+": "+Math.round(targets.fatG)+" g/day\n"}
 function isValidEmail(email){return/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(email).trim())}
-function escapeHtml(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function escapeHtml(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}
 
 /* DONUT SVG */
 function pctRound(x){return Math.max(0,Math.round(x))}
-function donutSVG(pP,pC,pF){const r=44,c=2*Math.PI*r;const p1=(pP/100)*c,p2=(pC/100)*c,p3=(pF/100)*c;return`<svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="${r}" fill="none" stroke="var(--border)" stroke-width="16"/><circle cx="60" cy="60" r="${r}" fill="none" stroke="var(--protein)" stroke-width="16" stroke-dasharray="${p1} ${c-p1}" stroke-dashoffset="0" transform="rotate(-90 60 60)"/><circle cx="60" cy="60" r="${r}" fill="none" stroke="var(--carbs)" stroke-width="16" stroke-dasharray="${p2} ${c-p2}" stroke-dashoffset="${-p1}" transform="rotate(-90 60 60)"/><circle cx="60" cy="60" r="${r}" fill="none" stroke="var(--fats)" stroke-width="16" stroke-dasharray="${p3} ${c-p3}" stroke-dashoffset="${-(p1+p2)}" transform="rotate(-90 60 60)"/><circle cx="60" cy="60" r="30" fill="var(--card)"/><text x="60" y="64" text-anchor="middle" font-size="10" fill="var(--muted)" font-weight="800">Macros</text></svg>`}
+function donutSVG(pP,pC,pF){var r=44,c=2*Math.PI*r;var p1=(pP/100)*c,p2=(pC/100)*c,p3=(pF/100)*c;return'<svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="'+r+'" fill="none" stroke="var(--border)" stroke-width="16"/><circle cx="60" cy="60" r="'+r+'" fill="none" stroke="var(--protein)" stroke-width="16" stroke-dasharray="'+p1+' '+(c-p1)+'" stroke-dashoffset="0" transform="rotate(-90 60 60)"/><circle cx="60" cy="60" r="'+r+'" fill="none" stroke="var(--carbs)" stroke-width="16" stroke-dasharray="'+p2+' '+(c-p2)+'" stroke-dashoffset="'+(-p1)+'" transform="rotate(-90 60 60)"/><circle cx="60" cy="60" r="'+r+'" fill="none" stroke="var(--fats)" stroke-width="16" stroke-dasharray="'+p3+' '+(c-p3)+'" stroke-dashoffset="'+(-(p1+p2))+'" transform="rotate(-90 60 60)"/><circle cx="60" cy="60" r="30" fill="var(--card)"/><text x="60" y="64" text-anchor="middle" font-size="10" fill="var(--muted)" font-weight="800">Macros</text></svg>'}
 
 /* =========================
    RENDER RESULTS
    ========================= */
 function renderResults(data){
-  const el=document.getElementById("results");const targets=computeTargets(data);
+  var el=document.getElementById("results");var targets=computeTargets(data);
   trackToGoogleSheets('completed',currentRevealedIndex,{targetCalories:Math.round(targets.targetCalories),proteinG:Math.round(targets.proteinG),carbsG:Math.round(targets.carbsG),fatG:Math.round(targets.fatG)});
-
-  const cutItems = [
-    buildProgressiveCut("cut.sugary", data.snacks),
-    buildProgressiveCut("cut.drinks", data.sodas),
-    buildProgressiveCut("cut.fastfood", data.fastfood),
-    buildProgressiveCut("cut.alcohol", data.alcohol)
-  ];
-
-  let cutsHtml = "";
-  cutItems.forEach(item => {
-    if(item.type === "none"){
-      cutsHtml += `<li>${escapeHtml(t(item.noneKey))}</li>`;
-    } else {
-      cutsHtml += `<li><b>${escapeHtml(t(item.nameKey))}:</b><br/>${escapeHtml(t("week.1"))}: ${escapeHtml(t(item.w1Key))}<br/>${escapeHtml(t("week.2"))}: ${escapeHtml(t(item.w2Key))}</li>`;
-    }
-  });
-
-  const trainingHtml = buildTrainingAdvice(data);
-  const steps=stepPlan(data.steps);const sleep=sleepAdvice(data.sleep);
-  const swaps=swapsForHabits(data);const meals=buildMealIdeas(data);
-  const whyText=buildWhyText(data,targets);const resultsText=buildResultsText(data,targets);
-  const pK=targets.proteinG*4,cK=targets.carbsG*4,fK=targets.fatG*9;const totalK=Math.max(1,pK+cK+fK);
-  const pctPk=(pK/totalK)*100,pctCk=(cK/totalK)*100,pctFk=(fK/totalK)*100;
-  const donut=donutSVG(pctRound(pctPk),pctRound(pctCk),pctRound(pctFk));
-
-  const sendBlock=`<h2>${t("results.send")}</h2><div class="field" style="margin-top:6px"><label class="check" style="padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--bg)"><input type="checkbox" class="sendMeResultsCheckbox"/>${t("results.send.yes")}</label></div><div class="contactBlockInstance" style="display:none"><div class="row"><div class="field"><label>${t("contact.name")}</label><input type="text" class="nameInputField" placeholder="${escapeHtml(t("contact.name.ph"))}"/></div><div class="field"><label>${t("contact.email")}</label><input type="email" class="emailInputField" placeholder="name@email.com"/></div><div class="field"><label>${t("contact.phone")}</label><input type="tel" class="phoneInputField" placeholder="+33 6 12 34 56 78"/></div></div><div style="display:flex;gap:8px;margin-top:8px"><button type="button" class="btn-ghost emailBtnAction">${t("contact.sendEmail")}</button><button type="button" class="btn-ghost waBtnAction">${t("contact.sendWhatsApp")}</button></div><p class="note">${t("contact.note")}</p></div>`;
-
-  el.innerHTML=`
-    <div class="warn"><b>${t("results.notice.title")}</b> ${t("results.notice.text")}</div>
-    <div class="adjustNote">${t("results.adjust.note")}</div>
-    <h2>${t("results.bodyComp")}</h2>
-    <div class="grid2"><div class="kpi"><div class="small">${t("results.bfRange")}</div><b>${escapeHtml(data.bfRangeLabel||"-")}</b></div><div class="kpi"><div class="small">${t("results.bfMidpoint")}</div><b>${Math.round(targets.bfPct)}%</b></div></div>
-    <h2>${t("results.calories")}</h2>
-    <div class="grid2"><div class="kpi"><div class="small">${t("results.bmr")}</div><b>${round(targets.bmr)} kcal/day</b></div><div class="kpi"><div class="small">${t("results.maintenance")}</div><b>${round(targets.maintenance)} kcal/day</b></div><div class="kpi target span2"><div class="small">${escapeHtml(goalLabelI18n(data.goal))}</div><b>${round(targets.targetCalories)} kcal/day</b></div></div>
-    <div class="drop" id="moreDrop"><div class="dropHead" id="moreBtn">${t("results.more")} <span style="opacity:.6;font-weight:900" id="caret">▾</span></div><div class="dropBody"><pre class="mono">${escapeHtml(whyText)}</pre></div></div>
-    <h2>${t("results.macros")}</h2>
-    <div><span class="pill protein"><b>${t("results.protein")}</b> ${round(targets.proteinG)} g/day</span><span class="pill carbs"><b>${t("results.carbs")}</b> ${round(targets.carbsG)} g/day</span><span class="pill fats"><b>${t("results.fats")}</b> ${round(targets.fatG)} g/day</span><div class="note">${t("results.macros.note").replace("{pf}",targets.pFactor.toFixed(1)).replace("{fat}",String(Math.round(targets.fatPct*100)))}</div></div>
-    <div class="donutRow">
-      <div class="donutCard"><div class="donutHead"><b>${t("results.macro.chart.grams")}</b><span>${t("results.gramsDay")}</span></div><div class="donutWrap">${donut}<div class="legend"><div class="legItem"><span class="swatch swProtein"></span>${t("results.protein")}: ${round(targets.proteinG)} g</div><div class="legItem"><span class="swatch swCarbs"></span>${t("results.carbs")}: ${round(targets.carbsG)} g</div><div class="legItem"><span class="swatch swFats"></span>${t("results.fats")}: ${round(targets.fatG)} g</div></div></div></div>
-      <div class="donutCard"><div class="donutHead"><b>${t("results.macro.chart.calories")}</b><span>${t("results.pctCalories")}</span></div><div class="donutWrap">${donut}<div class="legend"><div class="legItem"><span class="swatch swProtein"></span>${t("results.protein")}: ${round(pK)} kcal (${pctRound(pctPk)}%)</div><div class="legItem"><span class="swatch swCarbs"></span>${t("results.carbs")}: ${round(cK)} kcal (${pctRound(pctCk)}%)</div><div class="legItem"><span class="swatch swFats"></span>${t("results.fats")}: ${round(fK)} kcal (${pctRound(pctFk)}%)</div></div></div></div>
-    </div>
-    <div class="hr"></div>${sendBlock}<div class="hr"></div>
-    <div class="mealsBox"><div class="mealsTitle"><span>${t("results.mealIdeas.tag")}</span> ${t("results.meals")}</div>
-      ${meals.empty?`<div class="help">${t("results.noMealsMatch")}</div>`:`
-        <b>${t("results.breakfast")}:</b><ul class="list">${meals.breakfast.length?meals.breakfast.map(m=>`<li>${escapeHtml(m)}</li>`).join(""):`<li>${t("results.noOptions")}</li>`}</ul>
-        <b>${t("results.lunch")}:</b><ul class="list">${meals.lunch.length?meals.lunch.map(m=>`<li>${escapeHtml(m)}</li>`).join(""):`<li>${t("results.noOptions")}</li>`}</ul>
-        <b>${t("results.dinner")}:</b><ul class="list">${meals.dinner.length?meals.dinner.map(m=>`<li>${escapeHtml(m)}</li>`).join(""):`<li>${t("results.noOptions")}</li>`}</ul>
-        <b>${t("results.snack")}:</b><ul class="list">${meals.snacks.length?meals.snacks.map(m=>`<li>${escapeHtml(m)}</li>`).join(""):`<li>${t("results.noOptions")}</li>`}</ul>`}
-    </div><div class="hr"></div>
-    <h2>${t("results.action.title")}</h2>
-    <h2 style="margin-top:10px">${t("results.action.cut")}</h2>
-    <ul class="list">${cutsHtml}</ul>
-    <h2>${t("results.action.swaps")}</h2>
-    ${swaps.length ? `<ul class="list">${swaps.map(k=>`<li>${escapeHtml(t(k))}</li>`).join("")}</ul>` : `<div class="help">${t("swaps.allGood")}</div>`}
-    <h2>${t("results.action.training")}</h2>
-    <div class="help">${escapeHtml(trainingHtml)}</div>
-    <h2>${t("results.action.steps")}</h2>
-    ${steps.mode==="keep"?`<div class="help">${escapeHtml(t(steps.noteKey))}</div>`:steps.mode==="to10k"?`<div class="help">${escapeHtml(t(steps.noteKey))}</div>`:`<p class="note">${escapeHtml(t(steps.noteKey))}</p><ul class="list"><li><b>${t("week.1")}:</b> ${t("results.action.steps.aim")} <b>${steps.week1.toLocaleString()}</b> ${t("results.action.steps.perday")}</li><li><b>${t("week.2")}:</b> ${t("results.action.steps.aim")} <b>${steps.week2.toLocaleString()}</b> ${t("results.action.steps.perday")}</li>${steps.showLongTerm?`<li><b>${t("results.action.steps.after")}:</b> ${t("results.action.steps.add1k")}</li>`:``}</ul>`}
-    <h2>${t("results.sleep")}</h2><div class="help">${escapeHtml(t(sleep.noteKey))}</div>
-    <div class="hr"></div>${sendBlock}<div class="hr"></div>
-    <h2>${t("results.summary")}</h2><div class="help"><pre class="mono">${escapeHtml(resultsText)}</pre></div>
-  `;
-
+  var cutItems=[buildProgressiveCut("cut.sugary",data.snacks),buildProgressiveCut("cut.drinks",data.sodas),buildProgressiveCut("cut.fastfood",data.fastfood),buildProgressiveCut("cut.alcohol",data.alcohol)];
+  var cutsHtml="";
+  cutItems.forEach(function(item){if(item.type==="none"){cutsHtml+="<li>"+escapeHtml(t(item.noneKey))+"</li>"}else{cutsHtml+="<li><b>"+escapeHtml(t(item.nameKey))+":</b><br/>"+escapeHtml(t("week.1"))+": "+escapeHtml(t(item.w1Key))+"<br/>"+escapeHtml(t("week.2"))+": "+escapeHtml(t(item.w2Key))+"</li>"}});
+  var trainingHtml=buildTrainingAdvice(data);
+  var steps=stepPlan(data.steps);var sleep=sleepAdvice(data.sleep);
+  var swaps=swapsForHabits(data);var meals=buildMealIdeas(data);
+  var whyText=buildWhyText(data,targets);var resultsText=buildResultsText(data,targets);
+  var pK=targets.proteinG*4,cK=targets.carbsG*4,fK=targets.fatG*9;var totalK=Math.max(1,pK+cK+fK);
+  var pctPk=(pK/totalK)*100,pctCk=(cK/totalK)*100,pctFk=(fK/totalK)*100;
+  var donut=donutSVG(pctRound(pctPk),pctRound(pctCk),pctRound(pctFk));
+  var sendBlock='<h2>'+t("results.send")+'</h2><div class="field" style="margin-top:6px"><label class="check" style="padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--bg)"><input type="checkbox" class="sendMeResultsCheckbox"/>'+t("results.send.yes")+'</label></div><div class="contactBlockInstance" style="display:none"><div class="row"><div class="field"><label>'+t("contact.name")+'</label><input type="text" class="nameInputField" placeholder="'+escapeHtml(t("contact.name.ph"))+'"/></div><div class="field"><label>'+t("contact.email")+'</label><input type="email" class="emailInputField" placeholder="name@email.com"/></div><div class="field"><label>'+t("contact.phone")+'</label><input type="tel" class="phoneInputField" placeholder="+33 6 12 34 56 78"/></div></div><div style="display:flex;gap:8px;margin-top:8px"><button type="button" class="btn-ghost emailBtnAction">'+t("contact.sendEmail")+'</button><button type="button" class="btn-ghost waBtnAction">'+t("contact.sendWhatsApp")+'</button></div><p class="note">'+t("contact.note")+'</p></div>';
+  el.innerHTML='<div class="warn"><b>'+t("results.notice.title")+'</b> '+t("results.notice.text")+'</div><div class="adjustNote">'+t("results.adjust.note")+'</div><h2>'+t("results.bodyComp")+'</h2><div class="grid2"><div class="kpi"><div class="small">'+t("results.bfRange")+'</div><b>'+escapeHtml(data.bfRangeLabel||"-")+'</b></div><div class="kpi"><div class="small">'+t("results.bfMidpoint")+'</div><b>'+Math.round(targets.bfPct)+'%</b></div></div><h2>'+t("results.calories")+'</h2><div class="grid2"><div class="kpi"><div class="small">'+t("results.bmr")+'</div><b>'+round(targets.bmr)+' kcal/day</b></div><div class="kpi"><div class="small">'+t("results.maintenance")+'</div><b>'+round(targets.maintenance)+' kcal/day</b></div><div class="kpi target span2"><div class="small">'+escapeHtml(goalLabelI18n(data.goal))+'</div><b>'+round(targets.targetCalories)+' kcal/day</b></div></div><div class="drop" id="moreDrop"><div class="dropHead" id="moreBtn">'+t("results.more")+' <span style="opacity:.6;font-weight:900" id="caret">&#9662;</span></div><div class="dropBody"><pre class="mono">'+escapeHtml(whyText)+'</pre></div></div><h2>'+t("results.macros")+'</h2><div><span class="pill protein"><b>'+t("results.protein")+'</b> '+round(targets.proteinG)+' g/day</span><span class="pill carbs"><b>'+t("results.carbs")+'</b> '+round(targets.carbsG)+' g/day</span><span class="pill fats"><b>'+t("results.fats")+'</b> '+round(targets.fatG)+' g/day</span><div class="note">'+t("results.macros.note").replace("{pf}",targets.pFactor.toFixed(1)).replace("{fat}",String(Math.round(targets.fatPct*100)))+'</div></div><div class="donutRow"><div class="donutCard"><div class="donutHead"><b>'+t("results.macro.chart.grams")+'</b><span>'+t("results.gramsDay")+'</span></div><div class="donutWrap">'+donut+'<div class="legend"><div class="legItem"><span class="swatch swProtein"></span>'+t("results.protein")+': '+round(targets.proteinG)+' g</div><div class="legItem"><span class="swatch swCarbs"></span>'+t("results.carbs")+': '+round(targets.carbsG)+' g</div><div class="legItem"><span class="swatch swFats"></span>'+t("results.fats")+': '+round(targets.fatG)+' g</div></div></div></div><div class="donutCard"><div class="donutHead"><b>'+t("results.macro.chart.calories")+'</b><span>'+t("results.pctCalories")+'</span></div><div class="donutWrap">'+donut+'<div class="legend"><div class="legItem"><span class="swatch swProtein"></span>'+t("results.protein")+': '+round(pK)+' kcal ('+pctRound(pctPk)+'%)</div><div class="legItem"><span class="swatch swCarbs"></span>'+t("results.carbs")+': '+round(cK)+' kcal ('+pctRound(pctCk)+'%)</div><div class="legItem"><span class="swatch swFats"></span>'+t("results.fats")+': '+round(fK)+' kcal ('+pctRound(pctFk)+'%)</div></div></div></div></div><div class="hr"></div>'+sendBlock+'<div class="hr"></div><div class="mealsBox"><div class="mealsTitle"><span>'+t("results.mealIdeas.tag")+'</span> '+t("results.meals")+'</div>'+(meals.empty?'<div class="help">'+t("results.noMealsMatch")+'</div>':'<b>'+t("results.breakfast")+':</b><ul class="list">'+(meals.breakfast.length?meals.breakfast.map(function(m){return'<li>'+escapeHtml(m)+'</li>'}).join(''):'<li>'+t("results.noOptions")+'</li>')+'</ul><b>'+t("results.lunch")+':</b><ul class="list">'+(meals.lunch.length?meals.lunch.map(function(m){return'<li>'+escapeHtml(m)+'</li>'}).join(''):'<li>'+t("results.noOptions")+'</li>')+'</ul><b>'+t("results.dinner")+':</b><ul class="list">'+(meals.dinner.length?meals.dinner.map(function(m){return'<li>'+escapeHtml(m)+'</li>'}).join(''):'<li>'+t("results.noOptions")+'</li>')+'</ul><b>'+t("results.snack")+':</b><ul class="list">'+(meals.snacks.length?meals.snacks.map(function(m){return'<li>'+escapeHtml(m)+'</li>'}).join(''):'<li>'+t("results.noOptions")+'</li>')+'</ul>')+'</div><div class="hr"></div><h2>'+t("results.action.title")+'</h2><h2 style="margin-top:10px">'+t("results.action.cut")+'</h2><ul class="list">'+cutsHtml+'</ul><h2>'+t("results.action.swaps")+'</h2>'+(swaps.length?'<ul class="list">'+swaps.map(function(k){return'<li>'+escapeHtml(t(k))+'</li>'}).join('')+'</ul>':'<div class="help">'+t("swaps.allGood")+'</div>')+'<h2>'+t("results.action.training")+'</h2><div class="help">'+escapeHtml(trainingHtml)+'</div><h2>'+t("results.action.steps")+'</h2>'+(steps.mode==="keep"?'<div class="help">'+escapeHtml(t(steps.noteKey))+'</div>':steps.mode==="to10k"?'<div class="help">'+escapeHtml(t(steps.noteKey))+'</div>':'<p class="note">'+escapeHtml(t(steps.noteKey))+'</p><ul class="list"><li><b>'+t("week.1")+':</b> '+t("results.action.steps.aim")+' <b>'+steps.week1.toLocaleString()+'</b> '+t("results.action.steps.perday")+'</li><li><b>'+t("week.2")+':</b> '+t("results.action.steps.aim")+' <b>'+steps.week2.toLocaleString()+'</b> '+t("results.action.steps.perday")+'</li>'+(steps.showLongTerm?'<li><b>'+t("results.action.steps.after")+':</b> '+t("results.action.steps.add1k")+'</li>':'')+'</ul>')+'<h2>'+t("results.sleep")+'</h2><div class="help">'+escapeHtml(t(sleep.noteKey))+'</div><div class="hr"></div>'+sendBlock+'<div class="hr"></div><h2>'+t("results.summary")+'</h2><div class="help"><pre class="mono">'+escapeHtml(resultsText)+'</pre></div>';
   // Dropdown
-  const drop=document.getElementById("moreDrop"),head=document.getElementById("moreBtn"),caret=document.getElementById("caret");
-  head.addEventListener("click",()=>{drop.classList.toggle("open");caret.textContent=drop.classList.contains("open")?"▴":"▾"});
-
-  // Send results with name field
-  const allCB=document.querySelectorAll('.sendMeResultsCheckbox');const allCBlocks=document.querySelectorAll('.contactBlockInstance');
-  allCB.forEach((cb,i)=>{const block=allCBlocks[i];if(!block)return;cb.addEventListener("change",()=>{allCB.forEach(o=>{o.checked=cb.checked});allCBlocks.forEach(o=>{o.style.display=cb.checked?"":"none"});if(cb.checked){ctaClicks.sendResultsChecked=true;trackToGoogleSheets('send_results_checked',currentRevealedIndex);block.scrollIntoView({behavior:"smooth",block:"start"})}})});
-
-  const allNI=document.querySelectorAll('.nameInputField');
-  const allEI=document.querySelectorAll('.emailInputField');
-  const allPI=document.querySelectorAll('.phoneInputField');
-
-  const trackNameDb=debounce(()=>{const n=allNI[0]?allNI[0].value.trim():"";if(n){trackContactInfo('name',n);allNI.forEach(o=>{o.value=n})}},1500);
-  allNI.forEach(inp=>{inp.addEventListener('input',trackNameDb);inp.addEventListener('blur',()=>{const n=inp.value.trim();if(n){trackContactInfo('name',n);allNI.forEach(o=>{if(o!==inp)o.value=inp.value})}})});
-
-  const trackEmailDb=debounce(()=>{const e=allEI[0]?allEI[0].value.trim():"";if(e&&e.includes('@')){trackContactInfo('email',e);allEI.forEach(o=>{o.value=e})}},1500);
-  allEI.forEach(inp=>{inp.addEventListener('input',trackEmailDb);inp.addEventListener('blur',()=>{const e=inp.value.trim();if(e&&e.includes('@')){trackContactInfo('email',e);allEI.forEach(o=>{if(o!==inp)o.value=inp.value})}})});
-
-  const trackPhoneDb=debounce(()=>{const p=allPI[0]?allPI[0].value.trim():"";if(p&&p.length>=8){trackContactInfo('phone',p);allPI.forEach(o=>{o.value=p})}},1500);
-  allPI.forEach(inp=>{inp.addEventListener('input',trackPhoneDb);inp.addEventListener('blur',()=>{const p=inp.value.trim();if(p&&p.length>=8){trackContactInfo('phone',p);allPI.forEach(o=>{if(o!==inp)o.value=inp.value})}})});
-
-  document.querySelectorAll('.emailBtnAction').forEach(btn=>{btn.addEventListener("click",()=>{
-    const pb=btn.closest('.contactBlockInstance');
-    const ni=pb?pb.querySelector('.nameInputField'):allNI[0];
-    const ei=pb?pb.querySelector('.emailInputField'):allEI[0];
-    const name=ni?ni.value.trim():"";
-    const email=ei?ei.value.trim():"";
-    if(!email){alert("Please enter your email.");return}
-    if(name)userContactInfo.name=name;
-    userContactInfo.email=email;
-    ctaClicks.sendEmail=true;
-    trackToGoogleSheets('send_email_clicked',currentRevealedIndex,{contactName:name,contactEmail:email});
-    const subject=name?`Nutrition Results for ${name}`:"Your Nutrition Assessment Results";
-    window.location.href=`mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(resultsText)}`;
-  })});
-
-  document.querySelectorAll('.waBtnAction').forEach(btn=>{btn.addEventListener("click",()=>{
-    const pb=btn.closest('.contactBlockInstance');
-    const ni=pb?pb.querySelector('.nameInputField'):allNI[0];
-    const pi=pb?pb.querySelector('.phoneInputField'):allPI[0];
-    const name=ni?ni.value.trim():"";
-    let phone=pi?pi.value.trim():"";
-    if(!phone){alert("Please enter your phone number.");return}
-    if(name)userContactInfo.name=name;
-    userContactInfo.phone=phone;
-    ctaClicks.sendWhatsApp=true;
-    trackToGoogleSheets('send_whatsapp_clicked',currentRevealedIndex,{contactName:name,contactPhone:phone});
-    phone=phone.replace(/[^\d]/g,"");
-    if(phone.length<8){alert("Please enter a valid phone number.");return}
-    const msg=name?`Results for ${name}:\n\n${resultsText}`:resultsText;
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,"_blank");
-  })});
+  var drop=document.getElementById("moreDrop"),head=document.getElementById("moreBtn"),caret=document.getElementById("caret");
+  head.addEventListener("click",function(){drop.classList.toggle("open");caret.innerHTML=drop.classList.contains("open")?"&#9652;":"&#9662;"});
+  // Send results
+  var allCB=document.querySelectorAll('.sendMeResultsCheckbox');var allCBlocks=document.querySelectorAll('.contactBlockInstance');
+  allCB.forEach(function(cb,i){var block=allCBlocks[i];if(!block)return;cb.addEventListener("change",function(){allCB.forEach(function(o){o.checked=cb.checked});allCBlocks.forEach(function(o){o.style.display=cb.checked?"":"none"});if(cb.checked){ctaClicks.sendResultsChecked=true;trackToGoogleSheets('send_results_checked',currentRevealedIndex);block.scrollIntoView({behavior:"smooth",block:"start"})}})});
+  var allNI=document.querySelectorAll('.nameInputField');var allEI=document.querySelectorAll('.emailInputField');var allPI=document.querySelectorAll('.phoneInputField');
+  var trackNameDb=debounce(function(){var n=allNI[0]?allNI[0].value.trim():"";if(n){trackContactInfo('name',n);allNI.forEach(function(o){o.value=n})}},1500);
+  allNI.forEach(function(inp){inp.addEventListener('input',trackNameDb)});
+  var trackEmailDb=debounce(function(){var e=allEI[0]?allEI[0].value.trim():"";if(e&&e.indexOf('@')>=0){trackContactInfo('email',e);allEI.forEach(function(o){o.value=e})}},1500);
+  allEI.forEach(function(inp){inp.addEventListener('input',trackEmailDb)});
+  var trackPhoneDb=debounce(function(){var p=allPI[0]?allPI[0].value.trim():"";if(p&&p.length>=8){trackContactInfo('phone',p);allPI.forEach(function(o){o.value=p})}},1500);
+  allPI.forEach(function(inp){inp.addEventListener('input',trackPhoneDb)});
+  document.querySelectorAll('.emailBtnAction').forEach(function(btn){btn.addEventListener("click",function(){var pb=btn.closest('.contactBlockInstance');var ni=pb?pb.querySelector('.nameInputField'):allNI[0];var ei=pb?pb.querySelector('.emailInputField'):allEI[0];var name=ni?ni.value.trim():"";var email=ei?ei.value.trim():"";if(!email){alert("Please enter your email.");return}if(name)userContactInfo.name=name;userContactInfo.email=email;ctaClicks.sendEmail=true;trackToGoogleSheets('send_email_clicked',currentRevealedIndex,{contactName:name,contactEmail:email});var subject=name?"Nutrition Results for "+name:"Your Nutrition Assessment Results";window.location.href="mailto:"+encodeURIComponent(email)+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(resultsText)})});
+  document.querySelectorAll('.waBtnAction').forEach(function(btn){btn.addEventListener("click",function(){var pb=btn.closest('.contactBlockInstance');var ni=pb?pb.querySelector('.nameInputField'):allNI[0];var pi=pb?pb.querySelector('.phoneInputField'):allPI[0];var name=ni?ni.value.trim():"";var phone=pi?pi.value.trim():"";if(!phone){alert("Please enter your phone number.");return}if(name)userContactInfo.name=name;userContactInfo.phone=phone;ctaClicks.sendWhatsApp=true;trackToGoogleSheets('send_whatsapp_clicked',currentRevealedIndex,{contactName:name,contactPhone:phone});phone=phone.replace(/[^\d]/g,"");if(phone.length<8){alert("Please enter a valid phone number.");return}var msg=name?"Results for "+name+":\n\n"+resultsText:resultsText;window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(msg),"_blank")})});
 }
 
 /* =========================
-   VALIDATION HELPERS
+   VALIDATION
    ========================= */
-function clearInvalidMarks(stepEl){if(!stepEl)return;stepEl.querySelectorAll(".invalid").forEach(x=>x.classList.remove("invalid"));stepEl.querySelectorAll(".invalid-label").forEach(x=>x.classList.remove("invalid-label"));const bg=document.getElementById("bfGrid");if(bg)bg.classList.remove("invalidGrid")}
-function markFieldInvalid(el){el.classList.add("invalid");const fw=el.closest(".field");if(fw){const l=fw.querySelector("label");if(l)l.classList.add("invalid-label")}if(el.id==="bfMin"||el.id==="bfMax"||el.id==="bfRangeLabel"){const g=document.getElementById("bfGrid");if(g)g.classList.add("invalidGrid")}}
-function showErrorBanner(labels){const b=document.getElementById("errBanner");if(!labels.length){b.style.display="none";b.innerHTML="";return}b.style.display="block";b.innerHTML=`<b>${escapeHtml(t("err.fill"))}</b> ${labels.map(x=>`<span style="white-space:nowrap"> • ${escapeHtml(x)}</span>`).join("")}`}
-
+function clearInvalidMarks(stepEl){if(!stepEl)return;stepEl.querySelectorAll(".invalid").forEach(function(x){x.classList.remove("invalid")});stepEl.querySelectorAll(".invalid-label").forEach(function(x){x.classList.remove("invalid-label")});var bg=document.getElementById("bfGrid");if(bg)bg.classList.remove("invalidGrid")}
+function markFieldInvalid(el){el.classList.add("invalid");var fw=el.closest(".field");if(fw){var l=fw.querySelector("label");if(l)l.classList.add("invalid-label")}if(el.id==="bfMin"||el.id==="bfMax"||el.id==="bfRangeLabel"){var g=document.getElementById("bfGrid");if(g)g.classList.add("invalidGrid")}}
+function showErrorBanner(labels){var b=document.getElementById("errBanner");if(!labels.length){b.style.display="none";b.innerHTML="";return}b.style.display="block";b.innerHTML="<b>"+escapeHtml(t("err.fill"))+"</b> "+labels.map(function(x){return'<span style="white-space:nowrap"> - '+escapeHtml(x)+'</span>'}).join("")}
 function validateSection(name){
-  const el=getSectionEl(name);if(!el)return true;clearInvalidMarks(el);
-  const required=Array.from(el.querySelectorAll("[required]"));let firstInvalid=null;const missing=[];
-  for(const r of required){
-    const fieldWrap=r.closest(".field");if(fieldWrap&&fieldWrap.style.display==="none")continue;
-    const parentWrap=r.closest("[id$='Wrap']");if(parentWrap&&parentWrap.style.display==="none")continue;
-    if(r.type==="hidden"&&(r.id==="bfMin"||r.id==="bfMax"))continue;
-    if(!r.value){if(!firstInvalid)firstInvalid=r;markFieldInvalid(r);const w=r.closest(".field"),l=w?w.querySelector("label"):null;if(r.id==="bfRangeLabel"){if(!missing.includes(t("err.selectBf")))missing.push(t("err.selectBf"))}else missing.push(l?l.textContent.trim():"Missing field");continue}
-  }
-  if(name==="details"){const tdW=document.getElementById("trainingDetailsWrap");if(tdW&&tdW.style.display!=="none"){const td=document.getElementById("trainingDetails");if(!td.value){if(!firstInvalid)firstInvalid=td;markFieldInvalid(td);missing.push(t("s1.trainingDetails"))}}}
-  if(name==="diet"){const pW=document.getElementById("produceAllergyWrap");if(pW&&pW.style.display!=="none"){const pd=document.getElementById("produceAllergyDetails");if(!pd.value){if(!firstInvalid)firstInvalid=pd;markFieldInvalid(pd);missing.push(t("s3.produce.details"))}}}
+  var el=getSectionEl(name);if(!el)return true;clearInvalidMarks(el);
+  var required=Array.from(el.querySelectorAll("[required]"));var firstInvalid=null;var missing=[];
+  for(var i=0;i<required.length;i++){var r=required[i];var fieldWrap=r.closest(".field");if(fieldWrap&&fieldWrap.style.display==="none")continue;var parentWrap=r.closest("[id$='Wrap']");if(parentWrap&&parentWrap.style.display==="none")continue;if(r.type==="hidden"&&(r.id==="bfMin"||r.id==="bfMax"))continue;if(!r.value){if(!firstInvalid)firstInvalid=r;markFieldInvalid(r);var w=r.closest(".field"),l=w?w.querySelector("label"):null;if(r.id==="bfRangeLabel"){if(missing.indexOf(t("err.selectBf"))<0)missing.push(t("err.selectBf"))}else missing.push(l?l.textContent.trim():"Missing field");continue}}
+  if(name==="details"){var tdW=document.getElementById("trainingDetailsWrap");if(tdW&&tdW.style.display!=="none"){var td=document.getElementById("trainingDetails");if(!td.value){if(!firstInvalid)firstInvalid=td;markFieldInvalid(td);missing.push(t("s1.trainingDetails"))}}}
+  if(name==="diet"){var pW=document.getElementById("produceAllergyWrap");if(pW&&pW.style.display!=="none"){var pd=document.getElementById("produceAllergyDetails");if(!pd.value){if(!firstInvalid)firstInvalid=pd;markFieldInvalid(pd);missing.push(t("s3.produce.details"))}}}
   if(firstInvalid){showErrorBanner(missing);firstInvalid.scrollIntoView({behavior:"smooth",block:"center"});firstInvalid.focus({preventScroll:true});return false}
   showErrorBanner([]);return true;
 }
@@ -981,93 +864,80 @@ function validateSection(name){
    NUDGE SYSTEM
    ========================= */
 function getRequiredFieldsInfo(sectionName){
-  const el=getSectionEl(sectionName);if(!el)return{total:0,missing:[],missingEls:[]};
-  const required=Array.from(el.querySelectorAll("[required]"));const missing=[];const missingEls=[];
-  for(const r of required){
-    if(r.type==="hidden"&&(r.id==="bfMin"||r.id==="bfMax"))continue;
-    if(r.type==="hidden"&&r.id==="bfRangeLabel"){if(!r.value){missing.push(t("err.selectBf"));missingEls.push(document.getElementById("bfGrid")||r)}continue}
-    const fieldWrap=r.closest(".field");if(fieldWrap&&fieldWrap.style.display==="none")continue;
-    const parentWrap=r.closest("[id$='Wrap']");if(parentWrap&&parentWrap.style.display==="none")continue;
-    if(!r.value){const wrap=r.closest(".field");const lab=wrap?wrap.querySelector("label"):null;missing.push(lab?lab.textContent.trim():"Field");missingEls.push(r)}
-  }
-  if(sectionName==="details"){const tdW=document.getElementById("trainingDetailsWrap");if(tdW&&tdW.style.display!=="none"){const td=document.getElementById("trainingDetails");if(!td.value){missing.push(t("s1.trainingDetails"));missingEls.push(td)}}}
-  if(sectionName==="diet"){const pW=document.getElementById("produceAllergyWrap");if(pW&&pW.style.display!=="none"){const pd=document.getElementById("produceAllergyDetails");if(!pd.value){missing.push(t("s3.produce.details"));missingEls.push(pd)}}}
-  return{total:required.length,missing,missingEls};
+  var el=getSectionEl(sectionName);if(!el)return{total:0,missing:[],missingEls:[]};
+  var required=Array.from(el.querySelectorAll("[required]"));var missing=[];var missingEls=[];
+  for(var i=0;i<required.length;i++){var r=required[i];if(r.type==="hidden"&&(r.id==="bfMin"||r.id==="bfMax"))continue;if(r.type==="hidden"&&r.id==="bfRangeLabel"){if(!r.value){missing.push(t("err.selectBf"));missingEls.push(document.getElementById("bfGrid")||r)}continue}var fieldWrap=r.closest(".field");if(fieldWrap&&fieldWrap.style.display==="none")continue;var parentWrap=r.closest("[id$='Wrap']");if(parentWrap&&parentWrap.style.display==="none")continue;if(!r.value){var wrap=r.closest(".field");var lab=wrap?wrap.querySelector("label"):null;missing.push(lab?lab.textContent.trim():"Field");missingEls.push(r)}}
+  if(sectionName==="details"){var tdW=document.getElementById("trainingDetailsWrap");if(tdW&&tdW.style.display!=="none"){var td=document.getElementById("trainingDetails");if(!td.value){missing.push(t("s1.trainingDetails"));missingEls.push(td)}}}
+  if(sectionName==="diet"){var pW=document.getElementById("produceAllergyWrap");if(pW&&pW.style.display!=="none"){var pd=document.getElementById("produceAllergyDetails");if(!pd.value){missing.push(t("s3.produce.details"));missingEls.push(pd)}}}
+  return{total:required.length,missing:missing,missingEls:missingEls};
 }
-
 function updateNudgeBars(){
-  document.querySelectorAll(".nudgeBar").forEach(bar=>{
-    const sectionName=bar.getAttribute("data-nudge-for");const secEl=getSectionEl(sectionName);
+  document.querySelectorAll(".nudgeBar").forEach(function(bar){
+    var sectionName=bar.getAttribute("data-nudge-for");var secEl=getSectionEl(sectionName);
     if(!secEl||!secEl.classList.contains("visible")){bar.style.display="none";return}
-    const info=getRequiredFieldsInfo(sectionName);
+    var info=getRequiredFieldsInfo(sectionName);
     if(info.missing.length===0){bar.style.display="none";clearUnansweredHighlights(secEl);return}
-    const qWord=t("nudge.left");
-    bar.innerHTML=`<div><span class="nudgeCount">${info.missing.length}</span>${info.missing.length} ${qWord}</div><div class="nudgeFields">${info.missing.map(m=>`<span>${escapeHtml(m)}</span>`).join("")}</div>`;
+    bar.innerHTML='<div><span class="nudgeCount">'+info.missing.length+'</span>'+info.missing.length+' '+t("nudge.left")+'</div><div class="nudgeFields">'+info.missing.map(function(m){return'<span>'+escapeHtml(m)+'</span>'}).join('')+'</div>';
     bar.style.display="block";
     highlightUnanswered(secEl,info.missingEls);
-    bar.onclick=()=>{if(info.missingEls.length>0){const target=info.missingEls[0];target.scrollIntoView({behavior:"smooth",block:"center"});if(target.focus)target.focus({preventScroll:true})}};
+    bar.onclick=function(){if(info.missingEls.length>0){var target=info.missingEls[0];target.scrollIntoView({behavior:"smooth",block:"center"});if(target.focus)target.focus({preventScroll:true})}};
   });
 }
-
 function highlightUnanswered(secEl,missingEls){
   clearUnansweredHighlights(secEl);
-  missingEls.forEach(el=>{
-    if(el.id==="bfGrid"||el.classList&&el.classList.contains("bfGrid")){const grid=document.getElementById("bfGrid");if(grid)grid.classList.add("unanswered");const wrap=document.getElementById("bfFieldWrap");if(wrap){const lab=wrap.querySelector("label");if(lab)lab.classList.add("unanswered-label")}}
-    else{el.classList.add("unanswered");const wrap=el.closest(".field");if(wrap){const lab=wrap.querySelector("label");if(lab)lab.classList.add("unanswered-label")}}
+  missingEls.forEach(function(el){
+    if(el.id==="bfGrid"||(el.classList&&el.classList.contains("bfGrid"))){var grid=document.getElementById("bfGrid");if(grid)grid.classList.add("unanswered");var wrap=document.getElementById("bfFieldWrap");if(wrap){var lab=wrap.querySelector("label");if(lab)lab.classList.add("unanswered-label")}}
+    else{el.classList.add("unanswered");var wrap2=el.closest(".field");if(wrap2){var lab2=wrap2.querySelector("label");if(lab2)lab2.classList.add("unanswered-label")}}
   });
 }
-
 function clearUnansweredHighlights(secEl){
-  if(!secEl)return;secEl.querySelectorAll(".unanswered").forEach(x=>x.classList.remove("unanswered"));secEl.querySelectorAll(".unanswered-label").forEach(x=>x.classList.remove("unanswered-label"));
-  const bg=document.getElementById("bfGrid");if(bg)bg.classList.remove("unanswered");
+  if(!secEl)return;secEl.querySelectorAll(".unanswered").forEach(function(x){x.classList.remove("unanswered")});secEl.querySelectorAll(".unanswered-label").forEach(function(x){x.classList.remove("unanswered-label")});
+  var bg=document.getElementById("bfGrid");if(bg)bg.classList.remove("unanswered");
 }
 
 /* =========================
-   PROGRESSIVE REVEAL ENGINE — no more "ready" section
+   PROGRESSIVE REVEAL ENGINE
    ========================= */
-const sectionOrder=["age","gender","goal","details","nutrition","diet","results"];
-let currentRevealedIndex=0;let resultsShown=false;let lastResultsData=null;
+var sectionOrder=["age","gender","goal","details","nutrition","diet","results"];
+var currentRevealedIndex=0;var resultsShown=false;var lastResultsData=null;
 function getSectionEl(name){return document.getElementById("sec-"+name)}
 
 function revealSection(name){
-  const el=getSectionEl(name);if(!el)return;
+  var el=getSectionEl(name);
+  if(!el)return;
+  el.style.display="block";
+  el.style.opacity="1";
+  el.style.transform="none";
   el.classList.add("visible");
-  requestAnimationFrame(()=>{requestAnimationFrame(()=>{el.classList.add("animate-in")})});
-  el.scrollIntoView({behavior:"smooth",block:"start"});
+  el.classList.add("animate-in");
+  setTimeout(function(){
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+  },100);
   setTimeout(updateNudgeBars,300);
 }
 
-function updateProgress(){const bar=document.getElementById("progressBar");const pct=Math.min(100,Math.round((currentRevealedIndex/(sectionOrder.length-1))*100));bar.style.width=pct+"%"}
+function updateProgress(){var bar=document.getElementById("progressBar");var pct=Math.min(100,Math.round((currentRevealedIndex/(sectionOrder.length-1))*100));bar.style.width=pct+"%"}
 
 function isSectionComplete(name){
-  if(name==="results")return false; // results never auto-advances
-  const el=getSectionEl(name);if(!el)return false;
-  const required=Array.from(el.querySelectorAll("[required]"));
-  for(const r of required){
-    if(r.type==="hidden"&&(r.id==="bfMin"||r.id==="bfMax"))continue;
-    const fieldWrap=r.closest(".field");if(fieldWrap&&fieldWrap.style.display==="none")continue;
-    const parentWrap=r.closest("[id$='Wrap']");if(parentWrap&&parentWrap.style.display==="none")continue;
-    if(!r.value)return false;
-  }
-  if(name==="details"){const tdW=document.getElementById("trainingDetailsWrap");if(tdW&&tdW.style.display!=="none"){const td=document.getElementById("trainingDetails");if(!td.value)return false}}
-  if(name==="diet"){const pW=document.getElementById("produceAllergyWrap");if(pW&&pW.style.display!=="none"){const pd=document.getElementById("produceAllergyDetails");if(!pd.value)return false}}
+  if(name==="results")return false;
+  var el=getSectionEl(name);if(!el)return false;
+  var required=Array.from(el.querySelectorAll("[required]"));
+  for(var i=0;i<required.length;i++){var r=required[i];if(r.type==="hidden"&&(r.id==="bfMin"||r.id==="bfMax"))continue;var fieldWrap=r.closest(".field");if(fieldWrap&&fieldWrap.style.display==="none")continue;var parentWrap=r.closest("[id$='Wrap']");if(parentWrap&&parentWrap.style.display==="none")continue;if(!r.value)return false}
+  if(name==="details"){var tdW=document.getElementById("trainingDetailsWrap");if(tdW&&tdW.style.display!=="none"){var td=document.getElementById("trainingDetails");if(!td.value)return false}}
+  if(name==="diet"){var pW=document.getElementById("produceAllergyWrap");if(pW&&pW.style.display!=="none"){var pd=document.getElementById("produceAllergyDetails");if(!pd.value)return false}}
   return true;
 }
 
 function tryAdvance(){
-  const currentName=sectionOrder[currentRevealedIndex];
+  var currentName=sectionOrder[currentRevealedIndex];
   if(currentName==="results")return;
   if(isSectionComplete(currentName)){
     showErrorBanner([]);clearInvalidMarks(getSectionEl(currentName));clearUnansweredHighlights(getSectionEl(currentName));
-    const nextIdx=currentRevealedIndex+1;
+    var nextIdx=currentRevealedIndex+1;
     if(nextIdx<sectionOrder.length){
       currentRevealedIndex=nextIdx;updateProgress();
-      // If next is results, auto-generate and show them
-      if(sectionOrder[nextIdx]==="results"){
-        autoShowResults();
-      } else {
-        revealSection(sectionOrder[nextIdx]);
-      }
+      if(sectionOrder[nextIdx]==="results"){autoShowResults()}
+      else{revealSection(sectionOrder[nextIdx])}
       trackToGoogleSheets('in_progress',nextIdx);
     }
   }
@@ -1075,14 +945,11 @@ function tryAdvance(){
 }
 
 function autoShowResults(){
-  // Validate all previous sections
-  for(let i=0;i<sectionOrder.indexOf("results");i++){
-    if(!validateSection(sectionOrder[i])){
-      getSectionEl(sectionOrder[i]).scrollIntoView({behavior:"smooth",block:"start"});
-      return;
-    }
+  for(var i=0;i<sectionOrder.indexOf("results");i++){
+    if(!validateSection(sectionOrder[i])){getSectionEl(sectionOrder[i]).scrollIntoView({behavior:"smooth",block:"start"});return}
   }
-  const form=document.getElementById("quizForm");const fd=new FormData(form);const allergies=fd.getAll("allergies");const data=Object.fromEntries(fd.entries());
+  var form=document.getElementById("quizForm");var fd=new FormData(form);var allergies=fd.getAll("allergies");
+  var data={};fd.forEach(function(v,k){data[k]=v});
   data.allergies=allergies;data.age=Number(data.age);data.heightCm=Number(data.heightCm);data.weightKg=Number(data.weightKg);
   data.bfMin=Number(data.bfMin);data.bfMax=Number(data.bfMax);data.bfRangeLabel=String(data.bfRangeLabel||"");
   if(data.trainingNow==="no")data.sessionsPerWeek="0";
@@ -1091,8 +958,8 @@ function autoShowResults(){
 }
 
 function attachAutoAdvance(){
-  document.querySelectorAll('#quizForm input,#quizForm select,#quizForm textarea').forEach(field=>{
-    const handler=()=>{setTimeout(tryAdvance,80)};
+  document.querySelectorAll('#quizForm input,#quizForm select,#quizForm textarea').forEach(function(field){
+    var handler=function(){setTimeout(tryAdvance,80)};
     field.addEventListener('change',handler);field.addEventListener('input',debounce(handler,400));
   });
 }
@@ -1100,61 +967,102 @@ function attachAutoAdvance(){
 /* =========================
    DYNAMIC FIELDS
    ========================= */
-function setVisible(id,on){const el=document.getElementById(id);if(el)el.style.display=on?"":"none"}
+function setVisible(id,on){var el=document.getElementById(id);if(el)el.style.display=on?"":"none"}
 function updateTrainingFields(){
-  const tn=document.getElementById("trainingNow").value;const tb=document.getElementById("trainedBefore").value;const tt=document.getElementById("trainingType").value;
+  var tn=document.getElementById("trainingNow").value;var tb=document.getElementById("trainedBefore").value;var tt=document.getElementById("trainingType").value;
   setVisible("trainedBeforeWrap",tn==="no");
-  const showType=(tn==="yes")||(tn==="no"&&tb==="yes");setVisible("trainingTypeWrap",showType);
-  const showSessions=(tn==="yes");setVisible("sessionsWrap",showSessions);if(!showSessions)document.getElementById("sessionsPerWeek").value="0";
-  const showDetails=showType&&(tt==="mixed"||tt==="sport");setVisible("trainingDetailsWrap",showDetails);
+  var showType=(tn==="yes")||(tn==="no"&&tb==="yes");setVisible("trainingTypeWrap",showType);
+  var showSessions=(tn==="yes");setVisible("sessionsWrap",showSessions);if(!showSessions)document.getElementById("sessionsPerWeek").value="0";
+  var showDetails=showType&&(tt==="mixed"||tt==="sport");setVisible("trainingDetailsWrap",showDetails);
   if(!showType){document.getElementById("trainingType").value="";document.getElementById("trainingDetails").value=""}
   if(!showDetails)document.getElementById("trainingDetails").value="";
   setTimeout(updateNudgeBars,100);
 }
 function updateProduceAllergyField(){
-  const allergies=Array.from(document.querySelectorAll('input[name="allergies"]:checked')).map(x=>x.value);
-  setVisible("produceAllergyWrap",allergies.includes("fruits")||allergies.includes("vegetables"));
+  var allergies=Array.from(document.querySelectorAll('input[name="allergies"]:checked')).map(function(x){return x.value});
+  setVisible("produceAllergyWrap",allergies.indexOf("fruits")>=0||allergies.indexOf("vegetables")>=0);
   setTimeout(updateNudgeBars,100);
 }
 function updateCurrentCalsRequired(){
-  const tracks=document.getElementById("tracks").value;const cc=document.getElementById("currentCals");const ccl=cc.closest(".field").querySelector("label");
+  var tracks=document.getElementById("tracks").value;var cc=document.getElementById("currentCals");var ccl=cc.closest(".field").querySelector("label");
   if(tracks==="sometimes"||tracks==="yes"){cc.required=true;ccl.setAttribute("data-i18n","s2.currentCals.required");ccl.innerHTML=t("s2.currentCals.required")}
   else{cc.required=false;ccl.setAttribute("data-i18n","s2.currentCals");ccl.innerHTML=t("s2.currentCals")}
   setTimeout(updateNudgeBars,100);
 }
 
-document.getElementById("trainingNow").addEventListener("change",()=>{document.getElementById("trainedBefore").value="";document.getElementById("trainingType").value="";document.getElementById("trainingDetails").value="";updateTrainingFields()});
-document.getElementById("trainedBefore").addEventListener("change",()=>{document.getElementById("trainingType").value="";document.getElementById("trainingDetails").value="";updateTrainingFields()});
-document.getElementById("trainingType").addEventListener("change",()=>{document.getElementById("trainingDetails").value="";updateTrainingFields()});
-document.querySelectorAll('input[name="allergies"]').forEach(cb=>{cb.addEventListener("change",updateProduceAllergyField)});
+document.getElementById("trainingNow").addEventListener("change",function(){document.getElementById("trainedBefore").value="";document.getElementById("trainingType").value="";document.getElementById("trainingDetails").value="";updateTrainingFields()});
+document.getElementById("trainedBefore").addEventListener("change",function(){document.getElementById("trainingType").value="";document.getElementById("trainingDetails").value="";updateTrainingFields()});
+document.getElementById("trainingType").addEventListener("change",function(){document.getElementById("trainingDetails").value="";updateTrainingFields()});
+document.querySelectorAll('input[name="allergies"]').forEach(function(cb){cb.addEventListener("change",updateProduceAllergyField)});
 document.getElementById("tracks").addEventListener("change",updateCurrentCalsRequired);
-document.getElementById("gender").addEventListener("change",e=>{if(window.__gateBfCardsByGender)window.__gateBfCardsByGender(e.target.value)});
+document.getElementById("gender").addEventListener("change",function(e){if(window.__gateBfCardsByGender)window.__gateBfCardsByGender(e.target.value)});
 
 /* =========================
    BODY FAT VISUAL CARDS
    ========================= */
 function initBfVisualCards(){
-  const grid=document.getElementById("bfGrid"),prompt=document.getElementById("bfPrompt");
-  const bfMinEl=document.getElementById("bfMin"),bfMaxEl=document.getElementById("bfMax"),bfLabelEl=document.getElementById("bfRangeLabel");
+  var grid=document.getElementById("bfGrid"),prompt=document.getElementById("bfPrompt");
+  var bfMinEl=document.getElementById("bfMin"),bfMaxEl=document.getElementById("bfMax"),bfLabelEl=document.getElementById("bfRangeLabel");
   if(!grid||!bfMinEl||!bfMaxEl||!bfLabelEl)return;
-  const cards=Array.from(grid.querySelectorAll(".bfCard"));
-  function clearSelection(){bfMinEl.value="";bfMaxEl.value="";bfLabelEl.value="";cards.forEach(c=>{c.classList.remove("isSelected");c.setAttribute("aria-checked","false")})}
+  var cards=Array.from(grid.querySelectorAll(".bfCard"));
+  function clearSelection(){bfMinEl.value="";bfMaxEl.value="";bfLabelEl.value="";cards.forEach(function(c){c.classList.remove("isSelected");c.setAttribute("aria-checked","false")})}
   function setSelection(card){
     bfMinEl.value=String(card.dataset.min||"");bfMaxEl.value=String(card.dataset.max||"");bfLabelEl.value=String(card.dataset.label||"");
     grid.classList.remove("invalidGrid");grid.classList.remove("unanswered");bfMinEl.classList.remove("invalid");bfMaxEl.classList.remove("invalid");bfLabelEl.classList.remove("invalid");
-    const wrap=bfMinEl.closest(".field");if(wrap){const lab=wrap.querySelector("label");if(lab){lab.classList.remove("invalid-label");lab.classList.remove("unanswered-label")}}
-    cards.forEach(c=>{const on=c===card;c.classList.toggle("isSelected",on);c.setAttribute("aria-checked",on?"true":"false")});
+    var wrap=bfMinEl.closest(".field");if(wrap){var lab=wrap.querySelector("label");if(lab){lab.classList.remove("invalid-label");lab.classList.remove("unanswered-label")}}
+    cards.forEach(function(c){var on=c===card;c.classList.toggle("isSelected",on);c.setAttribute("aria-checked",on?"true":"false")});
     trackFieldChange();setTimeout(tryAdvance,80);
   }
   function gateByGender(gender){
-    const g=(gender==="female")?"female":(gender==="male"?"male":"");
+    var g=(gender==="female")?"female":(gender==="male"?"male":"");
     if(!g){if(prompt)prompt.style.display="";grid.style.display="none"}else{if(prompt)prompt.style.display="none";grid.style.display=""}
-    cards.forEach(card=>{card.classList.toggle("isHidden",g?(card.dataset.gender!==g):true)});
-    const selected=cards.find(c=>c.classList.contains("isSelected"));if(selected&&g&&selected.dataset.gender!==g)clearSelection();
+    cards.forEach(function(card){card.classList.toggle("isHidden",g?(card.dataset.gender!==g):true)});
+    var selected=cards.find(function(c){return c.classList.contains("isSelected")});if(selected&&g&&selected.dataset.gender!==g)clearSelection();
   }
-  cards.forEach(card=>{card.addEventListener("click",()=>setSelection(card));card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();setSelection(card)}})});
-  window.__gateBfCardsByGender=gateByGender;const genderSel=document.getElementById("gender");gateByGender(genderSel?genderSel.value:"");
+  cards.forEach(function(card){card.addEventListener("click",function(){setSelection(card)});card.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();setSelection(card)}})});
+  window.__gateBfCardsByGender=gateByGender;var genderSel=document.getElementById("gender");gateByGender(genderSel?genderSel.value:"");
 }
+
+/* =========================
+   TESTIMONIAL FLOAT + MODAL
+   ========================= */
+(function(){
+  try{
+    var float=document.getElementById('testiFloat');
+    var overlay=document.getElementById('testiOverlay');
+    var modal=document.getElementById('testiModal');
+    var closeBtn=document.getElementById('testiClose');
+    if(!float||!overlay||!modal)return;
+
+    function openTestimonial(){
+      overlay.classList.add('open');
+      document.body.style.overflow='hidden';
+      trackToGoogleSheets('testimonial_opened',currentRevealedIndex);
+    }
+    function closeTestimonial(){
+      overlay.classList.remove('open');
+      document.body.style.overflow='';
+    }
+
+    float.addEventListener('click',openTestimonial);
+    float.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();openTestimonial()}
+    });
+    if(closeBtn)closeBtn.addEventListener('click',function(e){e.stopPropagation();closeTestimonial()});
+    overlay.addEventListener('click',function(e){if(e.target===overlay)closeTestimonial()});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('open'))closeTestimonial()});
+
+    document.querySelectorAll('.cta-kickstart-testi').forEach(function(link){
+      link.addEventListener('click',function(){trackCtaClick('kickstart_testimonial')});
+    });
+
+    // Show immediately
+    float.style.opacity='1';
+    float.style.pointerEvents='auto';
+    float.style.transform='translateY(0)';
+
+  }catch(e){console.error("Testimonial error:",e)}
+})();
 
 /* =========================
    INIT
@@ -1167,12 +1075,14 @@ revealSection(sectionOrder[0]);
 updateProgress();
 attachAutoAdvance();
 
-const langSelect=document.getElementById("langSelect");
-if(langSelect){langSelect.value=getLang();langSelect.addEventListener("change",e=>setLang(e.target.value))}
+var langSelect=document.getElementById("langSelect");
+if(langSelect){langSelect.value=getLang();langSelect.addEventListener("change",function(e){setLang(e.target.value)})}
 applyI18n();
 
 setTimeout(updateNudgeBars,500);
 setInterval(updateNudgeBars,2500);
+
+
 </script>
 </body>
 </html>
